@@ -1,15 +1,11 @@
 # ask user about backups
-$ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. ALTHOUGH IT CREATES A RESTORE POINT, THINGS COULD STILL BREAK! Are you sure you want to continue?", "(Default N)", @("&Y", "&N"), 1)
+$ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POINT, THINGS COULD BREAK! Are you sure you want to continue?", "(Default N)", @("&Y", "&N"), 1)
 if ($useDarkMode -eq 1) {
 	Exit "user quit"
 }
 # starting text
 Write-Host "Starting script."
 Write-Host "!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!"
-# I am not sure if normal user is allowed to create system restore points. I will test when I can, and revert this if they cannot.
-Write-Host "creating system restore point"
-Enable-ComputerRestore -Drive "C:\"
-Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 # set dark mode preference
 $useDarkMode = $Host.UI.PromptForChoice("Set the system to dark mode?", "(Default Y)", @("&Y", "&N"), 0)
 if ($useDarkMode -eq 0) {
