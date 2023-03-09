@@ -1,11 +1,15 @@
 # ask user about backups
-$ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. IF YOU DO NOT HAVE A BACKUP, EXIT NOW! Do you want to continue?", "(Default N)", @("&Y", "&N"), 1)
+$ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. ALTHOUGH IT CREATES A RESTORE POINT, THINGS COULD STILL BREAK! Are you sure you want to continue?", "(Default N)", @("&Y", "&N"), 1)
 if ($useDarkMode -eq 1) {
-	Exit “user quit”
+	Exit "user quit"
 }
 # starting text
-Write-Host “Starting script.”
-Write-Host “!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!”
+Write-Host "Starting script."
+Write-Host "!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!"
+# I am not sure if normal user is allowed to create system restore points. I will test when I can, and revert this if they cannot.
+Write-Host "creating system restore point"
+Enable-ComputerRestore -Drive "C:\"
+Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 # set dark mode preference
 $useDarkMode = $Host.UI.PromptForChoice("Set the system to dark mode?", "(Default Y)", @("&Y", "&N"), 0)
 if ($useDarkMode -eq 0) {
@@ -14,28 +18,28 @@ if ($useDarkMode -eq 0) {
 	Write-Host "Dark mode applied"
 }
 # set start menu location preference
-$leftStartMenu = $Host.UI.PromptForChoice(“Start menu on left side?”, “(Default Y)”, @(“&Y”, “&N”), 0)
+$leftStartMenu = $Host.UI.PromptForChoice("Start menu on left side?", "(Default Y)", @("&Y", "&N"), 0)
 if ($leftStartMenu -eq 0) {
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType DWord
 	Write-Host "Left start menu applied"
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
-$unpinChat = $Host.UI.PromptForChoice(“Unpin chat?”, “(Default Y)”, @(“&Y”, “&N”), 0)
+$unpinChat = $Host.UI.PromptForChoice("Unpin chat?", "(Default Y)", @("&Y", "&N"), 0)
 if ($unpinChat -eq 0) {
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
 	Write-Host "Chat unpinned"
 }
 # unpin widgets from taskbar
-$unpinWidgets = $Host.UI.PromptForChoice(“Unpin widgets?”, “(Default Y)”, @(“&Y”, “&N”), 0)
+$unpinWidgets = $Host.UI.PromptForChoice("Unpin widgets?", "(Default Y)", @("&Y", "&N"), 0)
 if ($unpinWidgets -eq 0) {
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
 	Write-Host "Widgets unpinned"
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
-$SetMouseSpeed = $Host.UI.PromptForChoice(“Set the mouse speed?”, “(Default N)”, @(“&Y”, “&N”), 1)
+$SetMouseSpeed = $Host.UI.PromptForChoice("Set the mouse speed?", "(Default N)", @("&Y", "&N"), 1)
 if ($SetMouseSpeed -eq 0) {
-	Write-Host “10 is the default mouse speed of windows.”
+	Write-Host "10 is the default mouse speed of windows."
 	$MouseSpeed = Read-Host "Enter number from 1-20: "
 	if (($MouseSpeed -isnot [int])) {
 		Throw 'You did not provide a number as input.'
@@ -59,13 +63,13 @@ if ($SetMouseSpeed -eq 0) {
 	}
 }
 # install firefox
-$InstallFirefox = $Host.UI.PromptForChoice(“Install Firefox?”, “(Default Y)”, @(“&Y”, “&N”), 0)
+$InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default Y)", @("&Y", "&N"), 0)
 if ($InstallFirefox -eq 0) {
 winget install Mozilla.Firefox
 Write-Host "FireFox installed"
 }
 # use dvorak ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
-$UseDvorak = $Host.UI.PromptForChoice(“Switch to the dvorak keyboard layout?”, “(Default N)”, @(“&Y”, “&N”), 1)
+$UseDvorak = $Host.UI.PromptForChoice("Switch to the dvorak keyboard layout?", "(Default N)", @("&Y", "&N"), 1)
 if ($UseDvorak -eq 0) {
 	$l = Get-WinUserLanguageList
 	# http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
@@ -76,7 +80,7 @@ if ($UseDvorak -eq 0) {
 	Write-Host "Dvorak keyboard layout applied"
 }
 # install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
-$InstallPowertoys = $Host.UI.PromptForChoice(“Install Microsoft PowerToys?”, “(Default Y)”, @(“&Y”, “&N”), 0)
+$InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "(Default Y)", @("&Y", "&N"), 0)
 if ($InstallPowertoys -eq 0) {
 $installLocation = "$env:LocalAppData\Programs\PowerToys"
 
@@ -197,4 +201,4 @@ Remove-Item -Path $tempDir -Recurse -Force
 Write-Host "Finished installing powertoys!"
 }
 # end script
-Read-Host “Script Finished, press enter to exit.”
+Read-Host "Script Finished, press enter to exit."
