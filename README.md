@@ -25,6 +25,7 @@ This script is mostly tailored to my preferences, though I have added prompts to
 - [x] Install FireFox.
 - [x] Set the keyboard layout to dvorak.
 - [x] Install PowerToys.
+- [x] Move the taskbar.
 
 ## To use the script
 
