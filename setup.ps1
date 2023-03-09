@@ -9,39 +9,39 @@ Write-Host “!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!”
 # set dark mode preference
 $useDarkMode = $Host.UI.PromptForChoice("Set the system to dark mode?", "(Default Y)", @("&Y", "&N"), 0)
 if ($useDarkMode -eq 0) {
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-Write-Host "Dark mode applied"
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
+	Write-Host "Dark mode applied"
 }
 # set start menu location preference
 $leftStartMenu = $Host.UI.PromptForChoice(“Start menu on left side?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($leftStartMenu -eq 0) {
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType DWord
-Write-Host "Left start menu applied"
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType DWord
+	Write-Host "Left start menu applied"
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
 $unpinChat = $Host.UI.PromptForChoice(“Unpin chat?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($unpinChat -eq 0) {
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
-Write-Host "Chat unpinned"
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
+	Write-Host "Chat unpinned"
 }
 # unpin widgets from taskbar
 $unpinWidgets = $Host.UI.PromptForChoice(“Unpin widgets?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($unpinWidgets -eq 0) {
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
-Write-Host "Widgets unpinned"
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
+	Write-Host "Widgets unpinned"
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice(“Set the mouse speed?”, “(Default N)”, @(“&Y”, “&N”), 1)
 if ($SetMouseSpeed -eq 0) {
-Write-Host “10 is the default mouse speed of windows.”
-$MouseSpeed = Read-Host "Enter number from 1-20: "
-if (($MouseSpeed -isnot [int])) {
-Throw 'You did not provide a number as input.'
-} elseif ($MouseSpeed -In 1..20) {
-set-strictMode -version latest
-$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
+	Write-Host “10 is the default mouse speed of windows.”
+	$MouseSpeed = Read-Host "Enter number from 1-20: "
+	if (($MouseSpeed -isnot [int])) {
+		Throw 'You did not provide a number as input.'
+	} elseif ($MouseSpeed -In 1..20) {
+		set-strictMode -version latest
+		$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
    [DllImport("user32.dll")]
     public static extern bool SystemParametersInfo(
        uint uiAction,
@@ -50,13 +50,13 @@ $winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
        uint fWinIni
     );
 '
-$SPI_SETMOUSESPEED = 0x0071
-$null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
-set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
-Write-Host "Mouse speed set to $MouseSpeed"
-} else {
-	Throw ‘That number is out of range.’
-}
+		$SPI_SETMOUSESPEED = 0x0071
+		$null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
+		set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
+		Write-Host "Mouse speed set to $MouseSpeed"
+	} else {
+		Throw ‘That number is out of range.’
+	}
 }
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice(“Install Firefox?”, “(Default Y)”, @(“&Y”, “&N”), 0)
@@ -68,12 +68,12 @@ Write-Host "FireFox installed"
 $UseDvorak = $Host.UI.PromptForChoice(“Switch to the dvorak keyboard layout?”, “(Default N)”, @(“&Y”, “&N”), 1)
 if ($UseDvorak -eq 0) {
 	$l = Get-WinUserLanguageList
-# http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
-# 0409:00010409 = dvorak en-US
-# 0409:00000409 = qwerty en-US
-$l[0].InputMethodTips[0]="0409:00010409"
-Set-WinUserLanguageList -LanguageList $l
-Write-Host "Dvorak keyboard layout applied"
+	# http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
+	# 0409:00010409 = dvorak en-US
+	# 0409:00000409 = qwerty en-US
+	$l[0].InputMethodTips[0]="0409:00010409"
+	Set-WinUserLanguageList -LanguageList $l
+	Write-Host "Dvorak keyboard layout applied"
 }
 # install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
 $InstallPowertoys = $Host.UI.PromptForChoice(“Install Microsoft PowerToys?”, “(Default Y)”, @(“&Y”, “&N”), 0)
