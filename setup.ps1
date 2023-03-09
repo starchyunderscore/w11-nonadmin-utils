@@ -1,11 +1,11 @@
-# prelude
+# ask user about backups
 $ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. IF YOU DO NOT HAVE A BACKUP, EXIT NOW! Do you want to continue?", "(Default N)", @("&Y", "&N"), 1)
 if ($useDarkMode -eq 1) {
 	Exit “user quit”
 }
-# some text and stuff.
+# starting text
 Write-Host “Starting script.”
-Write-Host “You will probably see some errors.”
+Write-Host “!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!”
 # set dark mode preference
 $useDarkMode = $Host.UI.PromptForChoice("Set the system to dark mode?", "(Default Y)", @("&Y", "&N"), 0)
 if ($useDarkMode -eq 0) {
@@ -32,10 +32,9 @@ if ($unpinWidgets -eq 0) {
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
 Write-Host "Widgets unpinned"
 }
-# set mouse speed
+# set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice(“Set the mouse speed?”, “(Default N)”, @(“&Y”, “&N”), 1)
 if ($SetMouseSpeed -eq 0) {
-	# script to set mouse speed taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed
 Write-Host “10 is the default mouse speed of windows.”
 $MouseSpeed = Read-Host "Enter number from 1-20: "
 if (($MouseSpeed -isnot [int])) {
@@ -65,10 +64,9 @@ if ($InstallFirefox -eq 0) {
 winget install Mozilla.Firefox
 Write-Host "FireFox installed"
 }
-# use dvorak
+# use dvorak ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
 $UseDvorak = $Host.UI.PromptForChoice(“Switch to the dvorak keyboard layout?”, “(Default N)”, @(“&Y”, “&N”), 1)
 if ($UseDvorak -eq 0) {
-# script to set keyboard to dvorak taken from https://gist.github.com/DieBauer/997dc90701a137fce8be
 	$l = Get-WinUserLanguageList
 # http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
 # 0409:00010409 = dvorak en-US
@@ -77,7 +75,7 @@ $l[0].InputMethodTips[0]="0409:00010409"
 Set-WinUserLanguageList -LanguageList $l
 Write-Host "Dvorak keyboard layout applied"
 }
-# install powertoys ( Script form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
+# install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
 $InstallPowertoys = $Host.UI.PromptForChoice(“Install Microsoft PowerToys?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($InstallPowertoys -eq 0) {
 $installLocation = "$env:LocalAppData\Programs\PowerToys"
