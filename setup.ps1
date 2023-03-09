@@ -195,7 +195,7 @@ Remove-Item -Path $tempDir -Recurse -Force
 Write-Host "Finished installing powertoys!"
 }
 # taskbar location
-$leftStartMenu = $Host.UI.PromptForChoice("Move taskbar?", "(Default N)", @("&Y", "&N"), 1)
+$TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default N)", @("&Y", "&N"), 1)
 if ($TaskbarLocation -eq 0) {
 $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default Bottom)", @("Bottom", "&Top", "&Left", "&Right"), 0)
 	if($Location -Is 0..3){
