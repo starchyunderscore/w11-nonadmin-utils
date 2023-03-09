@@ -38,7 +38,7 @@ if ($SetMouseSpeed -eq 0) {
 	Write-Host "10 is the default mouse speed of windows."
 	$MouseSpeed = Read-Host "Enter number from 1-20: "
 	if (($MouseSpeed -isnot [int])) {
-		Throw 'You did not provide a number as input.'
+		Throw "You did not provide a number as input."
 	} elseif ($MouseSpeed -In 1..20) {
 		set-strictMode -version latest
 		$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
@@ -55,7 +55,7 @@ if ($SetMouseSpeed -eq 0) {
 		set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
 		Write-Host "Mouse speed set to $MouseSpeed"
 	} else {
-		Throw ‘That number is out of range.’
+		Throw "That number is out of range."
 	}
 }
 # install firefox
