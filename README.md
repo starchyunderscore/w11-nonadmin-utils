@@ -21,7 +21,7 @@ A setup script for windows 11 that does not require admin rights.
 
 ## To use the script
 
-Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases)
+Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases/latest)
 
 Open up a new terminal window, it will be powershell by default.
 
