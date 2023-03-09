@@ -28,7 +28,7 @@ This script is mostly tailored to my preferences, though I have added prompts to
 
 ## To use the script
 
-Download the \[releasenum\]\_setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases)
+Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases)
 
 Open up a new terminal window, it will be powershell by default.
 
@@ -42,9 +42,9 @@ Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SE
 unblock the file and run the it
 
 ```
-cd .\[where the file is]\
-Unblock-File -Path .\[releasenum]_setup.ps1
-.\[releasenum]_setup.ps1
+cd .\Downloads\
+Unblock-File -Path .\setup.ps1
+.\setup.ps1
 ```
 
-if you do not have permission to unblock files, open \[releasenum\]\_setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
+if you do not have permission to unblock files, open setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
