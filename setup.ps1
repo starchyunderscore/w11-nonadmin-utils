@@ -36,10 +36,8 @@ if ($unpinWidgets -eq 0) {
 $SetMouseSpeed = $Host.UI.PromptForChoice("Set the mouse speed?", "(Default N)", @("&Y", "&N"), 1)
 if ($SetMouseSpeed -eq 0) {
 	Write-Host "10 is the default mouse speed of windows."
-	$MouseSpeed = Read-Host "Enter number from 1-20: "
-	if (($MouseSpeed -isnot [int])) {
-		Throw "You did not provide a number as input."
-	} elseif ($MouseSpeed -In 1..20) {
+	$MouseSpeed = Read-Host "Enter number from 1-20"
+	if ($MouseSpeed -In 1..20) {
 		set-strictMode -version latest
 		$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
    [DllImport("user32.dll")]
@@ -55,7 +53,7 @@ if ($SetMouseSpeed -eq 0) {
 		set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
 		Write-Host "Mouse speed set to $MouseSpeed"
 	} else {
-		Throw "That number is out of range."
+		Write-Host "ERROR: That number is out of range or not a number."
 	}
 }
 # install firefox
