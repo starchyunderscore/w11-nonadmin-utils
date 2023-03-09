@@ -21,6 +21,6 @@ Create a system restore point
 
 Open up the windows terminal, or powershell, **NOT** command prompt
 
-Either run the script file (setup.ps1) , or copy/paste the whole script into the terminal.
+Either run the script file ([setup.ps1](https://github.com/starchyunderscore/windows11-setupscript/blob/main/setup.ps1)) , or copy/paste the whole script into the terminal.
 
 Read and answer the prompts
