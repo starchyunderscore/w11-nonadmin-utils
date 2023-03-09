@@ -195,4 +195,4 @@ Remove-Item -Path $tempDir -Recurse -Force
 Write-Host "Finished installing powertoys!"
 }
 # end script
-Read-Host "Script Finished, press enter to exit."
+Read-Host "Script Finished, press enter to exit"
