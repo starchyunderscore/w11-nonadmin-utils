@@ -13,7 +13,7 @@ We have computers at my school where the user (us, the students) have almost no 
 
 One thing we do have acess to, though, is powershell. Though we cannot change the execution policy to run scripts, I have written this one in a way that it should be able to run if you just copy/paste it directly into the terminal.
 
-This script is mostly tailored to my preferences, though I have added prompts to each individual aspect, and set defaults according to what I think the majority of people will want. 
+This script is mostly tailored to my preferences, though I have added prompts to each individual aspect, and set defaults according to what I think the majority of people will want.
 
 ## To use the script
 
@@ -21,6 +21,6 @@ Create a system restore point
 
 Open up the windows terminal, or powershell, **NOT** command prompt
 
-Either run the script file, or copy/paste the whole script into the terminal.
+Either run the script file (setup.ps1) , or copy/paste the whole script into the terminal.
 
 Read and answer the prompts
