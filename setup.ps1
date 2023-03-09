@@ -16,20 +16,20 @@ if ($useDarkMode -eq 0) {
 # set start menu location preference
 $leftStartMenu = $Host.UI.PromptForChoice("Start menu on left side?", "(Default Y)", @("&Y", "&N"), 0)
 if ($leftStartMenu -eq 0) {
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType DWord
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
 	Write-Host "Left start menu applied"
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
 $unpinChat = $Host.UI.PromptForChoice("Unpin chat?", "(Default Y)", @("&Y", "&N"), 0)
 if ($unpinChat -eq 0) {
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
 	Write-Host "Chat unpinned"
 }
 # unpin widgets from taskbar
 $unpinWidgets = $Host.UI.PromptForChoice("Unpin widgets?", "(Default Y)", @("&Y", "&N"), 0)
 if ($unpinWidgets -eq 0) {
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-itemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
 	Write-Host "Widgets unpinned"
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
