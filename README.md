@@ -23,9 +23,9 @@ A setup script for windows 11 that does not require admin rights.
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases/latest)
 
-Open up a new terminal window, it will be powershell by default.
+Open up a new terminal or powershell window, ***NOT*** command prompt
 
-If you have the permissions to, create a system restore point:
+If you have admin rights, open an admin powershell window and create a system restore point:
 
 ```
 Enable-ComputerRestore -Drive "C:\"
