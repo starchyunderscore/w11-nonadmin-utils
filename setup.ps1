@@ -198,7 +198,6 @@ Write-Host "Finished installing powertoys!"
 $TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default N)", @("&Y", "&N"), 1)
 if ($TaskbarLocation -eq 0) {
 $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default Bottom)", @("Bottom", "&Top", "&Left", "&Right"), 0)
-	if($Location -Is 0..3){
 		$bit = 0;
 		switch ($Location) {
 			2 { $bit = 0x00 } # Left
@@ -209,9 +208,8 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 		$Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
 		$Settings[12] = $bit
 		Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
-# 		Write-Host "Taskbar moved, restarting explorer"
-# 		Get-Process explorer | Stop-Process
-	}
+		Write-Host "Taskbar moved, restarting explorer"
+		Get-Process explorer | Stop-Process
 }
 # end script
 Read-Host "Script Finished, press enter to exit"
