@@ -39,7 +39,7 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-If you have permission to, unblock the file and run the ih
+If you have permission to, unblock the file and run the it
 
 ```
 cd .\[where the file is]\
