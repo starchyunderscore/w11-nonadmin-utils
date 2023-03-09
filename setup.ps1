@@ -11,12 +11,14 @@ $useDarkMode = $Host.UI.PromptForChoice("Set the system to dark mode?", "(Defaul
 if ($useDarkMode -eq 0) {
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
+Write-Host "Dark mode applied"
 }
 # set start menu location preference
 $leftStartMenu = $Host.UI.PromptForChoice(“Start menu on left side?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($leftStartMenu -eq 0) {
 New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType DWord
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0
+Write-Host "Left start menu applied"
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
@@ -24,12 +26,14 @@ $unpinChat = $Host.UI.PromptForChoice(“Unpin chat?”, “(Default Y)”, @(�
 if ($unpinChat -eq 0) {
 New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0
+Write-Host "Chat unpinned"
 }
 # unpin widgets from taskbar
 $unpinWidgets = $Host.UI.PromptForChoice(“Unpin widgets?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($unpinWidgets -eq 0) {
 New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0
+Write-Host "Widgets unpinned"
 }
 # set mouse speed
 $SetMouseSpeed = $Host.UI.PromptForChoice(“Set the mouse speed?”, “(Default N)”, @(“&Y”, “&N”), 1)
@@ -53,6 +57,7 @@ $winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
 $SPI_SETMOUSESPEED = 0x0071
 $null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
 set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
+Write-Host "Mouse speed set to $MouseSpeed"
 } else {
 	Throw ‘That number is out of range.’
 }
@@ -61,6 +66,7 @@ set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $Mous
 $InstallFirefox = $Host.UI.PromptForChoice(“Install Firefox?”, “(Default Y)”, @(“&Y”, “&N”), 0)
 if ($InstallFirefox -eq 0) {
 winget install Mozilla.Firefox
+Write-Host "FireFox installed"
 }
 # use dvorak
 $UseDvorak = $Host.UI.PromptForChoice(“Switch to the dvorak keyboard layout?”, “(Default N)”, @(“&Y”, “&N”), 1)
@@ -72,6 +78,7 @@ if ($UseDvorak -eq 0) {
 # 0409:00000409 = qwerty en-US
 $l[0].InputMethodTips[0]="0409:00010409"
 Set-WinUserLanguageList -LanguageList $l
+Write-Host "Dvorak keyboard layout applied"
 }
 # install powertoys ( Script form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
 $InstallPowertoys = $Host.UI.PromptForChoice(“Install Microsoft PowerToys?”, “(Default Y)”, @(“&Y”, “&N”), 0)
