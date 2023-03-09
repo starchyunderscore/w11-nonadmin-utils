@@ -1,19 +1,11 @@
 # windows11-setupscript
-A powershell setup script that can be run with no admin rights, to set up computers how I want them to be.
+A setup script for windows 11 that does not require admin rights.
 
 ## WARNINGS:
 
 ### BEWARE! THIS SCRIPT MAKES CHANGES TO THE REGISTRY. MAKE SURE YOU HAVE A BACKUP BEFORE RUNNING IT!
 
 #### This script is made for windows 11, it may work on other versions, or it may not
-
-## Context / why I made it
-
-We have computers at my school where the user (us, the students) have almost no rights. We do not have admin. We do not have acess to settings, we do not have acess to files, &c.
-
-One thing we do have acess to, though, is powershell. Though we cannot change the execution policy to run scripts, I have written this one in a way that it should be able to run if you just copy/paste it directly into the terminal.
-
-This script is mostly tailored to my preferences, though I have added prompts to each individual aspect, and set defaults according to what I think the majority of people will want.
 
 ## What the script can do
 
@@ -40,12 +32,10 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-unblock the file and run the it
+unblock the file and run it:
 
 ```
 cd .\Downloads\
 Unblock-File -Path .\setup.ps1
 .\setup.ps1
 ```
-
-if you do not have permission to unblock files, open setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
