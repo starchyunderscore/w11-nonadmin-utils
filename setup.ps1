@@ -194,7 +194,7 @@ Remove-Item -Path $tempDir -Recurse -Force
 
 Write-Host "Finished installing powertoys!"
 }
-# taskbar location
+# taskbar location ( taken from https://blog.ironmansoftware.com/daily-powershell/windows-11-taskbar-location/ )
 $TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default N)", @("&Y", "&N"), 1)
 if ($TaskbarLocation -eq 0) {
 $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default Bottom)", @("Bottom", "&Top", "&Left", "&Right"), 0)
