@@ -3,8 +3,6 @@ A powershell setup script that can be run with no admin rights, to set up comput
 
 ## WARNINGS:
 
-### BEWARE! THOUGH THE INDIVIDUAL PARTS OF THIS SCRIPT HAVE BEEN TESTED, THE SCRIPT AS A WHOLE HAS NOT BEEN. USE AT YOUR OWN RISK.
-
 ### BEWARE! THIS SCRIPT MAKES CHANGES TO THE REGISTRY. MAKE SURE YOU HAVE A BACKUP BEFORE RUNNING IT!
 
 #### This script is made for windows 11, it may work on other versions, or it may not
@@ -30,10 +28,23 @@ This script is mostly tailored to my preferences, though I have added prompts to
 
 ## To use the script
 
-Create a system restore point
+Download the \[releasenum\]\_setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases)
 
-Open up the windows terminal, or powershell, **NOT** command prompt
+Open up a new terminal window, it will be powershell by default.
 
-Either run the script file ([setup.ps1](https://github.com/starchyunderscore/windows11-setupscript/blob/main/setup.ps1)) , or copy/paste the whole script into the terminal.
+If you have the permissions to, create a system restore point:
 
-Read and answer the prompts
+```
+Enable-ComputerRestore -Drive "C:\"
+Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
+```
+
+If you have permission to, set the execution policy to remote signed and run the file
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+cd .\Downloads\
+.\[releasenum]_setup.ps1
+```
+
+if you do not have permission, open \[releasenum\]\_setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
