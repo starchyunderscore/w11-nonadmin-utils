@@ -39,11 +39,11 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-If you have permission to, set the execution policy to remote signed and run the file
+If you have permission to, unblock the file and run the ih
 
 ```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-cd .\Downloads\
+cd .\[where the file is]\
+Unblock-File -Path .\[releasenum]_setup.ps1
 .\[releasenum]_setup.ps1
 ```
 
