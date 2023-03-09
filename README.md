@@ -39,7 +39,7 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-If you have permission to, unblock the file and run the it
+unblock the file and run the it
 
 ```
 cd .\[where the file is]\
@@ -47,4 +47,4 @@ Unblock-File -Path .\[releasenum]_setup.ps1
 .\[releasenum]_setup.ps1
 ```
 
-if you do not have permission, open \[releasenum\]\_setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
+if you do not have permission to unblock files, open \[releasenum\]\_setup.ps1 in a text editor, copy the entire thing, and paste it into the terminal
