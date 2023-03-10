@@ -270,4 +270,4 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 }
 # end script
 Write-Host "" # I want a newline here for more consistant formatting :)
-Read-Host "Script Finished, press enter to exit" -ForegroundColor Green
+Read-Host "Script Finished, press enter to exit"
