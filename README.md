@@ -23,8 +23,6 @@ A setup script for windows 11 that does not require admin rights.
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/windows11-setupscript/releases/latest)
 
-Open up a new terminal or powershell window, ***NOT*** command prompt
-
 If you have admin rights, open an admin powershell window and create a system restore point:
 
 ```
@@ -32,11 +30,13 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-unblock the file and run it:
+Open up standard windows terminal or powershell, ***NOT*** command prompt.
+
+Unblock the file and run it:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrenUser
 cd .\Downloads\
 Unblock-File -Path .\setup.ps1
-.\setup.ps1
+.\setup.ps
 ```
