@@ -72,14 +72,16 @@ if ($SetMouseSpeed -eq 0) {
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default Y)", @("&Y", "&N"), 0)
 if ($InstallFirefox -eq 0) {
+Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install."
 try{winget install Mozilla.Firefox} catch{
+	Write-Host "Winget is not installed. Installing winget"
 	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
 	winget install Mozilla.Firefox
 }
 Write-Host "FireFox installed"
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
-$SwitchKeyboard = $Host.UI.PromptForChoice("Switch to the dvorak keyboard layout?", "(Default N)", @("&Y", "&N"), 1)
+$SwitchKeyboard = $Host.UI.PromptForChoice("Switch to the layout? (you will be prompted again before changes apply)", "(Default N)", @("&Y", "&N"), 1)
 if ($SwitchKeyboard -eq 0) {
 	$KeyboardLayout = $Host.UI.PromptForChoice("Select the layout you want", "(Default cancel)", @("&cancel", "&qwerty_en_US", "&dvorak_en_US"), 0)
 	$l = Get-WinUserLanguageList
