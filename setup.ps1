@@ -3,7 +3,7 @@ Write-Host "WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POIN
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
 	Write-Host "User quit" -ForegroundColor Red
-	Exit 0
+	Exit 0;
 }
 # starting text
 Write-Host "Starting script."
@@ -101,6 +101,10 @@ if ($SetMouseSpeed -eq 0) {
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
 if ($InstallFirefox -eq 0) {
 Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install." -ForegroundColor Yellow
+
+	# see if you can install with appxpackage or use the microsoft store version of firefox ( 9NZVDKPMR9RD i think)
+
+
 try{winget install Mozilla.Firefox} catch{
 	Write-Host "Winget is not installed. Installing winget" -ForegroundColor Yellow
 	Write-Host "You will have to agree to Microsoft's terms of service" -ForegroundColor Yellow 
