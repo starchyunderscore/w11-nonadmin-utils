@@ -5,37 +5,37 @@ if ($ContinueScript -eq 1) {
 }
 # starting text
 Write-Host "Starting script."
-Write-Host "!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!"
+Write-Host "!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!" -ForegroundColor Yellow
 # set dark mode preference
 $useDarkMode = $Host.UI.PromptForChoice("Set the system theme", "(Default: Skip)", @("&Skip", "&Dark Mode", "&Light Mode"), 0)
 switch($useDarkMode) {
 	0 {
-		Write-Host "Skipping"
+		Write-Host "Skipping" -ForegroundColor Magenta
 	}
 	1 {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-		Write-Host "Dark mode applied"
+		Write-Host "Dark mode applied" -ForegroundColor Green
 	}
 	2 {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
-		Write-Host "Light mode applied"
+		Write-Host "Light mode applied" -ForegroundColor Green
 	}
 }
 # set start menu location preference
 $leftStartMenu = $Host.UI.PromptForChoice("Set start menu location", "(Default Skip)", @("&Skip", "&Left", "&Middle"), 0)
 switch ($leftStartMenu) {
 	0 {
-		Write-Host "Skipping"
+		Write-Host "Skipping" -ForegroundColor Magenta
 	}
 	1 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
-		Write-Host "Left start menu applied"
+		Write-Host "Left start menu applied" -ForegroundColor Green
 	}
 	2 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
-		Write-Host "Center start menu applied"
+		Write-Host "Center start menu applied" -ForegroundColor Green
 	}
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
@@ -43,36 +43,36 @@ switch ($leftStartMenu) {
 $unpinChat = $Host.UI.PromptForChoice("Set chat pin status", "(Default Skip)", @("&Skip", "&Unpinned", "&Pinned"), 0)
 switch ($unpinChat) {
 	0 {
-		Write-Host "Skipping"
+		Write-Host "Skipping" -ForegroundColor Magenta
 	}
 	1 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
-		Write-Host "Chat unpinned"
+		Write-Host "Chat unpinned" -ForegroundColor Green
 	}
 	2 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{} # default is to be pinned, therefore do nothing if registry key does not exist
-		Write-Host "Chat pinned"
+		Write-Host "Chat pinned" -ForegroundColor Green
 	}
 }
 # unpin widgets from taskbar
 $unpinWidgets = $Host.UI.PromptForChoice("Set widget pin status", "(Default Skip)", @("&Skip", "&Unpinned", "&Pinned"), 0)
 switch ($unpinWidgets) {
 	0 {
-		Write-Host "Skipping"
+		Write-Host "Skipping" -ForegroundColor Magenta
 	}
 	1 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-itemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
-		Write-Host "Widgets unpinned"
+		Write-Host "Widgets unpinned" -ForegroundColor Green
 	}
 	2 {
 		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
-		Write-Host "Widgets pinned"
+		Write-Host "Widgets pinned" -ForegroundColor Green
 	}
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice("Change mouse speed?", "(Default No)", @("&Yes", "&No"), 1)
 if ($SetMouseSpeed -eq 0) {
-	Write-Host "10 is the default mouse speed of windows."
+	Write-Host "10 is the default mouse speed of windows." -ForegroundColor Yellow
 	$MouseSpeed = Read-Host "Enter number from 1-20"
 	if ($MouseSpeed -In 1..20) {
 		set-strictMode -version latest
@@ -88,21 +88,21 @@ if ($SetMouseSpeed -eq 0) {
 		$SPI_SETMOUSESPEED = 0x0071
 		$null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
 		set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
-		Write-Host "Mouse speed set to $MouseSpeed"
+		Write-Host "Mouse speed set to $MouseSpeed" -ForegroundColor Green
 	} else {
-		Write-Host "ERROR: That number is out of range or not a number."
+		Write-Host "That number is out of range or not a number: Skipping operation" -ForegroundColor Red
 	}
 }
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
 if ($InstallFirefox -eq 0) {
-Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install."
+Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install." -ForegroundColor Yellow
 try{winget install Mozilla.Firefox} catch{
-	Write-Host "Winget is not installed. Installing winget"
+	Write-Host "Winget is not installed. Installing winget" -ForegroundColor Yellow
+	Write-Host "You will have to agree to Microsoft's terms of service" -ForegroundColor Yellow 
 	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
 	winget install Mozilla.Firefox
 }
-Write-Host "FireFox installed"
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
 $SwitchKeyboard = $Host.UI.PromptForChoice("Change keyboard layout? (you will be prompted again before changes apply)", "(Default No)", @("&Yes", "&No"), 1)
@@ -114,17 +114,17 @@ if ($SwitchKeyboard -eq 0) {
 	# 0409:00000409 = qwerty en-US
 	switch($KeyboardLayout) {
 		0 {
-			Write-Host "Operation Cancled"
+			Write-Host "Operation Cancled" -ForegroundColor Magenta
 		}
 		1 {
 			$l[0].InputMethodTips[0]="0409:00000409"
 			Set-WinUserLanguageList -LanguageList $l
-			Write-Host "qwerty en-US keyboard layout applied"
+			Write-Host "qwerty en-US keyboard layout applied" -ForegroundColor Green
 		}
 		2 {
 			$l[0].InputMethodTips[0]="0409:00010409"
 			Set-WinUserLanguageList -LanguageList $l
-			Write-Host "Dvorak keyboard layout applied"
+			Write-Host "Dvorak keyboard layout applied" -ForegroundColor Green
 		}
 	}
 }
@@ -247,12 +247,12 @@ Write-Output "Cleaning up"
 Pop-Location
 Remove-Item -Path $tempDir -Recurse -Force
 
-Write-Host "Finished installing powertoys!"
+Write-Host "Finished installing powertoys!" -ForegroundColor Green
 }
 # taskbar location ( taken from https://blog.ironmansoftware.com/daily-powershell/windows-11-taskbar-location/ )
 $TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default No)", @("&Yes", "&No"), 1)
 if ($TaskbarLocation -eq 0) {
-Write-Host "This may not work for you, it has worked on some of my test computers but not others."
+Write-Host "This may not work for you, it has worked on some of my test computers but not others." -ForegroundColor Yellow
 $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default Bottom)", @("&Bottom", "&Top", "&Left", "&Right"), 0)
 	$bit = 0;
 	switch ($Location) {
@@ -264,8 +264,9 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 	$Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
 	$Settings[12] = $bit
 	Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
-	Write-Host "Taskbar moved, restarting explorer"
+	Write-Host "Taskbar moved, restarting explorer" -ForegroundColor Green
 	Get-Process explorer | Stop-Process
 }
 # end script
-Read-Host "Script Finished, press enter to exit"
+Write-Host "" # I want a newline here for more consistant formatting :)
+Read-Host "Script Finished, press enter to exit" -ForegroundColor Green
