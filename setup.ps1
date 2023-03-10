@@ -1,5 +1,8 @@
 # ask user about backups
+Write-Host ""
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 Write-Host "WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POINT, THINGS COULD BREAK!" -ForegroundColor Yellow
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
 	Write-Host ""
