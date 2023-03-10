@@ -100,17 +100,23 @@ if ($SetMouseSpeed -eq 0) {
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
 if ($InstallFirefox -eq 0) {
-Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install." -ForegroundColor Yellow
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
+Write-Host "You can say 'no' when it prompts to let the application make changes to your device, and it will still install." -ForegroundColor Yellow
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
+Start-Sleep -seconds 10 # give time for the user to read
+# https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
+Invoke-WebRequest "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -OutFile ".\FireFoxInstall.exe"
+.\FireFoxInstall.exe | Write-Host
 
-	# see if you can install with appxpackage or use the microsoft store version of firefox ( 9NZVDKPMR9RD i think)
 
-
-try{winget install Mozilla.Firefox} catch{
-	Write-Host "Winget is not installed. Installing winget" -ForegroundColor Yellow
-	Write-Host "You will have to agree to Microsoft's terms of service" -ForegroundColor Yellow 
-	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
-	winget install Mozilla.Firefox
-}
+# OLD METHOD
+#  see if you can install with appxpackage or use the microsoft store version of firefox ( 9NZVDKPMR9RD i think)
+#  try{winget install 9NZVDKPMR9RD --source msstore} catch{
+# 	Write-Host "Winget is not installed. Installing winget" -ForegroundColor Yellow
+# 	Write-Host "You will have to agree to Microsoft's terms of service" -ForegroundColor Yellow 
+# 	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
+# 	winget install 9NZVDKPMR9RD --source msstore
+#  }
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
 $SwitchKeyboard = $Host.UI.PromptForChoice("Change keyboard layout? (you will be prompted again before changes apply)", "(Default No)", @("&Yes", "&No"), 1)
