@@ -3,7 +3,7 @@ Write-Host "WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POIN
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
 	Write-Host "User quit" -ForegroundColor Red
-	Exit
+	Exit 0
 }
 # starting text
 Write-Host "Starting script."
