@@ -21,11 +21,13 @@ switch($useDarkMode) {
 	1 {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
+		Write-Host ""
 		Write-Host "Dark mode applied" -ForegroundColor Green
 	}
 	2 {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
+		Write-Host ""
 		Write-Host "Light mode applied" -ForegroundColor Green
 	}
 }
