@@ -72,7 +72,10 @@ if ($SetMouseSpeed -eq 0) {
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default Y)", @("&Y", "&N"), 0)
 if ($InstallFirefox -eq 0) {
-winget install Mozilla.Firefox
+try{winget install Mozilla.Firefox} catch{
+	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
+	winget install Mozilla.Firefox
+}
 Write-Host "FireFox installed"
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
@@ -83,7 +86,7 @@ if ($SwitchKeyboard -eq 0) {
 	# http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
 	# 0409:00010409 = dvorak en-US
 	# 0409:00000409 = qwerty en-US
-	switch() {
+	switch($KeyboardLayout) {
 		0 {
 			Write-Host "Operation Cancled"
 		}
