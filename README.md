@@ -35,7 +35,7 @@ Open up standard windows terminal or powershell, ***NOT*** command prompt.
 Unblock the file and run it:
 
 ```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrenUser
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 cd .\Downloads\
 Unblock-File -Path .\setup.ps1
 .\setup.ps1
