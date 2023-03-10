@@ -17,7 +17,9 @@ A setup script for windows 11 that does not require admin rights.
 - [x] Install FireFox.
 - [x] Set the keyboard layout to dvorak.
 - [x] Install PowerToys.
-- [x] Move the taskbar.
+- [x] Move the taskbar\*.
+
+\* May not work for you, it worked on some of the computers I tried it on but not others.
 
 ## To use the script
 
