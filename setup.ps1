@@ -93,7 +93,7 @@ if ($SetMouseSpeed -eq 0) {
 			set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
 			Write-Host "Mouse speed set to $MouseSpeed" -ForegroundColor Green
 		} else {
-			Write-Host "That number is out of range or not a number" -ForegroundColor Yellow
+			Write-Host "That number is out of range or not a number" -ForegroundColor Red
 		}
 	} until ($MouseSpeed -In 1..20)
 }
@@ -103,12 +103,9 @@ if ($InstallFirefox -eq 0) {
 Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 Write-Host "You can say 'no' when it prompts to let the application make changes to your device, and it will still install." -ForegroundColor Yellow
 Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
-Start-Sleep -seconds 10 # give time for the user to read
 # https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
 Invoke-WebRequest "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -OutFile ".\FireFoxInstall.exe"
 .\FireFoxInstall.exe | Write-Host
-
-
 # OLD METHOD
 #  see if you can install with appxpackage or use the microsoft store version of firefox ( 9NZVDKPMR9RD i think)
 #  try{winget install 9NZVDKPMR9RD --source msstore} catch{
