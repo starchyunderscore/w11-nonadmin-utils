@@ -81,7 +81,7 @@ try{winget install Mozilla.Firefox} catch{
 Write-Host "FireFox installed"
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
-$SwitchKeyboard = $Host.UI.PromptForChoice("Switch to the layout? (you will be prompted again before changes apply)", "(Default N)", @("&Y", "&N"), 1)
+$SwitchKeyboard = $Host.UI.PromptForChoice("Switch the keyboard layout? (you will be prompted again before changes apply)", "(Default N)", @("&Y", "&N"), 1)
 if ($SwitchKeyboard -eq 0) {
 	$KeyboardLayout = $Host.UI.PromptForChoice("Select the layout you want", "(Default cancel)", @("&cancel", "&qwerty_en_US", "&dvorak_en_US"), 0)
 	$l = Get-WinUserLanguageList
