@@ -1,49 +1,73 @@
 # ask user about backups
 $ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POINT, THINGS COULD BREAK! Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
-	Throw "user quit"
+	Write-Host "User quit" -ForegroundColor Red
 }
 # starting text
 Write-Host "Starting script."
 Write-Host "!! MAKE SURE TO CAREFULLY READ ALL PROMPTS !!"
 # set dark mode preference
-$useDarkMode = $Host.UI.PromptForChoice("Set the system theme", "(Default: dark mode)", @("&Dark Mode", "&Light Mode"), 0)
-if ($useDarkMode -eq 0) {
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-	Write-Host "Dark mode applied"
-} else {
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
-	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
-	Write-Host "Light mode applied"
+$useDarkMode = $Host.UI.PromptForChoice("Set the system theme", "(Default: Skip)", @("&Skip", "&Dark Mode", "&Light Mode"), 0)
+switch($useDarkMode) {
+	0 {
+		Write-Host "Skipping"
+	}
+	1 {
+		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
+		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
+		Write-Host "Dark mode applied"
+	}
+	2 {
+		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
+		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
+		Write-Host "Light mode applied"
+	}
 }
 # set start menu location preference
-$leftStartMenu = $Host.UI.PromptForChoice("Set start menu location", "(Default Left)", @("&Left", "&Middle"), 0)
-if ($leftStartMenu -eq 0) {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
-	Write-Host "Left start menu applied"
-} else {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
-	Write-Host "Center start menu applied"
+$leftStartMenu = $Host.UI.PromptForChoice("Set start menu location", "(Default Skip)", @("&Skip", "&Left", "&Middle"), 0)
+switch ($leftStartMenu) {
+	0 {
+		Write-Host "Skipping"
+	}
+	1 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
+		Write-Host "Left start menu applied"
+	}
+	2 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
+		Write-Host "Center start menu applied"
+	}
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
-$unpinChat = $Host.UI.PromptForChoice("Set chat pin status", "(Default Unpinned)", @("&Unpinned", "&Pinned"), 0)
-if ($unpinChat -eq 0) {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
-	Write-Host "Chat unpinned"
-} else {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{} # default is to be pinned, therefore do nothing if registry key does not exist
-	Write-Host "Chat pinned"
+$unpinChat = $Host.UI.PromptForChoice("Set chat pin status", "(Default Skip)", @("&Skip", "&Unpinned", "&Pinned"), 0)
+switch ($unpinChat) {
+	0 {
+		Write-Host "Skipping"
+	}
+	1 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
+		Write-Host "Chat unpinned"
+	}
+	2 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{} # default is to be pinned, therefore do nothing if registry key does not exist
+		Write-Host "Chat pinned"
+	}
 }
 # unpin widgets from taskbar
-$unpinWidgets = $Host.UI.PromptForChoice("Set widget pin status", "(Default Unpinned)", @("&Unpinned", "&Pinned"), 0)
-if ($unpinWidgets -eq 0) {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-itemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
-	Write-Host "Widgets unpinned"
-} else {
-	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
-	Write-Host "Widgets pinned"
+$unpinWidgets = $Host.UI.PromptForChoice("Set widget pin status", "(Default Skip)", @("&Skip", "&Unpinned", "&Pinned"), 0)
+switch ($unpinWidgets) {
+	0 {
+		Write-Host "Skipping"
+	}
+	1 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-itemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
+		Write-Host "Widgets unpinned"
+	}
+	2 {
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
+		Write-Host "Widgets pinned"
+	}
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice("Change mouse speed?", "(Default No)", @("&Yes", "&No"), 1)
@@ -70,7 +94,7 @@ if ($SetMouseSpeed -eq 0) {
 	}
 }
 # install firefox
-$InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default Yes)", @("&Yes", "&No"), 0)
+$InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
 if ($InstallFirefox -eq 0) {
 Write-Host "You can say 'no' when it prompts to let the application make changes, and it will still install."
 try{winget install Mozilla.Firefox} catch{
@@ -105,7 +129,7 @@ if ($SwitchKeyboard -eq 0) {
 	}
 }
 # install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
-$InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "(Default Yes)", @("&Yes", "&No"), 0)
+$InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "(Default No)", @("&Yes", "&No"), 1)
 if ($InstallPowertoys -eq 0) {
 $installLocation = "$env:LocalAppData\Programs\PowerToys"
 
