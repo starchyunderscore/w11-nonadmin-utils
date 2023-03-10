@@ -38,5 +38,5 @@ Unblock the file and run it:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrenUser
 cd .\Downloads\
 Unblock-File -Path .\setup.ps1
-.\setup.ps
+.\setup.ps1
 ```
