@@ -65,7 +65,7 @@ switch ($unpinWidgets) {
 		Write-Host "Widgets unpinned"
 	}
 	2 {
-		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
+		try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
 		Write-Host "Widgets pinned"
 	}
 }
