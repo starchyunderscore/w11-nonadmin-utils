@@ -74,26 +74,28 @@ switch ($unpinWidgets) {
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice("Change mouse speed?", "(Default No)", @("&Yes", "&No"), 1)
 if ($SetMouseSpeed -eq 0) {
-	Write-Host "10 is the default mouse speed of windows." -ForegroundColor Yellow
-	$MouseSpeed = Read-Host "Enter number from 1-20"
-	if ($MouseSpeed -In 1..20) {
-		set-strictMode -version latest
-		$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
-   [DllImport("user32.dll")]
-    public static extern bool SystemParametersInfo(
-       uint uiAction,
-       uint uiParam ,
-       uint pvParam ,
-       uint fWinIni
-    );
-'
-		$SPI_SETMOUSESPEED = 0x0071
-		$null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
-		set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
-		Write-Host "Mouse speed set to $MouseSpeed" -ForegroundColor Green
-	} else {
-		Write-Host "That number is out of range or not a number: Skipping operation" -ForegroundColor Red
-	}
+	DO {
+		Write-Host "10 is the default mouse speed of windows." -ForegroundColor Yellow
+		$MouseSpeed = Read-Host "Enter number from 1-20"
+		if ($MouseSpeed -In 1..20) {
+			set-strictMode -version latest
+			$winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
+			   [DllImport("user32.dll")]
+			    public static extern bool SystemParametersInfo(
+			       uint uiAction,
+			       uint uiParam ,
+			       uint pvParam ,
+			       uint fWinIni
+			    );
+			'
+			$SPI_SETMOUSESPEED = 0x0071
+			$null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
+			set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
+			Write-Host "Mouse speed set to $MouseSpeed" -ForegroundColor Green
+		} else {
+			Write-Host "That number is out of range or not a number" -ForegroundColor Yellow
+		}
+	} until ($MouseSpeed -In 1..20)
 }
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
