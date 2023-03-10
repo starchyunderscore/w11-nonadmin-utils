@@ -11,6 +11,7 @@ if ($ContinueScript -eq 1) {
 }
 # starting text
 Write-Host "Starting script." -ForegroundColor Magenta
+Write-Host ""
 Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 Write-Host "MAKE SURE TO CAREFULLY READ ALL PROMPTS" -ForegroundColor Yellow
 Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
