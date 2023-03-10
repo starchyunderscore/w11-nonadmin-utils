@@ -1,5 +1,6 @@
 # ask user about backups
-$ContinueScript = $Host.UI.PromptForChoice("WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POINT, THINGS COULD BREAK! Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
+Write-Host "WARNING: THIS SCRIPT MESSES WITH THE REGISTRY. CREATE A RESTORE POINT, THINGS COULD BREAK!" -ForegroundColor Yellow
+$ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "(Default No)", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
 	Write-Host "User quit" -ForegroundColor Red
 }
