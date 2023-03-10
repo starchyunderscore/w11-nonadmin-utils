@@ -35,6 +35,7 @@ Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SE
 unblock the file and run it:
 
 ```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrenUser
 cd .\Downloads\
 Unblock-File -Path .\setup.ps1
 .\setup.ps1
