@@ -228,6 +228,7 @@ Write-Host "Finished installing powertoys!"
 # taskbar location ( taken from https://blog.ironmansoftware.com/daily-powershell/windows-11-taskbar-location/ )
 $TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default N)", @("&Y", "&N"), 1)
 if ($TaskbarLocation -eq 0) {
+Write-Host "This may not work for you, it has worked on some of my test computers but not others."
 $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default Bottom)", @("Bottom", "&Top", "&Left", "&Right"), 0)
 	$bit = 0;
 	switch ($Location) {
