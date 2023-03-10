@@ -12,12 +12,19 @@ if ($useDarkMode -eq 0) {
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
 	Write-Host "Dark mode applied"
+} else {
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
+	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
+	Write-Host "Light mode applied"
 }
 # set start menu location preference
 $leftStartMenu = $Host.UI.PromptForChoice("Start menu on left side?", "(Default Y)", @("&Y", "&N"), 0)
 if ($leftStartMenu -eq 0) {
 	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
 	Write-Host "Left start menu applied"
+} else {
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
+	Write-Host "Center start menu applied"
 }
 # chat and widget unpins taken from https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1
 # unpin chat from taskbar
@@ -25,12 +32,18 @@ $unpinChat = $Host.UI.PromptForChoice("Unpin chat?", "(Default Y)", @("&Y", "&N"
 if ($unpinChat -eq 0) {
 	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
 	Write-Host "Chat unpinned"
+} else {
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{} # default is to be pinned, therefore do nothing if registry key does not exist
+	Write-Host "Chat pinned"
 }
 # unpin widgets from taskbar
 $unpinWidgets = $Host.UI.PromptForChoice("Unpin widgets?", "(Default Y)", @("&Y", "&N"), 0)
 if ($unpinWidgets -eq 0) {
 	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-itemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
 	Write-Host "Widgets unpinned"
+} else {
+	try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{} # default is pinned widgets, therefore do nothing if registry key does not exis
+	Write-Host "Widgets pinned"
 }
 # set mouse speed ( taken from https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
 $SetMouseSpeed = $Host.UI.PromptForChoice("Set the mouse speed?", "(Default N)", @("&Y", "&N"), 1)
@@ -62,16 +75,29 @@ if ($InstallFirefox -eq 0) {
 winget install Mozilla.Firefox
 Write-Host "FireFox installed"
 }
-# use dvorak ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
-$UseDvorak = $Host.UI.PromptForChoice("Switch to the dvorak keyboard layout?", "(Default N)", @("&Y", "&N"), 1)
-if ($UseDvorak -eq 0) {
+# switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
+$SwitchKeyboard = $Host.UI.PromptForChoice("Switch to the dvorak keyboard layout?", "(Default N)", @("&Y", "&N"), 1)
+if ($SwitchKeyboard -eq 0) {
+	$KeyboardLayout = $Host.UI.PromptForChoice("Select the layout you want", "(Default cancel)", @("&cancel", "&qwerty_en_US", "&dvorak_en_US"), 0)
 	$l = Get-WinUserLanguageList
 	# http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
 	# 0409:00010409 = dvorak en-US
 	# 0409:00000409 = qwerty en-US
-	$l[0].InputMethodTips[0]="0409:00010409"
-	Set-WinUserLanguageList -LanguageList $l
-	Write-Host "Dvorak keyboard layout applied"
+	switch() {
+		0 {
+			Write-Host "Operation Cancled"
+		}
+		1 {
+			$l[0].InputMethodTips[0]="0409:00000409"
+			Set-WinUserLanguageList -LanguageList $l
+			Write-Host "qwerty en-US keyboard layout applied"
+		}
+		2 {
+			$l[0].InputMethodTips[0]="0409:00010409"
+			Set-WinUserLanguageList -LanguageList $l
+			Write-Host "Dvorak keyboard layout applied"
+		}
+	}
 }
 # install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
 $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "(Default Y)", @("&Y", "&N"), 0)
