@@ -106,6 +106,7 @@ Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 # https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
 Invoke-WebRequest "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -OutFile ".\FireFoxInstall.exe"
 .\FireFoxInstall.exe | Write-Host
+rm .\FireFoxInstall.exe
 # OLD METHOD
 #  see if you can install with appxpackage or use the microsoft store version of firefox ( 9NZVDKPMR9RD i think)
 #  try{winget install 9NZVDKPMR9RD --source msstore} catch{
