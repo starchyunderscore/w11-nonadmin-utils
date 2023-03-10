@@ -303,6 +303,7 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 	$Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
 	$Settings[12] = $bit
 	Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
+	Write-Host ""
 	Write-Host "Taskbar moved, restarting explorer" -ForegroundColor Green
 	Get-Process explorer | Stop-Process
 }
