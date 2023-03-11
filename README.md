@@ -38,7 +38,8 @@ Open up standard windows terminal or powershell, ***NOT*** command prompt.
 Unblock the file and run it:
 
 ```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Unblock-File -Path .\Downloads\setup.ps1
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\Downloads\setup.ps1
 ```
+
+After the script has completed, make sure to restart your terminal or powershell window
