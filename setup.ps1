@@ -336,4 +336,8 @@ if($InstallVSC -eq 0) {
 Write-Host ""
 Read-Host "Script Finished, press enter to exit"
 Write-Host ""
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
+Write-Host "MAKE SURE TO RESTART YOUR TERMINAL OR POWERSHELL WINDOW BEFORE RUNNING ANYTHING ELSE" -ForegroundColor Yellow
+Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
+Write-Host ""
 Exit 0
