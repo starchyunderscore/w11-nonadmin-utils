@@ -42,4 +42,4 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\Downloads\setup.ps1
 ```
 
-After the script has completed, make sure to restart your terminal or powershell window
+After the script has completed, make sure to restart your terminal or powershell window before running anything else
