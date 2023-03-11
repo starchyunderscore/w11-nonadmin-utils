@@ -122,6 +122,9 @@ if ($SetMouseSpeed -eq 0) {
 			Write-Host "That number is out of range or not a number" -ForegroundColor Red
 		}
 	} until ($MouseSpeed -In 1..20)
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # install firefox
 $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
@@ -141,6 +144,9 @@ rm .\FireFoxInstall.exe
 # 	Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
 # 	winget install 9NZVDKPMR9RD --source msstore
 #  }
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # switch keyboard ( taken from https://gist.github.com/DieBauer/997dc90701a137fce8be )
 $SwitchKeyboard = $Host.UI.PromptForChoice("Change keyboard layout? (you will be prompted again before changes apply)", "(Default No)", @("&Yes", "&No"), 1)
@@ -168,6 +174,9 @@ if ($SwitchKeyboard -eq 0) {
 			Write-Host "Dvorak keyboard layout applied" -ForegroundColor Green
 		}
 	}
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # install powertoys ( taken form https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
 $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "(Default No)", @("&Yes", "&No"), 1)
@@ -290,6 +299,9 @@ Remove-Item -Path $tempDir -Recurse -Force
 
 Write-Host ""
 Write-Host "Finished installing powertoys!" -ForegroundColor Green
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # taskbar location ( taken from https://blog.ironmansoftware.com/daily-powershell/windows-11-taskbar-location/ )
 $TaskbarLocation = $Host.UI.PromptForChoice("Move taskbar?", "(Default No)", @("&Yes", "&No"), 1)
@@ -309,6 +321,9 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 	Write-Host ""
 	Write-Host "Taskbar moved, restarting explorer" -ForegroundColor Green
 	Get-Process explorer | Stop-Process
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # install vsc ( via blogs.msmvps.com/bsonnino/2019/11/10/configuring-a-windows-developer-machine-with-no-admin-rights )
 $InstallVSC = $Host.UI.PromptForChoice("Install visual studio code?", "(Default No)", @("&Yes", "&No"), 1)
@@ -331,6 +346,9 @@ if($InstallVSC -eq 0) {
 	$Shortcut.Save()
 	Write-Host ""
 	Write-Host "Visual Studio Code installed" -ForegroundColor Green
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # change wallpaper ( via https://gist.github.com/s7ephen/714023 )
 $ChangeWP = $Host.UI.PromptForChoice("Change wallpaper?", "(Default No)", @("&Yes", "&No"), 1)
@@ -354,6 +372,10 @@ public class Wallpaper
 	Add-Type -TypeDefinition $setwallpapersrc
 	
 	Write-Host ""
+	Write-Host 'To get the image path of a file, right click it and select "Copy as path"' -ForegroundColor Yellow
+	Write-Host ""
+	Write-Host "Make sure your image path is in quotes!" -ForegroundColor Yellow
+	Write-Host ""
 	$IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 	Write-Host ""
 	
@@ -361,10 +383,13 @@ public class Wallpaper
 		Write-Host "Canceled background change" -ForegroundColor Yellow
 		Write-Host ""
 	} else {
-		[Wallpaper]::SetWallpaper("$IMGPath")
+		[Wallpaper]::SetWallpaper($IMGPath)
 		Write-Host "Set background image to $IMGPath" -ForegroundColor Green
 		Write-Host ""
 	}
+} else {
+	Write-Host ""
+	Write-Host "Skipping" -ForegroundColor Magenta
 }
 # end script
 Write-Host ""
