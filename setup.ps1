@@ -26,13 +26,15 @@ switch($useDarkMode) {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
 		Write-Host ""
-		Write-Host "Dark mode applied" -ForegroundColor Green
+		Write-Host "Dark mode applied, restarting explorer" -ForegroundColor Green
+		Get-Process explorer | Stop-Process
 	}
 	2 {
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
 		Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
 		Write-Host ""
-		Write-Host "Light mode applied" -ForegroundColor Green
+		Write-Host "Light mode applied, restarting explorer" -ForegroundColor Green
+		Get-Process explorer | Stop-Process
 	}
 }
 # set start menu location preference
@@ -128,7 +130,7 @@ Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 Write-Host "You can say 'no' when it prompts to let the application make changes to your device, and it will still install." -ForegroundColor Yellow
 Write-Host "!!!!!!!!!!" -ForegroundColor Yellow
 # https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
-Invoke-WebRequest "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -OutFile ".\FireFoxInstall.exe"
+Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
 .\FireFoxInstall.exe | Write-Host
 rm .\FireFoxInstall.exe
 # OLD METHOD:
@@ -306,6 +308,23 @@ $Location = $Host.UI.PromptForChoice("Where should the taskbar go?", "(Default B
 	Write-Host ""
 	Write-Host "Taskbar moved, restarting explorer" -ForegroundColor Green
 	Get-Process explorer | Stop-Process
+}
+# install vsc (via blogs.msmvps.com/bsonnino/2019/11/10/configuring-a-windows-developer-machine-with-no-admin-rights)
+$InstallVSC = $Host.UI.PromptForChoice("Install visual studio code?", "(Default No)", @("&Yes", "&No"), 1)
+if($InstallVSC -eq 0) {
+	Set-ExecutionPolicy Bypass -Scope Process -Force;
+	$remoteFile = 'https://go.microsoft.com/fwlink/?Linkid=850641';
+	$downloadFile = $env:Temp+'\vscode.zip';
+	$vscodePath = $env:LOCALAPPDATA+"\VsCode";
+
+	# (New-Object Net.WebClient).DownloadFile($remoteFile, $downloadFile);
+	
+	Start-BitsTransfer -source "$remoteFile" -destination "$downloadFile"
+	
+	Expand-Archive $downloadFile -DestinationPath $vscodePath -Force
+	$env:Path += ";"+$vscodePath
+	[Environment]::SetEnvironmentVariable
+	("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
 }
 # end script
 Write-Host ""
