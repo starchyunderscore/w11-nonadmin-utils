@@ -20,7 +20,7 @@ A setup script for windows 11 that does not require admin rights.
 - [x] Move the taskbar\*.
 - [x] Install Visual Studio Code
 
-\* May not work for you, it worked on some of the computers I tried it on but not others.
+\* Does not work on 22H2 or later
 
 ## To use the script
 
