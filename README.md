@@ -18,8 +18,11 @@ A setup script for windows 11 that does not require admin rights.
 - [x] Set the keyboard layout to dvorak.
 - [x] Install PowerToys.
 - [x] Move the taskbar\*.
+- [x] Install Visual Studio Code\*\*
 
 \* May not work for you, it worked on some of the computers I tried it on but not others.
+
+\*\* Not yet in release
 
 ## To use the script
 
@@ -38,7 +41,6 @@ Unblock the file and run it:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-cd .\Downloads\
-Unblock-File -Path .\setup.ps1
-.\setup.ps1
+Unblock-File -Path .\Downloads\setup.ps1
+.\Downloads\setup.ps1
 ```
