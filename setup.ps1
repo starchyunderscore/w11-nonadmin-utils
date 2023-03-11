@@ -7,7 +7,8 @@ $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?",
 if ($ContinueScript -eq 1) {
 	Write-Host ""
 	Write-Host "User quit" -ForegroundColor Red
-	Exit 0;
+	Write-Host ""
+	Exit 0
 }
 # starting text
 Write-Host "Starting script." -ForegroundColor Magenta
@@ -335,3 +336,5 @@ if($InstallVSC -eq 0) {
 # end script
 Write-Host ""
 Read-Host "Script Finished, press enter to exit"
+Write-Host ""
+Exit 0
