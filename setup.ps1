@@ -317,8 +317,6 @@ if($InstallVSC -eq 0) {
 	$remoteFile = 'https://go.microsoft.com/fwlink/?Linkid=850641';
 	$downloadFile = $env:Temp+'\vscode.zip';
 	$vscodePath = $env:LOCALAPPDATA+"\VsCode";
-
-	# (New-Object Net.WebClient).DownloadFile($remoteFile, $downloadFile);
 	
 	Start-BitsTransfer -source "$remoteFile" -destination "$downloadFile"
 	
@@ -331,7 +329,8 @@ if($InstallVSC -eq 0) {
 	$Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
 	$Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
 	$Shortcut.Save()
-	
+	Write-Host ""
+	Write-Host "Visual Studio Code installed" -ForegroundColor Green
 }
 # end script
 Write-Host ""
