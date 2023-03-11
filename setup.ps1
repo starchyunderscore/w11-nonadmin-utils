@@ -325,6 +325,12 @@ if($InstallVSC -eq 0) {
 	$env:Path += ";"+$vscodePath
 	[Environment]::SetEnvironmentVariable
 	("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
+	
+	$WshShell = New-Object -ComObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
+	$Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
+	$Shortcut.Save()
+	
 }
 # end script
 Write-Host ""
