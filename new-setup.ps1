@@ -52,10 +52,39 @@ DO {
             }
           }
           2 { # Change the background image
-            
+$setwallpapersrc = @"
+using System.Runtime.InteropServices;
+public class Wallpaper
+{
+  public const int SetDesktopWallpaper = 20;
+  public const int UpdateIniFile = 0x01;
+  public const int SendWinIniChange = 0x02;
+  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+  public static void SetWallpaper(string path)
+  {
+    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
+  }
+}
+"@
+            Add-Type -TypeDefinition $setwallpapersrc
+
+            Write-Host '`nTo get the image path of a file, right click it and select "Copy as path"' -ForegroundColor Yellow
+            Write-Host "`nMake sure your image path is in quotes!`n" -ForegroundColor Yellow
+            $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
+
+            if($IMGPath -notmatch "\S") {
+              Write-Host "`nCanceled background change`n" -ForegroundColor Yellow
+            } else {
+              [Wallpaper]::SetWallpaper($IMGPath)
+              Write-Host "`nSet background image to $IMGPath`n" -ForegroundColor Green
+            }
           }
         }
       } until ($Themer -notmatch "\S")
+    }
+    2 { # Change taskbar settings
+      
     }
   }
 } until ($Option -notmatch "\S")
