@@ -125,7 +125,29 @@ public class Wallpaper
               Get-Process explorer | Stop-Process
           }
           3 { # Pin and unpin items
-            
+            DO {
+              # List items that can be modified
+              Write-Host "`n1. Modify task view"
+              Write-Host "2. Modify widgets"
+              Write-Host "3. Modify chat"
+              Write-Host "4. Modify search"
+              # Prompt user for choice
+              $Tpins = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+              swich ($Tpins) {
+                1 { # Task view
+                  
+                }
+                2 { # Widgets
+                  
+                }
+                3 { # Chat
+                  
+                }
+                4 { # Search
+                  
+                }
+              }
+            } until ($Tpins -notmatch "\S")
           }
         }
       } until ($Tbar -notmatch "\S")
