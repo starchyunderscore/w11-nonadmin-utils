@@ -61,7 +61,7 @@ public class Wallpaper
 "@
             Add-Type -TypeDefinition $setwallpapersrc
 
-            Write-Host '`nTo get the image path of a file, right click it and select "Copy as path"' -ForegroundColor Yellow
+            Write-Host "`nTo get the image path of a file, right click it and select `"Copy as path`"" -ForegroundColor Yellow
             Write-Host "`nMake sure your image path is in quotes!`n" -ForegroundColor Yellow
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 
