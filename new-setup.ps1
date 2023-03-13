@@ -212,8 +212,27 @@ public class Wallpaper
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
-          1 { # Keyboard layout
-            
+          1 { # Keyboard layout (this part needs a rewrite later to make it easier to expand)
+            $KeyboardLayout = $Host.UI.PromptForChoice("Select the layout you want", "", @("&Cancel", "&qwerty en-US", "&dvorak en-US"), 0)
+            $l = Get-WinUserLanguageList
+            # http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
+            # 0409:00010409 = dvorak en-US
+            # 0409:00000409 = qwerty en-US
+            switch($KeyboardLayout) {
+              0 {
+                Write-Host "`nCancled" -ForegroundColor Magenta
+              }
+              1 {
+                $l[0].InputMethodTips[0]="0409:00000409"
+                Set-WinUserLanguageList -LanguageList $l
+                Write-Host "`nqwerty en-US keyboard layout applied" -ForegroundColor Green
+              }
+              2 {
+                $l[0].InputMethodTips[0]="0409:00010409"
+                Set-WinUserLanguageList -LanguageList $l
+                Write-Host "`nDvorak en-US keyboard layout applied" -ForegroundColor Green
+              }
+            }
           }
           2 { # Mouse speed
             DO {
