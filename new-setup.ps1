@@ -1,16 +1,8 @@
-# Try to create a restore point
-try {
-  Enable-ComputerRestore -Drive "C:\"
-  Checkpoint-Computer -Description "starchyunderscore/windows11-setupscript" -RestorePointType "MODIFY_SETTINGS"
-  Write-Host "`nRestore point created sucsessfully." -ForegroundColor Green
-} catch {
-  # If restore point fails, warn user and ask if they wish to continue regardless.
-  Write-Host "`n!!!!!!!!!!`nWARNING: A RESTORE POINT COULD NOT BE CREATED. ANY BREAKAGES MAY BE PERMANENT`n!!!!!!!!!!`n" -ForegroundColor Yellow
-  $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
-  if ($ContinueScript -eq 1) {
-    Write-Host "`nUser quit`n" -ForegroundColor Red
-    Exit 0
-  }
+Write-Host "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n" -ForegroundColor Yellow
+$ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
+if ($ContinueScript -eq 1) {
+  Write-Host "`nUser quit`n" -ForegroundColor Red
+  Exit 0
 }
 
 DO {
