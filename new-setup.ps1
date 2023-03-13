@@ -139,7 +139,7 @@ public class Wallpaper
               Write-Host "4. Modify search"
               # Prompt user for choice
               $Tpins = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
-              swich ($Tpins) {
+              switch ($Tpins) {
                 1 { # Task view
                   $IPinStatus = $Host.UI.PromptForChoice("Set task view pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
                   switch ($IPinStatus) {
