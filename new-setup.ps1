@@ -5,7 +5,7 @@ try {
   Write-Host "`nRestore point created sucsessfully." -ForegroundColor Green
 } catch {
   # If restore point fails, warn user and ask if they wish to continue regardless.
-  Write-Host "`n!!!!!!!!!!`nWARNING: A RESTORE POINT COULD NOT BE CREATED. ANY BREAKAGES MAY BE PERMANENT.`n!!!!!!!!!!`n" -ForegroundColor Yellow
+  Write-Host "`n!!!!!!!!!!`nWARNING: A RESTORE POINT COULD NOT BE CREATED. ANY BREAKAGES MAY BE PERMANENT`n!!!!!!!!!!`n" -ForegroundColor Yellow
   $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
   if ($ContinueScript -eq 1) {
     Write-Host "`nUser quit`n" -ForegroundColor Red
@@ -35,18 +35,18 @@ DO {
             $useDarkMode = $Host.UI.PromptForChoice("Select system mode:", "", @("&Cancel", "&Dark mode", "&Light Mode"), 0)
             switch($useDarkMode) {
               0 {
-                Write-Host "`nCanceled" -ForegroundColor Magenta
+                Write-Host "`nCanceled." -ForegroundColor Magenta
               }
               1 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-                Write-Host "`nDark mode applied, restarting explorer" -ForegroundColor Green
+                Write-Host "`nDark mode applied, restarting explorer." -ForegroundColor Green
                 Get-Process explorer | Stop-Process
               }
               2 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
-                Write-Host "`nLight mode applied, restarting explorer" -ForegroundColor Green
+                Write-Host "`nLight mode applied, restarting explorer." -ForegroundColor Green
                 Get-Process explorer | Stop-Process
               }
             }
@@ -74,10 +74,10 @@ public class Wallpaper
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 
             if($IMGPath -notmatch "\S") {
-              Write-Host "`nCanceled`n" -ForegroundColor Magenta
+              Write-Host "`nCanceled.`n" -ForegroundColor Magenta
             } else {
               [Wallpaper]::SetWallpaper($IMGPath)
-              Write-Host "`nSet background image to $IMGPath`n" -ForegroundColor Green
+              Write-Host "`nSet background image to $IMGPath.`n" -ForegroundColor Green
             }
           }
         }
@@ -93,7 +93,20 @@ public class Wallpaper
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
           1 { # Move the start menu
-            
+            $leftStartMenu = $Host.UI.PromptForChoice("Selecet start menu location preference:", "", @("&Cancel", "&Left", "&Center"), 0)
+            switch ($leftStartMenu) {
+              0 {
+                Write-Host "`nCanceled." -ForegroundColor Magenta
+              }
+              1 {
+                try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
+                Write-Host "`nLeft start menu applied." -ForegroundColor Green
+              }
+              2 {
+                try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
+                Write-Host "`nCenter start menu applied." -ForegroundColor Green
+              }
+            }
           }
           2 { # Move the taskbar
             
