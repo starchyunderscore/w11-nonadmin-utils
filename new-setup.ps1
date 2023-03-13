@@ -109,13 +109,32 @@ public class Wallpaper
             }
           }
           2 { # Move the taskbar
-            
+            Write-Host "`nThis does not work on windows 11 version 22H2 or later!`n" -ForegroundColor Yellow
+            $Location = $Host.UI.PromptForChoice("Select taskbar location preference.", "", @("&Bottom", "&Top", "&Left", "&Right"), 0)
+              $bit = 0;
+              switch ($Location) {
+                2 { $bit = 0x00 } # Left
+                3 { $bit = 0x02 } # Right
+                1 { $bit = 0x01 } # Top
+                0 { $bit = 0x03 } # Bottom
+              }
+              $Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
+              $Settings[12] = $bit
+              Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
+              Write-Host "`nTaskbar moved, restarting explorer." -ForegroundColor Green
+              Get-Process explorer | Stop-Process
           }
           3 { # Pin and unpin items
             
           }
         }
       } until ($Tbar -notmatch "\S")
+    }
+    3 { # Change input settings
+      
+    }
+    4 { # Install programs
+      
     }
   }
 } until ($Option -notmatch "\S")
