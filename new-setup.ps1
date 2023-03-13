@@ -85,7 +85,7 @@ public class Wallpaper
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
           1 { # Move the start menu
-            $leftStartMenu = $Host.UI.PromptForChoice("Selecet start menu location preference:", "", @("&Cancel", "&Left", "&Center"), 0)
+            $leftStartMenu = $Host.UI.PromptForChoice("Selecet start menu location preference:", "", @("&Cancel", "&Left", "&Middle"), 0)
             switch ($leftStartMenu) {
               0 {
                 Write-Host "`nCanceled." -ForegroundColor Magenta
@@ -296,9 +296,9 @@ public class Wallpaper
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
           1 { # FireFox
-            $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "", @("&Cancel", "&Continue"), 0)
+            $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "", @("&Cancel", "&Install"), 0)
             if ($InstallFirefox -eq 1) {
-              Write-Host '`nYou can say "no" when it prompts to let the application make changes to your device, and it will still install.`n' -ForegroundColor Yellow
+              Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
               Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
               rm .\FireFoxInstall.exe
@@ -307,7 +307,7 @@ public class Wallpaper
             }
           }
           2 { # PowerToys ( https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
-            $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "", @("&Cancel", "&Continue"), 0)
+            $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "", @("&Cancel", "&Install"), 0)
             if ($InstallPowertoys -eq 1) {
               $installLocation = "$env:LocalAppData\Programs\PowerToys"
 
@@ -431,7 +431,7 @@ public class Wallpaper
             }
           }
           3 { # Visual Studio Code
-            $InstallVSC = $Host.UI.PromptForChoice("Install visual studio code?", "", @("&Cancel", "&Continue"), 0)
+            $InstallVSC = $Host.UI.PromptForChoice("Install visual studio code?", "", @("&Cancel", "&Install"), 0)
             if($InstallVSC -eq 1) {
               Set-ExecutionPolicy Bypass -Scope Process -Force;
               $remoteFile = 'https://go.microsoft.com/fwlink/?Linkid=850641';
