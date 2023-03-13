@@ -205,7 +205,44 @@ public class Wallpaper
       } until ($Tbar -notmatch "\S")
     }
     3 { # Change input settings
-      
+      DO {
+        # Print choices
+        Write-Host "`n1. Change the keyboard layout"
+        Write-Host "2. Change the mouse speed"
+        # Prompt user for choice
+        $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+        switch ($Iset) {
+          1 { # Keyboard layout
+            
+          }
+          2 { # Mouse speed
+            DO {
+              Write-Host "`n10 is the default mouse speed of windows.`n" -ForegroundColor Yellow
+              $MouseSpeed = Read-Host "Enter number from 1-20, or leave blank to ext"
+              if ($MouseSpeed -In 1..20) {
+                set-strictMode -version latest
+                $winApi = add-type -name user32 -namespace tq84 -passThru -memberDefinition '
+                   [DllImport("user32.dll")]
+                    public static extern bool SystemParametersInfo(
+                       uint uiAction,
+                       uint uiParam ,
+                       uint pvParam ,
+                       uint fWinIni
+                    );
+                '
+                $SPI_SETMOUSESPEED = 0x0071
+                $null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
+                set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
+                Write-Host "`nMouse speed set to $MouseSpeed" -ForegroundColor Green
+              } elseif ($MouseSpeed -notmatch "\S") {
+                Write-Host "`nCanceled" -ForegroundColor Magenta
+              } else {
+                Write-Host "`nThat number is out of range or not a number" -ForegroundColor Red
+              }
+            } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\s")
+          }
+        }
+      } until ($Iset -notmatch "\S")
     }
     4 { # Install programs
       
