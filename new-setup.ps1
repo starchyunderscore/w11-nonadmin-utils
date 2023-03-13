@@ -135,16 +135,68 @@ public class Wallpaper
               $Tpins = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
               swich ($Tpins) {
                 1 { # Task view
-                  
+                  $IPinStatus = $Host.UI.PromptForChoice("Set task view pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
+                  switch ($IPinStatus) {
+                    0 {
+                      Write-Host "`nCanceled" -ForegroundColor Magenta
+                    }
+                    1 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord}
+                      Write-Host "`nTask view unpinned" -ForegroundColor Green
+                    }
+                    2 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 1} catch{}
+                      Write-Host "`nTask view pinned" -ForegroundColor Green
+                    }
+                  }
                 }
                 2 { # Widgets
-                  
+                  $IPinStatus = $Host.UI.PromptForChoice("Set widget pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
+                  switch ($IPinStatus) {
+                    0 {
+                      Write-Host "`nCanceled" -ForegroundColor Magenta
+                    }
+                    1 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
+                      Write-Host "`nWidgets unpinned" -ForegroundColor Green
+                    }
+                    2 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1} catch{}
+                      Write-Host "`nWidgets pinned" -ForegroundColor Green
+                    }
+                  }
                 }
                 3 { # Chat
-                  
+                  $IPinStatus = $Host.UI.PromptForChoice("Set chat pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
+                  switch ($IPinStatus) {
+                    0 {
+                      Write-Host "`nCanceled" -ForegroundColor Magenta
+                    }
+                    1 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
+                      Write-Host "`nChat unpinned" -ForegroundColor Green
+                    }
+                    2 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{}
+                      Write-Host "`nChat pinned" -ForegroundColor Green
+                    }
+                  }
                 }
                 4 { # Search
-                  
+                  $IPinStatus = $Host.UI.PromptForChoice("Set search bar pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
+                  switch ($IPinStatus) {
+                    0 {
+                      Write-Host "`nCanceled" -ForegroundColor Magenta
+                    }
+                    1 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord}
+                      Write-Host "`nSearch bar unpinned" -ForegroundColor Green
+                    }
+                    2 {
+                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 1} catch{}
+                      Write-Host "`nSearch bar pinned" -ForegroundColor Green
+                    }
+                  }
                 }
               }
             } until ($Tpins -notmatch "\S")
