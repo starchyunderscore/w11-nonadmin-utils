@@ -34,14 +34,7 @@ Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SE
 
 Open up standard windows terminal or powershell, ***NOT*** command prompt.
 
-Unblock the file and run it:
-
-```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-.\Downloads\setup.ps1
-```
-
-I have not tried this yet, but I believe you can do 
+Run the below command, replacing the path to `setup.ps1` as needed
 
 ```
 powershell -ep Bypass -File .\Downloads\setup.ps1
