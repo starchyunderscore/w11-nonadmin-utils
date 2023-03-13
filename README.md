@@ -41,4 +41,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\Downloads\setup.ps1
 ```
 
+I have not tried this yet, but I believe you can do 
+
+```
+powershell -ep Bypass -File .\Downloads\setup.ps1
+```
+
 After the script has completed, make sure to restart your terminal or powershell window before running anything else
