@@ -273,18 +273,42 @@ public class Wallpaper
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
           1 { # FireFox
-            $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
-            if ($InstallFirefox -eq 0) {
-            Write-Host '`nYou can say "no" when it prompts to let the application make changes to your device, and it will still install.`n' -ForegroundColor Yellow
-            Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
-            .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
-            rm .\FireFoxInstall.exe
+            $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "", @("&Cancel", "&Continue"), 0)
+            if ($InstallFirefox -eq 1) {
+              Write-Host '`nYou can say "no" when it prompts to let the application make changes to your device, and it will still install.`n' -ForegroundColor Yellow
+              Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+              .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
+              rm .\FireFoxInstall.exe
+            } else {
+              Write-Host "`nCanceled" -ForegroundColor Magenta
+            }
           }
           2 { # PowerToys
             
           }
           3 { # Visual Studio Code
-            
+            $InstallVSC = $Host.UI.PromptForChoice("Install visual studio code?", "", @("&Cancel", "&Continue"), 0)
+            if($InstallVSC -eq 1) {
+              Set-ExecutionPolicy Bypass -Scope Process -Force;
+              $remoteFile = 'https://go.microsoft.com/fwlink/?Linkid=850641';
+              $downloadFile = $env:Temp+'\vscode.zip';
+              $vscodePath = $env:LOCALAPPDATA+"\VsCode";
+
+              Start-BitsTransfer -source "$remoteFile" -destination "$downloadFile"
+
+              Expand-Archive $downloadFile -DestinationPath $vscodePath -Force
+              $env:Path += ";"+$vscodePath
+              [Environment]::SetEnvironmentVariable
+              ("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
+
+              $WshShell = New-Object -ComObject WScript.Shell
+              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
+              $Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
+              $Shortcut.Save()
+              Write-Host "`nVisual Studio Code installed" -ForegroundColor Green
+            } else {
+              Write-Host "`nCancled" -ForegroundColor Magenta
+            }
           }
         }
       } until ($PGram -notmatch "\S")
