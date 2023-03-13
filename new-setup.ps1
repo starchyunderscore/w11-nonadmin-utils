@@ -128,7 +128,6 @@ public class Wallpaper
               Write-Host "`n1. Modify task view"
               Write-Host "2. Modify widgets"
               Write-Host "3. Modify chat"
-              Write-Host "4. Modify search"
               # Prompt user for choice
               $Tpins = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
               switch ($Tpins) {
@@ -138,7 +137,7 @@ public class Wallpaper
                     0 {
                       Write-Host "`nCanceled" -ForegroundColor Magenta
                     }
-                    1 {
+                    1 { # task view
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0
                       } catch {
@@ -206,15 +205,15 @@ public class Wallpaper
                     }
                     1 {
                       try {
-                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 0
                       } catch {
-                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord
+                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 0 -PropertyType DWord
                       }
                       Write-Host "`nSearch bar unpinned" -ForegroundColor Green
                     }
                     2 {
                       try {
-                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 1
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 1
                       } catch {} # No registry item is same as default
                       Write-Host "`nSearch bar pinned" -ForegroundColor Green
                     }
