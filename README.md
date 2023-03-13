@@ -39,5 +39,3 @@ Run the below command, replacing the path to `setup.ps1` as needed
 ```
 powershell -ep Bypass -File .\Downloads\setup.ps1
 ```
-
-After the script has completed, make sure to restart your terminal or powershell window before running anything else
