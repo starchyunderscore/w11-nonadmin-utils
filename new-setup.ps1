@@ -128,6 +128,7 @@ public class Wallpaper
               Write-Host "`n1. Modify task view"
               Write-Host "2. Modify widgets"
               Write-Host "3. Modify chat"
+              Write-Host "4. Modify search"
               # Prompt user for choice
               $Tpins = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
               switch ($Tpins) {
