@@ -264,7 +264,30 @@ public class Wallpaper
       } until ($Iset -notmatch "\S")
     }
     4 { # Install programs
-      
+      DO {
+        # List options
+        Write-Host "`n1. FireFox"
+        Write-Host "2. PowerToys"
+        Write-Host "3. Visual Studio Code"
+        # Prompt user for input
+        $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+        switch ($PGram) {
+          1 { # FireFox
+            $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "(Default No)", @("&Yes", "&No"), 1)
+            if ($InstallFirefox -eq 0) {
+            Write-Host '`nYou can say "no" when it prompts to let the application make changes to your device, and it will still install.`n' -ForegroundColor Yellow
+            Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+            .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
+            rm .\FireFoxInstall.exe
+          }
+          2 { # PowerToys
+            
+          }
+          3 { # Visual Studio Code
+            
+          }
+        }
+      } until ($PGram -notmatch "\S")
     }
   }
 } until ($Option -notmatch "\S")
