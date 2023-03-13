@@ -13,6 +13,8 @@ A setup script for windows 11 that does not require admin rights.
 - [x] Move the start menu back to the left.
 - [x] Unpin chat from taskbar.
 - [x] Unpin widgets from taskbar.
+- [x] Unpin search from the taskbar.
+- [x] pin task view from the search bar.
 - [x] Set the mouse speed.
 - [x] Install FireFox.
 - [x] Set the keyboard layout to dvorak.
