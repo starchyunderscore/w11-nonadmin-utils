@@ -51,7 +51,7 @@ DO {
               }
             }
           }
-          2 { # Change the background image
+          2 { # Change the background image ( https://gist.github.com/s7ephen/714023 )
 $setwallpapersrc = @"
 using System.Runtime.InteropServices;
 public class Wallpaper
@@ -124,7 +124,7 @@ public class Wallpaper
               Write-Host "`nTaskbar moved, restarting explorer." -ForegroundColor Green
               Get-Process explorer | Stop-Process
           }
-          3 { # Pin and unpin items
+          3 { # Pin and unpin items ( https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1 )
             DO {
               # List items that can be modified
               Write-Host "`n1. Modify task view"
@@ -212,7 +212,8 @@ public class Wallpaper
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
-          1 { # Keyboard layout (this part needs a rewrite later to make it easier to expand)
+          1 { # Keyboard layout ( https://gist.github.com/DieBauer/997dc90701a137fce8be )
+            # this part needs a rewrite later to make it easier to expand
             $KeyboardLayout = $Host.UI.PromptForChoice("Select the layout you want", "", @("&Cancel", "&qwerty en-US", "&dvorak en-US"), 0)
             $l = Get-WinUserLanguageList
             # http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
@@ -234,7 +235,7 @@ public class Wallpaper
               }
             }
           }
-          2 { # Mouse speed
+          2 { # Mouse speed ( https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
             DO {
               Write-Host "`n10 is the default mouse speed of windows.`n" -ForegroundColor Yellow
               $MouseSpeed = Read-Host "Enter number from 1-20, or leave blank to ext"
@@ -283,7 +284,7 @@ public class Wallpaper
               Write-Host "`nCanceled" -ForegroundColor Magenta
             }
           }
-          2 { # PowerToys
+          2 { # PowerToys ( https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
             $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "", @("&Cancel", "&Continue"), 0)
             if ($InstallPowertoys -eq 1) {
               $installLocation = "$env:LocalAppData\Programs\PowerToys"
