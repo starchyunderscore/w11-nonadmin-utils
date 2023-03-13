@@ -33,7 +33,7 @@ DO {
         switch ($Themer) {
           1 { # Turn dark mode on or off
             $useDarkMode = $Host.UI.PromptForChoice("Select system mode:", "", @("&Cancel", "&Dark mode", "&Light Mode"), 0)
-            switch($useDarkMode) {
+            switch ($useDarkMode) {
               0 {
                 Write-Host "`nCanceled." -ForegroundColor Magenta
               }
@@ -99,11 +99,17 @@ public class Wallpaper
                 Write-Host "`nCanceled." -ForegroundColor Magenta
               }
               1 {
-                try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword}
+                try {
+                  Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0
+                } catch {
+                  New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword
+                }
                 Write-Host "`nLeft start menu applied." -ForegroundColor Green
               }
               2 {
-                try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1} catch{} # default is to be center alligned, therefore do nothing if registry key does not exist
+                try {
+                  Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1
+                } catch {} # No registry item is same as default
                 Write-Host "`nCenter start menu applied." -ForegroundColor Green
               }
             }
@@ -141,11 +147,17 @@ public class Wallpaper
                       Write-Host "`nCanceled" -ForegroundColor Magenta
                     }
                     1 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0
+                      } catch {
+                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord
+                      }
                       Write-Host "`nTask view unpinned" -ForegroundColor Green
                     }
                     2 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 1} catch{}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 1
+                      } catch {} # No registry item is same as default
                       Write-Host "`nTask view pinned" -ForegroundColor Green
                     }
                   }
@@ -157,11 +169,17 @@ public class Wallpaper
                       Write-Host "`nCanceled" -ForegroundColor Magenta
                     }
                     1 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0
+                      } catch {
+                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
+                      }
                       Write-Host "`nWidgets unpinned" -ForegroundColor Green
                     }
                     2 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1} catch{}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1
+                      } catch {} # No registry item is same as default
                       Write-Host "`nWidgets pinned" -ForegroundColor Green
                     }
                   }
@@ -173,11 +191,17 @@ public class Wallpaper
                       Write-Host "`nCanceled" -ForegroundColor Magenta
                     }
                     1 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0
+                      } catch {
+                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
+                      }
                       Write-Host "`nChat unpinned" -ForegroundColor Green
                     }
                     2 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1} catch{}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1
+                      } catch {} # No registry item is same as default
                       Write-Host "`nChat pinned" -ForegroundColor Green
                     }
                   }
@@ -189,11 +213,17 @@ public class Wallpaper
                       Write-Host "`nCanceled" -ForegroundColor Magenta
                     }
                     1 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0} catch{New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0
+                      } catch {
+                        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord
+                      }
                       Write-Host "`nSearch bar unpinned" -ForegroundColor Green
                     }
                     2 {
-                      try{Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 1} catch{}
+                      try {
+                        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'ShowTaskViewButton' -Value 1
+                      } catch {} # No registry item is same as default
                       Write-Host "`nSearch bar pinned" -ForegroundColor Green
                     }
                   }
@@ -219,7 +249,7 @@ public class Wallpaper
             # http://stackoverflow.com/questions/167031/programatically-change-keyboard-to-dvorak
             # 0409:00010409 = dvorak en-US
             # 0409:00000409 = qwerty en-US
-            switch($KeyboardLayout) {
+            switch ($KeyboardLayout) {
               0 {
                 Write-Host "`nCancled" -ForegroundColor Magenta
               }
