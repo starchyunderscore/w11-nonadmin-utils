@@ -35,7 +35,7 @@ DO {
             $useDarkMode = $Host.UI.PromptForChoice("Select system mode:", "", @("&Cancel", "&Dark mode", "&Light Mode"), 0)
             switch($useDarkMode) {
               0 {
-                Write-Host "`nCanceling" -ForegroundColor Magenta
+                Write-Host "`nCanceled" -ForegroundColor Magenta
               }
               1 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
@@ -74,7 +74,7 @@ public class Wallpaper
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 
             if($IMGPath -notmatch "\S") {
-              Write-Host "`nCanceled background change`n" -ForegroundColor Yellow
+              Write-Host "`nCanceled`n" -ForegroundColor Magenta
             } else {
               [Wallpaper]::SetWallpaper($IMGPath)
               Write-Host "`nSet background image to $IMGPath`n" -ForegroundColor Green
@@ -84,7 +84,25 @@ public class Wallpaper
       } until ($Themer -notmatch "\S")
     }
     2 { # Change taskbar settings
-      
+      DO {
+        # Print choices
+        Write-Host "`n1. Move the start menu"
+        Write-Host "2. Move the taskbar"
+        Write-Host "3. Pin and unpin items"
+        # Prompt user for choice
+        $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+        switch ($Tbar) {
+          1 { # Move the start menu
+            
+          }
+          2 { # Move the taskbar
+            
+          }
+          3 { # Pin and unpin items
+            
+          }
+        }
+      } until ($Tbar -notmatch "\S")
     }
   }
 } until ($Option -notmatch "\S")
