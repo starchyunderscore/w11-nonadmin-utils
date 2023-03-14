@@ -513,7 +513,9 @@ public class Wallpaper
             # Actually install it
             Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
             Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
-            mv ".\fastfetch\fastfetch.exe" "$HOME\bin"
+            mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
+            rm ".\fastfetch.zip"
+            rm ".\fastfetch" -r
           }
         }
       } until ($CLUtils -notmatch "\S")
