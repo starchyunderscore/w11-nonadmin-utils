@@ -11,6 +11,7 @@ DO {
   Write-Host "2. Change taskbar settings"
   Write-Host "3. Change input settings"
   Write-Host "4. Install programs"
+  Write-Host "5. Command line utilites"
   # Prompt user for choice
   $Option = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
   # Do each thing depending on what the choice is
@@ -456,6 +457,66 @@ public class Wallpaper
           }
         }
       } until ($PGram -notmatch "\S")
+    }
+    5 { # Command line utilities
+      DO {
+        # List options
+        Write-Host "`n1. Setup bin"
+        Write-Host "2. Install fastfetch" # May be replaced in the future I just wanted there to be more than one item here
+        # Prompt user for input
+        $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+        switch ($CLUtils) {
+          1 { # Setup bin
+            # List options
+            Write-Host "`n1. Create bin"
+            Write-Host "2. Add items to bin"
+            # Prompt user for input
+            $BinPrompt = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+            switch ($BinPrompt) {
+              1 {
+                if (Test-Path "$HOME\bin") {
+                  Write-Host "`nBin already exits." -ForegroundColor Yellow
+                } else {
+                  mkdir $HOME\bin
+                  $env:Path += "$HOME\bin"
+                  if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
+                    New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
+                  }
+                  echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
+                  Write-Host "`nBin created"
+                }
+              }
+              2 { # Add items to the bint
+                if (Test-Path "$HOME\bin") {
+                  DO {
+                    Write-Host "`nSo uhh, this is embarrasing, but this part of the script has not yet been written...`n" -ForegroundColor Yellow
+                    $AddToBin = Read-Host "Leve blank to exit"
+                  } until ($AddToBin -notmatch "\S")
+                } else {
+                  Write-Host "`nBin does not exist, please create it first."
+                }
+                
+              }
+            }
+          }
+          2 { # Get fastfetch
+            if (!(Test-Path "$HOME\bin")) {
+                  Write-Host "`nBin does not exist. Creating." -ForegroundColor Yellow
+                  mkdir $HOME\bin
+                  $env:Path += "$HOME\bin"
+                  if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
+                    New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
+                  }
+                  echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
+                  Write-Host "`nBin created"
+            }
+            # Actually install it
+            Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
+            Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
+            mv ".\fastfetch\fastfetch.exe" "$HOME\bin"
+          }
+        }
+      } until ($CLUtils -notmatch "\S")
     }
   }
 } until ($Option -notmatch "\S")
