@@ -1,3 +1,20 @@
+# FUNCTIONS
+
+function BIN-Setup { # Create bin if it does not exist
+  if (!(Test-Path "$HOME\bin")) {
+    Write-Host "`nBin does not exist. Creating." -ForegroundColor Yellow
+    mkdir $HOME\bin
+    $env:Path += "$HOME\bin"
+    if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
+      New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
+    }
+    echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
+    Write-Host "`nBin created"
+  }
+}
+
+# SCRIPT
+
 Write-Host "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n" -ForegroundColor Yellow
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
@@ -496,18 +513,3 @@ public class Wallpaper
 
 Write-Host "`nScript Finished`n" -ForegroundColor Green
 Exit 0
-
-# FUNCTIONS
-
-function BIN-Setup { # Create bin if it does not exist
-  if (!(Test-Path "$HOME\bin")) {
-    Write-Host "`nBin does not exist. Creating." -ForegroundColor Yellow
-    mkdir $HOME\bin
-    $env:Path += "$HOME\bin"
-    if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
-      New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
-    }
-    echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
-    Write-Host "`nBin created"
-  }
-}
