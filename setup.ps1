@@ -467,33 +467,20 @@ public class Wallpaper
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
           1 { # Add items to bin
-            # Create bin if it does not exist
-            if (Test-Path "$HOME\bin") {
-              Write-Host "`nBin already exits." -ForegroundColor Yellow
-            } else {
-              mkdir $HOME\bin
-              $env:Path += "$HOME\bin"
-              if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
-                New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
-              }
-              echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
-              Write-Host "`nBin created"
-            }
-
-            $BinPrompt = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
-            
+            BIN-Setup
+            # Inform user how to exit
+            Write-Host "Leaving either prompt blank will not add anything" # Reword this
+            # Prompt user
+            $BinAddItem = Read-Host "`nInput path of item"
+            $BinAddName = Read-Host "`nInput command you wish to have call item"
+            # TODO: check for validity then create shortcuts or move item depending
+#             $WshShell = New-Object -ComObject WScript.Shell
+#             $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
+#             $Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
+#             $Shortcut.Save()
           }
           2 { # Get fastfetch
-            if (!(Test-Path "$HOME\bin")) {
-                  Write-Host "`nBin does not exist. Creating." -ForegroundColor Yellow
-                  mkdir $HOME\bin
-                  $env:Path += "$HOME\bin"
-                  if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
-                    New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
-                  }
-                  echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
-                  Write-Host "`nBin created"
-            }
+            BIN-Setup
             # Actually install it
             Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
             Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
@@ -509,3 +496,18 @@ public class Wallpaper
 
 Write-Host "`nScript Finished`n" -ForegroundColor Green
 Exit 0
+
+# FUNCTIONS
+
+function BIN-Setup { # Create bin if it does not exist
+  if (!(Test-Path "$HOME\bin")) {
+    Write-Host "`nBin does not exist. Creating." -ForegroundColor Yellow
+    mkdir $HOME\bin
+    $env:Path += "$HOME\bin"
+    if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
+      New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
+    }
+    echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
+    Write-Host "`nBin created"
+  }
+}
