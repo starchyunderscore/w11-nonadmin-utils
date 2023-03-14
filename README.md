@@ -31,7 +31,7 @@ If you have admin rights, open an admin powershell window and create a system re
 
 ```
 Enable-ComputerRestore -Drive "C:\"
-Checkpoint-Computer -Description "setup script run" -RestorePointType "MODIFY_SETTINGS"
+Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
 Open up standard windows terminal or powershell, ***NOT*** command prompt.
