@@ -39,5 +39,6 @@ Open up standard windows terminal or powershell, ***NOT*** command prompt.
 Run the below command, replacing the path to `setup.ps1` as needed
 
 ```
-powershell -ep Bypass -File .\Downloads\setup.ps1
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+.\Downloads\setup.ps1
 ```
