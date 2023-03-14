@@ -8,7 +8,7 @@ function BIN-Setup { # Create bin if it does not exist
     if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
       New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
     }
-    echo ';$env:Path += "$HOME\bin;";' > $PROFILE.CurrentUserCurrentHost
+    echo ';$env:Path += "$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
     Write-Host "`nBin created"
   }
 }
