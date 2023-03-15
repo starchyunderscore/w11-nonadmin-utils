@@ -484,17 +484,40 @@ public class Wallpaper
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
           1 { # Add items to bin
+            # THIS WHOLE THING NEEDS TO BE REWORDED
             BIN-Setup
             # Inform user how to exit
-            Write-Host "Leaving either prompt blank will not add anything" # Reword this
+            Write-Host "Leaving either prompt blank will not add anything"
             # Prompt user
             $BinAddItem = Read-Host "`nInput path of item"
-            $BinAddName = Read-Host "`nInput command you wish to have call item"
-            # TODO: check for validity then create shortcuts or move item depending
-#             $WshShell = New-Object -ComObject WScript.Shell
-#             $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
-#             $Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
-#             $Shortcut.Save()
+            if ($BinAddItem -notmatch "\S") {
+              Write-Host "`nCanceled`n" -ForegroundColor Magenta
+            } elseif (!(Test-Path $BinAddItem)) {
+              Write-Host "`nItem does not exist`n" -ForegroundColor Red
+            } else {
+              $BinOperation = $Host.UI.PromptForChoice("How should the item be put in the bin", "", @("&Cancel", "&Move item", "&Link item"), 0)
+              switch ($BinOperation) {
+                0 { # Cancel
+                  Write-Host "Canceled" -ForegroundColor Magenta
+                }
+                1 { # Move Item
+                  mv $BinAddItem "$HOME\bin"
+                }
+                2 { # Link Item
+                  $BinAddName = Read-Host "`nInput command you wish to have call item" # REWORD THIS
+                  if ($BinAddName -notmatch "\S") {
+                    Write-Host "Canceled" -ForegroundColor Magenta
+                  } elseif (Test-Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path "$HOME\bin\$BinAddName`.ps1" -Or Test-Path "$HOME\bin\$BinAddName`.lnk") {
+                    Write-Host "Item with that name already exists in bin" -ForegroundColor Red
+                  } else {
+                    $WshShell = New-Object -ComObject WScript.Shell
+                    $Shortcut = $WshShell.CreateShortcut("$HOME\bin\$BinAddName.lnk")
+                    $Shortcut.TargetPath = "$BinAddItem"
+                    $Shortcut.Save()
+                  }
+                }
+              }
+            }    
           }
           2 { # Get fastfetch
             BIN-Setup
