@@ -316,22 +316,21 @@ public class Wallpaper
           1 { # FireFox
             # https://www.mozilla.org/en-US/firefox/all/#product-desktop-nightly
             $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly"), 0)
-            switch ($InstallFirefox -eq 1) { # Rewrite this
+            switch ($InstallFirefox -eq 1) { # Rewrite this ?
               0 {
                 Write-Host "`nCanceled" -ForegroundColor Magenta
               }
               1 {
-                Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
                 Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
-                .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
-                rm .\FireFoxInstall.exe
               }
               2 {
-                Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
-                .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
-                rm .\FireFoxInstall.exe
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"  
               }
+            }
+            if ($InstallFirefox -In 1..2) { # For less repeated code
+              Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
+              .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
+              rm .\FireFoxInstall.exe
             }
           }
           2 { # PowerToys ( https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
