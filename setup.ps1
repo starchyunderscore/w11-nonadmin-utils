@@ -334,6 +334,7 @@ public class Wallpaper
             }
           }
           2 { # PowerToys ( https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
+            # THIS NEEDS TO BE REDONE
             $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "", @("&Cancel", "&Install"), 0)
             if ($InstallPowertoys -eq 1) {
               $installLocation = "$env:LocalAppData\Programs\PowerToys"
