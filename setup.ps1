@@ -314,6 +314,7 @@ public class Wallpaper
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
           1 { # FireFox
+            # https://www.mozilla.org/en-US/firefox/all/#product-desktop-nightly
             $InstallFirefox = $Host.UI.PromptForChoice("Install Firefox?", "", @("&Cancel", "&Install"), 0)
             if ($InstallFirefox -eq 1) {
               Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
