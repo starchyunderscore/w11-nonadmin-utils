@@ -3,9 +3,9 @@ A setup script for windows 11 that does not require admin rights.
 
 ## WARNINGS:
 
-### BEWARE! THIS SCRIPT MAKES CHANGES TO THE REGISTRY. MAKE SURE YOU HAVE A BACKUP BEFORE RUNNING IT!
+THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
 
-#### This script is made for windows 11, it may work on other versions, or it may not
+This script is made for windows 11, it may work on other versions, or it may not
 
 ## What the script can do
 
@@ -34,9 +34,7 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-Open up standard windows terminal or powershell, ***NOT*** command prompt.
-
-Run the below command, replacing the path to `setup.ps1` as needed
+Run the below command in powershell, replacing the path to `setup.ps1` as needed
 
 ```
 powershell -ep Bypass -File .\Downloads\setup.ps1
