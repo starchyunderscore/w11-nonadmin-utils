@@ -477,7 +477,6 @@ public class Wallpaper
               Start-BitsTransfer -source "$remoteFile" -destination "$downloadFile"
 
               Expand-Archive $downloadFile -DestinationPath $vscodePath -Force
-              $env:Path += ";"+$vscodePath
               [Environment]::SetEnvironmentVariable
               ("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
 
@@ -490,8 +489,20 @@ public class Wallpaper
               Write-Host "`nCancled" -ForegroundColor Magenta
             }
           }
-          4 { # Lapce
-            Write-Host "`nNot yet added.`n" -ForegroundColor Yellow
+          4 { # Lapce 
+            $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallLapce -eq 1) {
+              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/apce/lapce/releases/latest" | ConvertFrom-Json
+              $latestVersion = $latestLapce.tag_name.Substring(1)
+              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
+              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force
+              
+              $WshShell = New-Object -ComObject WScript.Shell
+              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
+              $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
+              $Shortcut.Save()
+              Write-Host "`nLapce installed" -ForegroundColor Green
+            }
           }
         }
       } until ($PGram -notmatch "\S")
