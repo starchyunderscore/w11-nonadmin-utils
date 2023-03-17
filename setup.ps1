@@ -1,6 +1,6 @@
 # FUNCTIONS
 
-function New-bin-if-needed { # Create bin if it does not exist
+function CREATE_BIN { # Create bin if it does not exist
   if (!(Test-Path "$HOME\bin")) {
     Write-Output "`nBin does not exist. Creating." -ForegroundColor Yellow
     mkdir $HOME\bin
@@ -120,7 +120,7 @@ public class Wallpaper
               2 {
                 try {
                   Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1
-                } catch {} # No registry item is same as default
+                } catch {Write-Error ""} # No registry item is same as default
                 Write-Output "`nCenter start menu applied." -ForegroundColor Green
               }
             }
@@ -168,7 +168,7 @@ public class Wallpaper
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 1
-                      } catch {} # No registry item is same as default
+                      } catch {Write-Error ""} # No registry item is same as default
                       Write-Output "`nTask view pinned" -ForegroundColor Green
                     }
                   }
@@ -190,7 +190,7 @@ public class Wallpaper
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1
-                      } catch {} # No registry item is same as default
+                      } catch {Write-Error ""} # No registry item is same as default
                       Write-Output "`nWidgets pinned" -ForegroundColor Green
                     }
                   }
@@ -212,7 +212,7 @@ public class Wallpaper
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1
-                      } catch {} # No registry item is same as default
+                      } catch {Write-Error ""} # No registry item is same as default
                       Write-Output "`nChat pinned" -ForegroundColor Green
                     }
                   }
@@ -234,7 +234,7 @@ public class Wallpaper
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 1
-                      } catch {} # No registry item is same as default
+                      } catch {Write-Error ""} # No registry item is same as default
                       Write-Output "`nSearch bar pinned" -ForegroundColor Green
                     }
                   }
@@ -425,7 +425,7 @@ public class Wallpaper
                     New-Item -ItemType HardLink -Path "$installLocation\$f\$($_.Name)" -Value $_.FullName | Out-Null
                   }
                 }
-                foreach ($f in @('Settings', 'modules\Awake', 'modules\ColorPicker', 'modules\FancyZones', 
+                foreach ($f in @('Settings', 'modules\Awake', 'modules\ColorPicker', 'modules\FancyZones',
                     'modules\FileExplorerPreview', 'modules\FileLocksmith', 'modules\Hosts', 'modules\ImageResizer',
                     'modules\launcher', 'modules\MeasureTool', 'modules\PowerAccent', 'modules\PowerOCR')) {
                   Get-ChildItem -Path "$installLocation\dll\Interop" | ForEach-Object {
@@ -536,7 +536,7 @@ public class Wallpaper
         switch ($CLUtils) {
           1 { # Add items to bin
             # THIS WHOLE THING NEEDS TO BE REWORDED
-            New-bin-if-needed
+            CREATE_BIN
             # Inform user how to exit
             Write-Output "Leaving either prompt blank will not add anything"
             # Prompt user
@@ -568,10 +568,10 @@ public class Wallpaper
                   }
                 }
               }
-            }    
+            }
           }
           2 { # Get fastfetch
-            New-bin-if-needed
+            CREATE_BIN
             # Actually install it
             Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
             Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
