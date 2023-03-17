@@ -315,21 +315,30 @@ public class Wallpaper
         switch ($PGram) {
           1 { # FireFox
             # https://www.mozilla.org/en-US/firefox/all/#product-desktop-nightly
-            $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly"), 0)
+            $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly", "&Beta", "&Dev", "&ESR"), 0)
             switch ($InstallFirefox -eq 1) { # Rewrite this ?
               0 {
                 Write-Host "`nCanceled" -ForegroundColor Magenta
               }
-              1 {
+              1 { # Latest
                 Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
-              2 {
+              2 { # Nightly
                 Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"  
               }
+              3 { # Beta
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"  
+              }
+              4 { # Dev
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe" 
+              }
+              5 { # ESR
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe" 
+              }
             }
-            if ($InstallFirefox -In 1..2) { # For less repeated code
+            if ($InstallFirefox -In 1..5) { # For less repeated code
               Write-Host "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
-              .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complet before going on to the next command
+              .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
               rm .\FireFoxInstall.exe
             }
           }
