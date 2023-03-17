@@ -1,5 +1,5 @@
 # w11-nonadmin-utils
-A setup script for windows 11 that does not require admin rights.
+An interactive command line tool to change settings and install programs in windows 11, without needing admin rights.
 
 ## WARNINGS:
 
