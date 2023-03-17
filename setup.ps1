@@ -325,16 +325,16 @@ public class Wallpaper
                 Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
               2 { # Nightly
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"  
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
               3 { # Beta
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"  
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
               4 { # Dev
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe" 
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
               5 { # ESR
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe" 
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
               }
             }
             if ($InstallFirefox -In 1..5) { # For less repeated code
@@ -426,7 +426,7 @@ public class Wallpaper
                   }
                 }
                 foreach ($f in @('Settings', 'modules\Awake', 'modules\ColorPicker', 'modules\FancyZones', 
-                    'modules\FileExplorerPreview', 'modules\FileLocksmith', 'modules\Hosts', 'modules\ImageResizer', 
+                    'modules\FileExplorerPreview', 'modules\FileLocksmith', 'modules\Hosts', 'modules\ImageResizer',
                     'modules\launcher', 'modules\MeasureTool', 'modules\PowerAccent', 'modules\PowerOCR')) {
                   Get-ChildItem -Path "$installLocation\dll\Interop" | ForEach-Object {
                     New-Item -ItemType HardLink -Path "$installLocation\$f\$($_.Name)" -Value $_.FullName | Out-Null
@@ -490,7 +490,7 @@ public class Wallpaper
               Write-Output "`nCancled" -ForegroundColor Magenta
             }
           }
-          4 { # Lapce 
+          4 { # Lapce
             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
             if ($InstallLapce -eq 1) {
               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/apce/lapce/releases/latest" | ConvertFrom-Json
@@ -498,7 +498,7 @@ public class Wallpaper
               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
               rm ".\Lapce-windows-portable.zip"
-              
+
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
