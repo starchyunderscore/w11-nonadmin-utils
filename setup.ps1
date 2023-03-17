@@ -297,7 +297,7 @@ public class Wallpaper
               } elseif ($MouseSpeed -notmatch "\S") {
                 Write-Host "`nCanceled" -ForegroundColor Magenta
               } else {
-                Write-Host "`nThat number is out of range or not a number" -ForegroundColor Red
+                Write-Host "`nThat input is out of range or not a number" -ForegroundColor Red
               }
             } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\s")
           }
@@ -310,14 +310,14 @@ public class Wallpaper
         Write-Host "`n1. FireFox"
         Write-Host "2. PowerToys"
         Write-Host "3. Visual Studio Code"
+        Write-Host "4. Lapce"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
           1 { # FireFox
-            # https://www.mozilla.org/en-US/firefox/all/#product-desktop-nightly
             $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly", "&Beta", "&Dev", "&ESR"), 0)
-            switch ($InstallFirefox -eq 1) { # Rewrite this ?
-              0 {
+            switch ($InstallFirefox -eq 1) {
+              0 { # Cancel
                 Write-Host "`nCanceled" -ForegroundColor Magenta
               }
               1 { # Latest
@@ -489,6 +489,9 @@ public class Wallpaper
             } else {
               Write-Host "`nCancled" -ForegroundColor Magenta
             }
+          }
+          4 { # Lapce
+            Write-Host "`nNot yet added.`n" -ForegroundColor Yellow
           }
         }
       } until ($PGram -notmatch "\S")
