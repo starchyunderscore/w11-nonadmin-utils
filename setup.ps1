@@ -28,7 +28,8 @@ DO {
   Write-Host "2. Change taskbar settings"
   Write-Host "3. Change input settings"
   Write-Host "4. Install programs"
-  Write-Host "5. Command line utilites"
+  Write-Host "5. Uninstall programs"
+  Write-Host "6. Command line utilites"
   # Prompt user for choice
   $Option = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
   # Do each thing depending on what the choice is
@@ -507,7 +508,11 @@ public class Wallpaper
         }
       } until ($PGram -notmatch "\S")
     }
-    5 { # Command line utilities
+    5 { # Uninstall programs
+      # DO THIS NEXT
+      Write-Host "`nNot yet added`n" -ForegroundColor Yellow
+    }
+    6 { # Command line utilities
       DO {
         # List options
         Write-Host "`n1. Add items to bin"
