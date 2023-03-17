@@ -1,6 +1,6 @@
 # FUNCTIONS
 
-function BIN-Setup { # Create bin if it does not exist
+function New-bin-if-needed { # Create bin if it does not exist
   if (!(Test-Path "$HOME\bin")) {
     Write-Output "`nBin does not exist. Creating." -ForegroundColor Yellow
     mkdir $HOME\bin
@@ -8,7 +8,7 @@ function BIN-Setup { # Create bin if it does not exist
     if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
       New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
     }
-    echo ';$env:Path += "$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
+    Write-Output ';$env:Path += "$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
     Write-Output "`nBin created"
   }
 }
@@ -536,7 +536,7 @@ public class Wallpaper
         switch ($CLUtils) {
           1 { # Add items to bin
             # THIS WHOLE THING NEEDS TO BE REWORDED
-            BIN-Setup
+            New-bin-if-needed
             # Inform user how to exit
             Write-Output "Leaving either prompt blank will not add anything"
             # Prompt user
@@ -571,7 +571,7 @@ public class Wallpaper
             }    
           }
           2 { # Get fastfetch
-            BIN-Setup
+            New-bin-if-needed
             # Actually install it
             Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
             Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
