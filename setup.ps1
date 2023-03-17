@@ -558,7 +558,7 @@ public class Wallpaper
                   $BinAddName = Read-Host "`nInput command you wish to have call item" # REWORD THIS
                   if ($BinAddName -notmatch "\S") {
                     Write-Output "Canceled" -ForegroundColor Magenta
-                  } elseif (Test-Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path "$HOME\bin\$BinAddName`.ps1" -Or Test-Path "$HOME\bin\$BinAddName`.lnk") {
+                  } elseif (Test-Path -Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path -Path "$HOME\bin\$BinAddName`.ps1" -Or Test-Path -Path "$HOME\bin\$BinAddName`.lnk") {
                     Write-Output "Item with that name already exists in bin" -ForegroundColor Red
                   } else {
                     $WshShell = New-Object -ComObject WScript.Shell
