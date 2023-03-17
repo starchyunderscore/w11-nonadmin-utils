@@ -511,7 +511,20 @@ public class Wallpaper
     }
     5 { # Uninstall programs
       # DO THIS NEXT
-      Write-Host "`nNot yet added`n" -ForegroundColor Yellow
+      Write-Host "`nNot done yet!!`n" -ForegroundColor Yellow
+      DO {
+        Write-Host "`n1. List installed programs"
+        Write-Host "2. Uninstall a program"
+        $UninsPgam = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+        switch ($UninsPgam) {
+          1 { # List installed
+            Write-Host "`nIDK I've not done this bit yet" -ForegroundColor Yellow
+          }
+          2 { # Uninstall something
+            Write-Host "`nOops this bit has not been added yet" -ForegroundColor Yellow
+          }
+        }
+      } until ($UninsPgam -notmatch "\S")
     }
     6 { # Command line utilities
       DO {
