@@ -496,7 +496,8 @@ public class Wallpaper
               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/apce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
-              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force
+              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
+              rm ".\Lapce-windows-portable.zip"
               
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
