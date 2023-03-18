@@ -493,9 +493,11 @@ public class Wallpaper
           4 { # Lapce
             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
             if ($InstallLapce -eq 1) {
-              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/apce/lapce/releases/latest" | ConvertFrom-Json
+              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n" -ForegroundColor Yellow
+
+              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
-              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
+              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
               rm ".\Lapce-windows-portable.zip"
 
