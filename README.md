@@ -21,7 +21,9 @@ This script is made for windows 11, it may work on other versions, or it may not
 - [x] Install PowerToys.
 - [x] Move the taskbar. (Does not work on 22H2 or later, you can use [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases) if you have admin rights to install it.)
 - [x] Install Visual Studio Code.
-- [x] Change the background image. 
+- [x] Change the background image.
+- [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
+- [x] Add and remove items from bin.
 
 ## What I have planned for the future
 
