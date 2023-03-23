@@ -311,7 +311,7 @@ public class Wallpaper
         Write-Output "`n1. FireFox"
         Write-Output "2. PowerToys"
         Write-Output "3. Visual Studio Code"
-        Write-Output "4. Lapce"
+#         Write-Output "4. Lapce"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -490,24 +490,24 @@ public class Wallpaper
               Write-Output "`nCancled" -ForegroundColor Magenta
             }
           }
-          4 { # Lapce
-            $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
-            if ($InstallLapce -eq 1) {
-              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n" -ForegroundColor Yellow
+#           4 { # Lapce
+#             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
+#             if ($InstallLapce -eq 1) {
+#               Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n" -ForegroundColor Yellow
 
-              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
-              $latestVersion = $latestLapce.tag_name.Substring(1)
-              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
-              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
-              rm ".\Lapce-windows-portable.zip"
+#               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
+#               $latestVersion = $latestLapce.tag_name.Substring(1)
+#               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
+#               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
+#               rm ".\Lapce-windows-portable.zip"
 
-              $WshShell = New-Object -ComObject WScript.Shell
-              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
-              $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
-              $Shortcut.Save()
-              Write-Output "`nLapce installed" -ForegroundColor Green
-            }
-          }
+#               $WshShell = New-Object -ComObject WScript.Shell
+#               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
+#               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
+#               $Shortcut.Save()
+#               Write-Output "`nLapce installed" -ForegroundColor Green
+#             }
+#           }
         }
       } until ($PGram -notmatch "\S")
     }
