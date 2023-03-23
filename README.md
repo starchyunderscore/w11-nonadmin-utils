@@ -23,6 +23,11 @@ This script is made for windows 11, it may work on other versions, or it may not
 - [x] Install Visual Studio Code.
 - [x] Change the background image. 
 
+## What I have planned for the future
+
+- [ ] Uninstall programs (10%)
+- [ ] Install [lapce](https://github.com/lapce/lapce) (30%)
+
 ## To use the script
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
