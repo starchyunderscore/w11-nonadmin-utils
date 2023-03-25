@@ -513,24 +513,22 @@ public class Wallpaper
     }
     5 { # Uninstall programs
       Write-Output "`nNot done yet!!`n" -ForegroundColor Yellow
-      DO {
-        $PROGRAMS = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall, HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
-        $PgListNum = 0
-        $PROGRAMS.DisplayName | ForEach-Object {
-          if ($_ -match "\S") {
-            Write-Output "$PglistNum. $_"
-          }
-          $PgListNum += 1
+      $PROGRAMS = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall, HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
+      $PgListNum = 0
+      $PROGRAMS.DisplayName | ForEach-Object {
+        if ($_ -match "\S") {
+          Write-Output "$PglistNum. $_"
         }
-        $UninsNum = Read-Host "Select the number of the program you wish to uninstall, or leave blank to exit"
-        if ($UninsNum -match "\S" -or $UninsNum -in 0..($PgListNum-1)) {
-          $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
-          $UninstallString = $UninstallString -replace '"',''
-          Invoke-Expression "$UninstallString"
-        } else {
-          Write-Output "`nCanceled`n" -ForegroundColor Magenta
-        }
-      } until ($UninsPgam -notmatch "\S")
+        $PgListNum += 1
+      }
+      $UninsNum = Read-Host "Select the number of the program you wish to uninstall, or leave blank to exit"
+      if ($UninsNum -match "\S" -or $UninsNum -in 0..($PgListNum-1)) {
+        $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
+        $UninstallString = $UninstallString -replace '"',''
+        Invoke-Expression "$UninstallString"
+      } else {
+        Write-Output "`nCanceled`n" -ForegroundColor Magenta
+      }
     }
     6 { # Command line utilities
       DO {
