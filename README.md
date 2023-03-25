@@ -54,7 +54,7 @@ These are features that have no code yet, but are planned for the future
 
 Quick run:
 
-Open powershell and run this below command: 
+Open PowerShell and run this below command: 
 
 ```
 iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/latest/setup.ps1 | iex
@@ -64,15 +64,15 @@ Run with ability to edit script:
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
 
-If you have admin rights, open an admin powershell window and create a system restore point:
+If you have admin rights, open an admin PowerShell window and create a system restore point:
 
 ```
 Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-Run the below command in powershell, replacing the path to `setup.ps1` as needed
+Run the below command in PowerShell, replacing the path to `setup.ps1` as needed
 
 ```
-powershell -ep Bypass -File .\Downloads\setup.ps1
+PowerShell -ep Bypass -File .\Downloads\setup.ps1
 ```
