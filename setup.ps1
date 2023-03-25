@@ -515,16 +515,19 @@ public class Wallpaper
       # DO THIS NEXT
       Write-Output "`nNot done yet!!`n" -ForegroundColor Yellow
       DO {
-        Write-Output "`n1. List installed programs"
-        Write-Output "2. Uninstall a program"
-        $UninsPgam = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
-        switch ($UninsPgam) {
-          1 { # List installed
-            Write-Output "`nIDK I've not done this bit yet" -ForegroundColor Yellow
+        $PROGRAMS = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall, HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
+        $PgListNum = 0
+        $PROGRAMS.DisplayName | ForEach-Object {
+          if ($_ -match "\S") {
+            Write-Output "$PglistNum. $_"
           }
-          2 { # Uninstall something
-            Write-Output "`nOops this bit has not been added yet" -ForegroundColor Yellow
-          }
+          $PgListNum += 1
+        }
+        $UninsNum = Read-Host "Select the number of the program you wish to uninstall, or leave blank to exit"
+        if ($UninsNum -match "\S" -or $UninsNum -in 0..($PgListNum-1)) {
+          Write-Output "TODO"
+        } else {
+          Write-Output "`nCanceled`n" -ForegroundColor Magenta
         }
       } until ($UninsPgam -notmatch "\S")
     }
