@@ -24,10 +24,10 @@ This script is made for windows 11, it may work on other versions, or it may not
 - [x] Change the background image.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
+- [x] Uninstall programs
 
 ## What I have planned for the future
 
-- [ ] Uninstall programs (10%)
 - [ ] Install [lapce](https://github.com/lapce/lapce) (30%)
 
 ## To use the script
