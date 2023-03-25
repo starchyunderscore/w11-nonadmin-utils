@@ -7,7 +7,11 @@ THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
 
 This script is made for windows 11, it may work on other versions, or it may not
 
-## What the script can do
+---
+
+## Features
+
+These are features that are fully ready
 
 - [x] Set system to dark mode.
 - [x] Move the start menu back to the left.
@@ -24,11 +28,24 @@ This script is made for windows 11, it may work on other versions, or it may not
 - [x] Change the background image.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
-- [x] Uninstall programs
 
-## What I have planned for the future
+## Beta features
+
+These are features that work, but are imperfect
+
+- [ ] Uninstall programs (Currently does not work for all programs)
+
+## Alpha features
+
+These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (30%)
+
+# Planned features
+
+These are features that have no code yet, but are planned for the future
+
+---
 
 ## To use the script
 
