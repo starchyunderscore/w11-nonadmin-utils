@@ -528,9 +528,9 @@ public class Wallpaper
         $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
         $UninstallString = $UninstallString -replace '"',''
         try {
-          Invoke-Expression "$UninstallString"
-         } catch {
           Start-Process "$UninstallString"
+         } catch {
+          Invoke-Expression "$UninstallString"
          }
       } else {
         Write-Output "`nCanceled`n" -ForegroundColor Magenta
