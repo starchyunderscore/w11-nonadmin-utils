@@ -525,16 +525,12 @@ public class Wallpaper
       # Ask which program to uninstall
       $UninsNum = Read-Host "`nSelect the number of the program you wish to uninstall, or leave blank to exit"
       if ($UninsNum -match "\S" -and $UninsNum -in 0..($PgListNum-1)) {
-      try {
-        
-      } catch {
+        try {
+          & $UninstallString
+        } catch {
           $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
-          $UninstallString = $UninstallString -replace '"',''
-          try {
-            Start-Process "$UninstallString"
-           } catch {
-            Invoke-Expression "$UninstallString"
-           }
+          # I know you are not supposed to use Invoke-Expression, but there does not seem to be another way
+          Invoke-Expression "& $UninstallString"
         }
       } else {
         Write-Output "`nCanceled`n"
