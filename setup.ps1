@@ -512,7 +512,6 @@ public class Wallpaper
       } until ($PGram -notmatch "\S")
     }
     5 { # Uninstall programs
-      # DO THIS NEXT
       Write-Output "`nNot done yet!!`n" -ForegroundColor Yellow
       DO {
         $PROGRAMS = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall, HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
@@ -525,7 +524,9 @@ public class Wallpaper
         }
         $UninsNum = Read-Host "Select the number of the program you wish to uninstall, or leave blank to exit"
         if ($UninsNum -match "\S" -or $UninsNum -in 0..($PgListNum-1)) {
-          Write-Output "TODO"
+          $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
+          $UninstallString = $UninstallString -replace '"',''
+          Invoke-Expression "$UninstallString"
         } else {
           Write-Output "`nCanceled`n" -ForegroundColor Magenta
         }
