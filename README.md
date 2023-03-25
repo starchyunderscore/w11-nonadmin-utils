@@ -1,5 +1,8 @@
 # w11-nonadmin-utils
+
 An interactive command line tool to change settings and install programs in windows 11, without needing admin rights.
+
+---
 
 ## WARNINGS:
 
