@@ -31,12 +31,12 @@ These are features that are fully ready
 - [x] Change the background image.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
+- [x] Uninstall programs (Some programs may need admin to uninstall.)
 
 ## Beta features
 
 These are features that work, but are imperfect
 
-- [ ] Uninstall programs (Currently does not work for all programs)
 
 ## Alpha features
 
