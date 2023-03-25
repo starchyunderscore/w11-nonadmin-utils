@@ -31,7 +31,7 @@ These are features that are fully ready
 - [x] Change the background image.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
-- [x] Uninstall programs (Some programs may need admin to uninstall.)
+- [x] Uninstall programs (Some programs may need admin to uninstall.) (Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
 
 ## Beta features
 
