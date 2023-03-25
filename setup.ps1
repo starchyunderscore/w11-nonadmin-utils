@@ -512,7 +512,7 @@ public class Wallpaper
       } until ($PGram -notmatch "\S")
     }
     5 { # Uninstall programs
-      Write-Outpt "" # For consistant formatting
+      Write-Output "" # For consistant formatting
       $PROGRAMS = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall, HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
       # List installed programs
       $PgListNum = 0
