@@ -2,7 +2,7 @@
 
 function CREATE_BIN { # Create bin if it does not exist
   if (!(Test-Path "$HOME\bin")) {
-    Write-Output "`nBin does not exist. Creating." -ForegroundColor Yellow
+    Write-Output "`nBin does not exist. Creating."
     mkdir $HOME\bin
     $env:Path += "$HOME\bin"
     if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
@@ -15,10 +15,10 @@ function CREATE_BIN { # Create bin if it does not exist
 
 # SCRIPT
 
-Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n" -ForegroundColor Yellow
+Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n"
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
-  Write-Output "`nUser quit`n" -ForegroundColor Red
+  Write-Output "`nUser quit`n"
   Exit 0
 }
 
@@ -46,18 +46,18 @@ DO {
             $useDarkMode = $Host.UI.PromptForChoice("Select system mode:", "", @("&Cancel", "&Dark mode", "&Light Mode"), 0)
             switch ($useDarkMode) {
               0 {
-                Write-Output "`nCanceled." -ForegroundColor Magenta
+                Write-Output "`nCanceled."
               }
               1 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-                Write-Output "`nDark mode applied, restarting explorer." -ForegroundColor Green
+                Write-Output "`nDark mode applied, restarting explorer."
                 Get-Process explorer | Stop-Process
               }
               2 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
-                Write-Output "`nLight mode applied, restarting explorer." -ForegroundColor Green
+                Write-Output "`nLight mode applied, restarting explorer."
                 Get-Process explorer | Stop-Process
               }
             }
@@ -80,15 +80,15 @@ public class Wallpaper
 "@
             Add-Type -TypeDefinition $setwallpapersrc
 
-            Write-Output "`nTo get the image path of a file, right click it and select `"Copy as path`"" -ForegroundColor Yellow
-            Write-Output "`nMake sure your image path is in quotes!`n" -ForegroundColor Yellow
+            Write-Output "`nTo get the image path of a file, right click it and select `"Copy as path`""
+            Write-Output "`nMake sure your image path is in quotes!`n"
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 
             if($IMGPath -notmatch "\S") {
-              Write-Output "`nCanceled.`n" -ForegroundColor Magenta
+              Write-Output "`nCanceled.`n"
             } else {
               [Wallpaper]::SetWallpaper($IMGPath)
-              Write-Output "`nSet background image to $IMGPath.`n" -ForegroundColor Green
+              Write-Output "`nSet background image to $IMGPath.`n"
             }
           }
         }
@@ -107,7 +107,7 @@ public class Wallpaper
             $leftStartMenu = $Host.UI.PromptForChoice("Selecet start menu location preference:", "", @("&Cancel", "&Left", "&Middle"), 0)
             switch ($leftStartMenu) {
               0 {
-                Write-Output "`nCanceled." -ForegroundColor Magenta
+                Write-Output "`nCanceled."
               }
               1 {
                 try {
@@ -115,18 +115,18 @@ public class Wallpaper
                 } catch {
                   New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 0 -PropertyType Dword
                 }
-                Write-Output "`nLeft start menu applied." -ForegroundColor Green
+                Write-Output "`nLeft start menu applied."
               }
               2 {
                 try {
                   Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarAl' -Value 1
                 } catch {Write-Error ""} # No registry item is same as default
-                Write-Output "`nCenter start menu applied." -ForegroundColor Green
+                Write-Output "`nCenter start menu applied."
               }
             }
           }
           2 { # Move the taskbar
-            Write-Output "`nThis does not work on windows 11 version 22H2 or later!`n" -ForegroundColor Yellow
+            Write-Output "`nThis does not work on windows 11 version 22H2 or later!`n"
             $Location = $Host.UI.PromptForChoice("Select taskbar location preference.", "", @("&Bottom", "&Top", "&Left", "&Right"), 0)
               $bit = 0;
               switch ($Location) {
@@ -138,7 +138,7 @@ public class Wallpaper
               $Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
               $Settings[12] = $bit
               Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
-              Write-Output "`nTaskbar moved, restarting explorer." -ForegroundColor Green
+              Write-Output "`nTaskbar moved, restarting explorer."
               Get-Process explorer | Stop-Process
           }
           3 { # Pin and unpin items ( https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1 )
@@ -155,7 +155,7 @@ public class Wallpaper
                   $IPinStatus = $Host.UI.PromptForChoice("Set task view pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
                   switch ($IPinStatus) {
                     0 {
-                      Write-Output "`nCanceled" -ForegroundColor Magenta
+                      Write-Output "`nCanceled"
                     }
                     1 { # task view
                       try {
@@ -163,13 +163,13 @@ public class Wallpaper
                       } catch {
                         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord
                       }
-                      Write-Output "`nTask view unpinned" -ForegroundColor Green
+                      Write-Output "`nTask view unpinned"
                     }
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'ShowTaskViewButton' -Value 1
                       } catch {Write-Error ""} # No registry item is same as default
-                      Write-Output "`nTask view pinned" -ForegroundColor Green
+                      Write-Output "`nTask view pinned"
                     }
                   }
                 }
@@ -177,7 +177,7 @@ public class Wallpaper
                   $IPinStatus = $Host.UI.PromptForChoice("Set widget pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
                   switch ($IPinStatus) {
                     0 {
-                      Write-Output "`nCanceled" -ForegroundColor Magenta
+                      Write-Output "`nCanceled"
                     }
                     1 {
                       try {
@@ -185,13 +185,13 @@ public class Wallpaper
                       } catch {
                         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 0 -PropertyType DWord
                       }
-                      Write-Output "`nWidgets unpinned" -ForegroundColor Green
+                      Write-Output "`nWidgets unpinned"
                     }
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarDa' -Value 1
                       } catch {Write-Error ""} # No registry item is same as default
-                      Write-Output "`nWidgets pinned" -ForegroundColor Green
+                      Write-Output "`nWidgets pinned"
                     }
                   }
                 }
@@ -199,7 +199,7 @@ public class Wallpaper
                   $IPinStatus = $Host.UI.PromptForChoice("Set chat pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
                   switch ($IPinStatus) {
                     0 {
-                      Write-Output "`nCanceled" -ForegroundColor Magenta
+                      Write-Output "`nCanceled"
                     }
                     1 {
                       try {
@@ -207,13 +207,13 @@ public class Wallpaper
                       } catch {
                         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 0 -PropertyType DWord
                       }
-                      Write-Output "`nChat unpinned" -ForegroundColor Green
+                      Write-Output "`nChat unpinned"
                     }
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name 'TaskbarMn' -Value 1
                       } catch {Write-Error ""} # No registry item is same as default
-                      Write-Output "`nChat pinned" -ForegroundColor Green
+                      Write-Output "`nChat pinned"
                     }
                   }
                 }
@@ -221,7 +221,7 @@ public class Wallpaper
                   $IPinStatus = $Host.UI.PromptForChoice("Set search bar pin status", "", @("&Cancel", "&Unpinned", "&Pinned"), 0)
                   switch ($IPinStatus) {
                     0 {
-                      Write-Output "`nCanceled" -ForegroundColor Magenta
+                      Write-Output "`nCanceled"
                     }
                     1 {
                       try {
@@ -229,13 +229,13 @@ public class Wallpaper
                       } catch {
                         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 0 -PropertyType DWord
                       }
-                      Write-Output "`nSearch bar unpinned" -ForegroundColor Green
+                      Write-Output "`nSearch bar unpinned"
                     }
                     2 {
                       try {
                         Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'SearchboxTaskbarMode' -Value 1
                       } catch {Write-Error ""} # No registry item is same as default
-                      Write-Output "`nSearch bar pinned" -ForegroundColor Green
+                      Write-Output "`nSearch bar pinned"
                     }
                   }
                 }
@@ -262,23 +262,23 @@ public class Wallpaper
             # 0409:00000409 = qwerty en-US
             switch ($KeyboardLayout) {
               0 {
-                Write-Output "`nCancled" -ForegroundColor Magenta
+                Write-Output "`nCancled"
               }
               1 {
                 $l[0].InputMethodTips[0]="0409:00000409"
                 Set-WinUserLanguageList -LanguageList $l
-                Write-Output "`nqwerty en-US keyboard layout applied" -ForegroundColor Green
+                Write-Output "`nqwerty en-US keyboard layout applied"
               }
               2 {
                 $l[0].InputMethodTips[0]="0409:00010409"
                 Set-WinUserLanguageList -LanguageList $l
-                Write-Output "`nDvorak en-US keyboard layout applied" -ForegroundColor Green
+                Write-Output "`nDvorak en-US keyboard layout applied"
               }
             }
           }
           2 { # Mouse speed ( https://renenyffenegger.ch/notes/Windows/PowerShell/examples/WinAPI/modify-mouse-speed )
             DO {
-              Write-Output "`n10 is the default mouse speed of windows.`n" -ForegroundColor Yellow
+              Write-Output "`n10 is the default mouse speed of windows.`n"
               $MouseSpeed = Read-Host "Enter number from 1-20, or leave blank to ext"
               if ($MouseSpeed -In 1..20) {
                 set-strictMode -version latest
@@ -294,11 +294,11 @@ public class Wallpaper
                 $SPI_SETMOUSESPEED = 0x0071
                 $null = $winApi::SystemParametersInfo($SPI_SETMOUSESPEED, 0, $MouseSpeed, 0)
                 set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseSensitivity -value $MouseSpeed
-                Write-Output "`nMouse speed set to $MouseSpeed" -ForegroundColor Green
+                Write-Output "`nMouse speed set to $MouseSpeed"
               } elseif ($MouseSpeed -notmatch "\S") {
-                Write-Output "`nCanceled" -ForegroundColor Magenta
+                Write-Output "`nCanceled"
               } else {
-                Write-Output "`nThat input is out of range or not a number" -ForegroundColor Red
+                Write-Output "`nThat input is out of range or not a number"
               }
             } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\s")
           }
@@ -319,7 +319,7 @@ public class Wallpaper
             $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly", "&Beta", "&Dev", "&ESR"), 0)
             switch ($InstallFirefox -eq 1) {
               0 { # Cancel
-                Write-Output "`nCanceled" -ForegroundColor Magenta
+                Write-Output "`nCanceled"
               }
               1 { # Latest
                 Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
@@ -338,7 +338,7 @@ public class Wallpaper
               }
             }
             if ($InstallFirefox -In 1..5) { # For less repeated code
-              Write-Output "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n" -ForegroundColor Yellow
+              Write-Output "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n"
               .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
               rm .\FireFoxInstall.exe
             }
@@ -461,10 +461,10 @@ public class Wallpaper
                 Pop-Location
                 Remove-Item -Path $tempDir -Recurse -Force
 
-                Write-Output "`nFinished installing powertoys!" -ForegroundColor Green
+                Write-Output "`nFinished installing powertoys!"
               }
             } else {
-              Write-Output "`nCanceled" -ForegroundColor Magenta
+              Write-Output "`nCanceled"
             }
           }
           3 { # Visual Studio Code
@@ -485,15 +485,15 @@ public class Wallpaper
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
               $Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
               $Shortcut.Save()
-              Write-Output "`nVisual Studio Code installed" -ForegroundColor Green
+              Write-Output "`nVisual Studio Code installed"
             } else {
-              Write-Output "`nCancled" -ForegroundColor Magenta
+              Write-Output "`nCancled"
             }
           }
 #           4 { # Lapce
 #             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
 #             if ($InstallLapce -eq 1) {
-#               Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n" -ForegroundColor Yellow
+#               Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n"
 
 #               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
 #               $latestVersion = $latestLapce.tag_name.Substring(1)
@@ -505,7 +505,7 @@ public class Wallpaper
 #               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
 #               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
 #               $Shortcut.Save()
-#               Write-Output "`nLapce installed" -ForegroundColor Green
+#               Write-Output "`nLapce installed"
 #             }
 #           }
         }
@@ -525,15 +525,19 @@ public class Wallpaper
       # Ask which program to uninstall
       $UninsNum = Read-Host "`nSelect the number of the program you wish to uninstall, or leave blank to exit"
       if ($UninsNum -match "\S" -and $UninsNum -in 0..($PgListNum-1)) {
-        $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
-        $UninstallString = $UninstallString -replace '"',''
-        try {
-          Start-Process "$UninstallString"
-         } catch {
-          Invoke-Expression "$UninstallString"
-         }
+      try {
+        
+      } catch {
+          $UninstallString = $PROGRAMS.UninstallString[$UninsNum]
+          $UninstallString = $UninstallString -replace '"',''
+          try {
+            Start-Process "$UninstallString"
+           } catch {
+            Invoke-Expression "$UninstallString"
+           }
+        }
       } else {
-        Write-Output "`nCanceled`n" -ForegroundColor Magenta
+        Write-Output "`nCanceled`n"
       }
     }
     6 { # Command line utilities
@@ -552,14 +556,14 @@ public class Wallpaper
             # Prompt user
             $BinAddItem = Read-Host "`nInput path of item"
             if ($BinAddItem -notmatch "\S") {
-              Write-Output "`nCanceled`n" -ForegroundColor Magenta
+              Write-Output "`nCanceled`n"
             } elseif (!(Test-Path $BinAddItem)) {
-              Write-Output "`nItem does not exist`n" -ForegroundColor Red
+              Write-Output "`nItem does not exist`n"
             } else {
               $BinOperation = $Host.UI.PromptForChoice("How should the item be put in the bin", "", @("&Cancel", "&Move item", "&Link item"), 0)
               switch ($BinOperation) {
                 0 { # Cancel
-                  Write-Output "Canceled" -ForegroundColor Magenta
+                  Write-Output "Canceled"
                 }
                 1 { # Move Item
                   mv $BinAddItem "$HOME\bin"
@@ -567,9 +571,9 @@ public class Wallpaper
                 2 { # Link Item
                   $BinAddName = Read-Host "`nInput command you wish to have call item" # REWORD THIS
                   if ($BinAddName -notmatch "\S") {
-                    Write-Output "Canceled" -ForegroundColor Magenta
+                    Write-Output "Canceled"
                   } elseif (Test-Path -Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path -Path "$HOME\bin\$BinAddName`.ps1" -Or Test-Path -Path "$HOME\bin\$BinAddName`.lnk") {
-                    Write-Output "Item with that name already exists in bin" -ForegroundColor Red
+                    Write-Output "Item with that name already exists in bin"
                   } else {
                     $WshShell = New-Object -ComObject WScript.Shell
                     $Shortcut = $WshShell.CreateShortcut("$HOME\bin\$BinAddName.lnk")
@@ -595,5 +599,5 @@ public class Wallpaper
   }
 } until ($Option -notmatch "\S")
 
-Write-Output "`nScript Finished`n" -ForegroundColor Green
+Write-Output "`nScript Finished`n"
 Exit 0
