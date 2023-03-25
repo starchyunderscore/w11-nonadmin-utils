@@ -52,6 +52,16 @@ These are features that have no code yet, but are planned for the future
 
 ## To use the script
 
+Quick run:
+
+Open powershell and run this below command: 
+
+```
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/latest/setup.ps1 | iex
+```
+
+Run with ability to edit script:
+
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
 
 If you have admin rights, open an admin powershell window and create a system restore point:
