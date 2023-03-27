@@ -307,6 +307,7 @@ public class Wallpaper
             DO {
               $Mtrail = Read-Host "Input a number from 0 (no trail) to 7 (long trail), or leave blank to exit"
               if ($Mtrail -In 0..7) {
+                # https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor
                 set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
               }
             } until ($Mtrail -notmatch "\S")
