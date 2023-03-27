@@ -62,7 +62,7 @@ iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/la
 
 Run with ability to edit script:
 
-Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
+Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/tag/latest)
 
 If you have admin rights, open an admin PowerShell window and create a system restore point:
 
