@@ -250,6 +250,7 @@ public class Wallpaper
         # Print choices
         Write-Output "`n1. Change the keyboard layout"
         Write-Output "2. Change the mouse speed"
+        Write-Output "3. Enable or disable mouse trail"
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
@@ -300,7 +301,15 @@ public class Wallpaper
               } else {
                 Write-Output "`nThat input is out of range or not a number"
               }
-            } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\s")
+            } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\S")
+          }
+          3 { # Mouse trail
+            DO {
+              $Mtrail = Read-Host "Input a number from 0 (no trail) to 7 (long trail), or leave blank to exit"
+              if ($Mtrail -In 0..7) {
+                set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
+              }
+            } until ($Mtrail -notmatch "\S")
           }
         }
       } until ($Iset -notmatch "\S")
