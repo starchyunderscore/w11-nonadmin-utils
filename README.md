@@ -43,12 +43,11 @@ These are features that work, but are imperfect
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (30%)
+- [ ] Enable and disable mouse trail
 
 # Planned features
 
 These are features that have no code yet, but are planned for the future
-
-- [ ] Enable and disable mouse trail [via](https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor)
 
 ---
 
