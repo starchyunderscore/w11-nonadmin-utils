@@ -48,6 +48,8 @@ These are features that are not yet in the realease, or are commented out.  They
 
 These are features that have no code yet, but are planned for the future
 
+- [ ] Enable and disable mouse trail [via](https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor)
+
 ---
 
 ## To use the script
