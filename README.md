@@ -14,7 +14,7 @@ This script is made for windows 11, it may work on other versions, or it may not
 
 ## Features
 
-These are features that are fully ready
+These are features that are fully ready.
 
 - [x] Set system to dark mode.
 - [x] Move the start menu back to the left.
@@ -31,22 +31,22 @@ These are features that are fully ready
 - [x] Change the background image.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
-- [x] Uninstall programs (Some programs may need admin to uninstall.) (Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
 
 ## Beta features
 
-These are features that work, but are imperfect
+These are features that work, but are imperfect.
 
+- [x] Uninstall programs (Some programs may need admin to uninstall.) (Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
 
 ## Alpha features
 
-These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them
+These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
-- [ ] Install [lapce](https://github.com/lapce/lapce) (30%)
+- [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
 
 # Planned features
 
-These are features that have no code yet, but are planned for the future
+These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
 ---
 
