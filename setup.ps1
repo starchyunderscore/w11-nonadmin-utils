@@ -523,7 +523,7 @@ public class Wallpaper
     }
     5 { # Uninstall programs
       Write-Output "" # For consistant formatting
-      $PROGRAMS = Get-ChildItem -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
+      $PROGRAMS = Get-ChildItem -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall,HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString
       # List installed programs
       $PgListNum = 0
       $PROGRAMS.DisplayName | ForEach-Object {
