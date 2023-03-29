@@ -39,6 +39,7 @@ DO {
         # Print options
         Write-Output "`n1. Turn dark mode on or off"
         Write-Output "2. Change the background image"
+        Write-Output "3. Change mouse trails length"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -89,6 +90,14 @@ public class Wallpaper
             } else {
               [Wallpaper]::SetWallpaper($IMGPath)
               Write-Output "`nSet background image to $IMGPath.`n"
+            }
+          }
+          3 { # Mouse trail
+            $Mtrail = Read-Host "Input a number from 0 (no trail) to 7 (long trail), or leave blank to exit"
+            if ($Mtrail -In 0..7) {
+              # https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor
+              set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
+              Write-Host "Mouse trail set to $Mtrail, log out and back in again for changes to take effect"
             }
           }
         }
