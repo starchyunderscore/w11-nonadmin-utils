@@ -12,6 +12,8 @@ This script is made for windows 11, it may work on other versions, or it may not
 
 ---
 
+Features that are checked work, ones that are not are broken.
+
 ## Features
 
 These are features that are fully ready.
@@ -43,7 +45,7 @@ These are features that work, but are imperfect.
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
-- [ ] Enable and disable mouse trails
+- [x] Enable and disable mouse trails
 
 # Planned features
 
