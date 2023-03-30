@@ -12,8 +12,6 @@ This script is made for windows 11, it may work on other versions, or it may not
 
 ---
 
-Features that are checked work, ones that are not are broken.
-
 ## Features
 
 These are features that are fully ready.
