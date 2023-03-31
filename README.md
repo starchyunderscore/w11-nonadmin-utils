@@ -51,6 +51,7 @@ These are features that have no code yet, but are planned for the future. There 
 
 - [ ] Install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 - [ ] Install [OpenSSH](https://github.com/PowerShell/Win32-OpenSSH)
+- [ ] Change cursor [image](https://stackoverflow.com/questions/71089070/changing-windows-10-cursor-icon-with-powershell-without-reseting) and [size](https://stackoverflow.com/questions/60104778/change-and-update-the-size-of-the-cursor-in-windows-10-via-powershell)
 
 ---
 
