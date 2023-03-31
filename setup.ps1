@@ -97,7 +97,7 @@ public class Wallpaper
             if ($Mtrail -In 0..7) {
               # https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor
               set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
-              Write-Host "Mouse trail set to $Mtrail, log out and back in again for changes to take effect"
+              Write-Output "Mouse trail set to $Mtrail, log out and back in again for changes to take effect"
             }
           }
         }
