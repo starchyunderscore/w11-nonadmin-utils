@@ -92,12 +92,13 @@ public class Wallpaper
               Write-Output "`nSet background image to $IMGPath.`n"
             }
           }
-          3 { # Mouse trail
+          3 { # Mouse trail length
             $Mtrail = Read-Host "Input a number from 0 (no trail) to 7 (long trail), or leave blank to exit"
             if ($Mtrail -In 0..7) {
               # https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor
               set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
-              Write-Output "Mouse trail set to $Mtrail, log out and back in again for changes to take effect"
+              Write-Output "Mouse trail set to $Mtrail, restarting explorer"
+              Get-Process explorer | Stop-Process
             }
           }
         }
