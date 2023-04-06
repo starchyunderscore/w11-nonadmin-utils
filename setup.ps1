@@ -118,10 +118,11 @@ public class Wallpaper
             Write-Output "9. r"
             Write-Output "10. rl"
             Write-Output "11. rm"
+            Write-Output "12. Custom"
 
             $CStyle = Read-Host "Input the number of the style you wish to use, or leave blank to exit"
 
-            if ($CStyle -In 1..11) {
+            if ($CStyle -In 1..12) {
               $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
               $RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
               switch ($CStyle) {
@@ -179,14 +180,75 @@ public class Wallpaper
                   $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\aero_up_xl.cur")
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy_xl.ani")
                 }
-                4 {}
-                5 {}
-                6 {}
-                7 {}
-                8 {}
-                9 {}
-                10 {}
-                11 {}
+                4 { # i
+                  Write-Output "!! NOT DONE YET !!"
+                }
+                5 { # il
+                  Write-Output "!! NOT DONE YET !!"
+                }
+                6 { # im
+                  Write-Output "!! NOT DONE YET !!"
+                }
+                7 { # l
+                  Write-Output "!! NOT DONE YET !!"
+                }
+                8 { # m
+                  Write-Output "!! NOT DONE YET !!"
+                }
+                9 { # r
+                  $RegCursors.SetValue("AppStarting","%SystemRoot%\cursors\wait_r.cur")
+                  $RegCursors.SetValue("Arrow","%SystemRoot%\cursors\arrow_r.cur")
+                  $RegCursors.SetValue("Crosshair","%SystemRoot%\cursors\cross_r.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","%SystemRoot%\cursors\help_r.cur")
+                  $RegCursors.SetValue("IBeam","%SystemRoot%\cursors\beam_r.cur")
+                  $RegCursors.SetValue("No","%SystemRoot%\cursors\no_r.cur")
+                  $RegCursors.SetValue("NWPen","%SystemRoot%\cursors\pen_r.cur")
+                  $RegCursors.SetValue("SizeAll","%SystemRoot%\cursors\move_r.cur")
+                  $RegCursors.SetValue("SizeNESW","%SystemRoot%\cursors\size1_r.cur")
+                  $RegCursors.SetValue("SizeNS","%SystemRoot%\cursors\size4_r.cur")
+                  $RegCursors.SetValue("SizeNWSE","%SystemRoot%\cursors\size2_r.cur")
+                  $RegCursors.SetValue("SizeWE","%SystemRoot%\cursors\size3_r.cur")
+                  $RegCursors.SetValue("UpArrow","%SystemRoot%\cursors\up_r.cur")
+                  $RegCursors.SetValue("Wait","%SystemRoot%\cursors\busy_r.cur")
+                }
+                10 { #rl
+                  $RegCursors.SetValue("AppStarting","%SystemRoot%\cursors\wait_rl.cur")
+                  $RegCursors.SetValue("Arrow","%SystemRoot%\cursors\arrow_rl.cur")
+                  $RegCursors.SetValue("Crosshair","%SystemRoot%\cursors\cross_rl.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","%SystemRoot%\cursors\help_rl.cur")
+                  $RegCursors.SetValue("IBeam","%SystemRoot%\cursors\beam_rl.cur")
+                  $RegCursors.SetValue("No","%SystemRoot%\cursors\no_rl.cur")
+                  $RegCursors.SetValue("NWPen","%SystemRoot%\cursors\pen_rl.cur")
+                  $RegCursors.SetValue("SizeAll","%SystemRoot%\cursors\move_rl.cur")
+                  $RegCursors.SetValue("SizeNESW","%SystemRoot%\cursors\size1_rl.cur")
+                  $RegCursors.SetValue("SizeNS","%SystemRoot%\cursors\size4_rl.cur")
+                  $RegCursors.SetValue("SizeNWSE","%SystemRoot%\cursors\size2_rl.cur")
+                  $RegCursors.SetValue("SizeWE","%SystemRoot%\cursors\size3_rl.cur")
+                  $RegCursors.SetValue("UpArrow","%SystemRoot%\cursors\up_rl.cur")
+                  $RegCursors.SetValue("Wait","%SystemRoot%\cursors\busy_rl.cur")
+                }
+                11 { #rm
+                  $RegCursors.SetValue("AppStarting","%SystemRoot%\cursors\wait_rm.cur")
+                  $RegCursors.SetValue("Arrow","%SystemRoot%\cursors\arrow_rm.cur")
+                  $RegCursors.SetValue("Crosshair","%SystemRoot%\cursors\cross_rm.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","%SystemRoot%\cursors\help_rm.cur")
+                  $RegCursors.SetValue("IBeam","%SystemRoot%\cursors\beam_rm.cur")
+                  $RegCursors.SetValue("No","%SystemRoot%\cursors\no_rm.cur")
+                  $RegCursors.SetValue("NWPen","%SystemRoot%\cursors\pen_rm.cur")
+                  $RegCursors.SetValue("SizeAll","%SystemRoot%\cursors\move_rm.cur")
+                  $RegCursors.SetValue("SizeNESW","%SystemRoot%\cursors\size1_rm.cur")
+                  $RegCursors.SetValue("SizeNS","%SystemRoot%\cursors\size4_rm.cur")
+                  $RegCursors.SetValue("SizeNWSE","%SystemRoot%\cursors\size2_rm.cur")
+                  $RegCursors.SetValue("SizeWE","%SystemRoot%\cursors\size3_rm.cur")
+                  $RegCursors.SetValue("UpArrow","%SystemRoot%\cursors\up_rm.cur")
+                  $RegCursors.SetValue("Wait","%SystemRoot%\cursors\busy_rm.cur")
+                }
+                12 { # Custom
+                  Write-Output "!! NOT DONE YET !!"
+                }
               }
               $RegCursors.Close()
               $RegConnect.Close()
