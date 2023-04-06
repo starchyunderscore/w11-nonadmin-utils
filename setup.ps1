@@ -40,6 +40,8 @@ DO {
         Write-Output "`n1. Turn dark mode on or off"
         Write-Output "2. Change the background image"
         Write-Output "3. Change mouse trails length"
+        Write-Output "4. Change mouse cursor size"
+        Write-Output "5. Change mouse cursor style"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -100,6 +102,143 @@ public class Wallpaper
               Write-Output "Mouse trail set to $Mtrail, restarting explorer"
               Get-Process explorer | Stop-Process
             }
+          }
+          4 { # Cursor size
+            Write-Output "!! NOT DONE YET !!"
+          }
+          5 { # Cursor style
+            Write-Output "`n1. Aero"
+            Write-Output "2. Aero l"
+            Write-Output "3. Aero xl"
+            Write-Output "4. i"
+            Write-Output "5. il"
+            Write-Output "6. im"
+            Write-Output "7. l"
+            Write-Output "8. m"
+            Write-Output "9. r"
+            Write-Output "10. rl"
+            Write-Output "11. rm"
+
+            $CStyle = Read-Host "Input the number of the style you wish to use, or leave blank to exit"
+
+            if ($CStyle -In 1..11) {
+              $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
+              $RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
+              switch ($CStyle) {
+                1 {
+                  $RegCursors.SetValue("","Windows Default")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working.ani")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow.cur")
+                  $RegCursors.SetValue("Crosshair","")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\aero_helpsel.cur")
+                  $RegCursors.SetValue("IBeam","")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\aero_unavail.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\aero_pen.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\aero_move.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\aero_nesw.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\aero_ns.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\aero_nwse.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\aero_ew.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\aero_up.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy.ani")
+                }
+                2 {}
+                3 {}
+                4 {}
+                5 {}
+                6 {}
+                7 {}
+                8 {}
+                9 {}
+                10 {}
+                11 {}
+              }
+              $RegCursors.Close()
+              $RegConnect.Close()
+              function Update-UserPreferencesMask {
+                $Signature = @"
+[DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
+
+const int SPI_SETCURSORS = 0x0057;
+const int SPIF_UPDATEINIFILE = 0x01;
+const int SPIF_SENDCHANGE = 0x02;
+
+public static void UpdateUserPreferencesMask() {
+    SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
+}
+"@
+                  Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
+                  [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
+              }
+              Update-UserPreferencesMask
+            } else {
+              Write-Output "Canceled"
+            }
+           <#
+           $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
+
+
+$RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
+
+
+$RegCursors.SetValue("","Windows Black")
+$RegCursors.SetValue("CursorBaseSize",0x40)
+
+$RegCursors.SetValue("AppStarting","%SystemRoot%\cursors\wait_r.cur")
+
+$RegCursors.SetValue("Arrow","%SystemRoot%\cursors\arrow_rl.cur")
+
+$RegCursors.SetValue("Crosshair","%SystemRoot%\cursors\cross_r.cur")
+
+$RegCursors.SetValue("Hand","")
+
+$RegCursors.SetValue("Help","%SystemRoot%\cursors\help_r.cur")
+
+$RegCursors.SetValue("IBeam","%SystemRoot%\cursors\beam_r.cur")
+
+$RegCursors.SetValue("No","%SystemRoot%\cursors\no_r.cur")
+
+$RegCursors.SetValue("NWPen","%SystemRoot%\cursors\pen_r.cur")
+
+$RegCursors.SetValue("SizeAll","%SystemRoot%\cursors\move_r.cur")
+
+$RegCursors.SetValue("SizeNESW","%SystemRoot%\cursors\size1_r.cur")
+
+$RegCursors.SetValue("SizeNS","%SystemRoot%\cursors\size4_r.cur")
+
+$RegCursors.SetValue("SizeNWSE","%SystemRoot%\cursors\size2_r.cur")
+
+$RegCursors.SetValue("SizeWE","%SystemRoot%\cursors\size3_r.cur")
+
+$RegCursors.SetValue("UpArrow","%SystemRoot%\cursors\up_r.cur")
+
+$RegCursors.SetValue("Wait","%SystemRoot%\cursors\busy_r.cur")
+
+$RegCursors.Close()
+
+$RegConnect.Close()
+
+
+function Update-UserPreferencesMask {
+$Signature = @"
+[DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
+
+const int SPI_SETCURSORS = 0x0057;
+const int SPIF_UPDATEINIFILE = 0x01;
+const int SPIF_SENDCHANGE = 0x02;
+
+public static void UpdateUserPreferencesMask() {
+    SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
+}
+"@
+    Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
+    [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
+}
+Update-UserPreferencesMask
+           #>
           }
         }
       } until ($Themer -notmatch "\S")
