@@ -107,7 +107,7 @@ public class Wallpaper
             Write-Output "!! NOT DONE YET !!"
           }
           5 { # Cursor style
-            Write-Output "`n1. Aero"
+            Write-Output "`n1. Aero (Windows Default)"
             Write-Output "2. Aero l"
             Write-Output "3. Aero xl"
             Write-Output "4. i"
@@ -125,7 +125,7 @@ public class Wallpaper
               $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
               $RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
               switch ($CStyle) {
-                1 {
+                1 { # Aero
                   $RegCursors.SetValue("","Windows Default")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working.ani")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow.cur")
@@ -143,8 +143,42 @@ public class Wallpaper
                   $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\aero_up.cur")
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy.ani")
                 }
-                2 {}
-                3 {}
+                2 { # Aero l
+                  $RegCursors.SetValue("","Windows Default")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working_l.ani")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow_l.cur")
+                  $RegCursors.SetValue("Crosshair","")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\aero_helpsel_l.cur")
+                  $RegCursors.SetValue("IBeam","")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\aero_unavail_l.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\aero_pen_l.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\aero_move_l.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\aero_nesw_l.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\aero_ns_l.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\aero_nwse_l.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\aero_ew_l.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\aero_up_l.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy_l.ani")
+                }
+                3 { # Aero xl
+                  $RegCursors.SetValue("","Windows Default")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working_xl.ani")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow_xl.cur")
+                  $RegCursors.SetValue("Crosshair","")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\aero_helpsel_xl.cur")
+                  $RegCursors.SetValue("IBeam","")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\aero_unavail_xl.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\aero_pen_xl.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\aero_move_xl.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\aero_nesw_xl.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\aero_ns_xl.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\aero_nwse_xl.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\aero_ew_xl.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\aero_up_xl.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy_xl.ani")
+                }
                 4 {}
                 5 {}
                 6 {}
