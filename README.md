@@ -44,7 +44,7 @@ These are features that work, but are imperfect.
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
-- [ ] Change cursor [image](https://stackoverflow.com/questions/71089070/changing-windows-10-cursor-icon-with-powershell-without-reseting) and [size](https://stackoverflow.com/questions/60104778/change-and-update-the-size-of-the-cursor-in-windows-10-via-powershell) (can only change some cursors, untested, sive change not ready)
+- [ ] Change cursor [image](https://stackoverflow.com/questions/71089070/changing-windows-10-cursor-icon-with-powershell-without-reseting) and [size](https://stackoverflow.com/questions/60104778/change-and-update-the-size-of-the-cursor-in-windows-10-via-powershell) (can only change some cursors, untested, size change not ready)
 
 # Planned features
 
