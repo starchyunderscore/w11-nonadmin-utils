@@ -133,7 +133,7 @@ public class Wallpaper
             Write-Output "11. rm (Same ar r, but large)"
             Write-Output "12. KDE Breeze Dark"
 
-            $CStyle = Read-Host "Input the number of the style you wish to use, or leave blank to exit"
+            $CStyle = Read-Host "`nInput the number of the style you wish to use, or leave blank to exit"
 
             if ($CStyle -In 1..12) {
               $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
@@ -343,7 +343,7 @@ public class Wallpaper
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "~\KDE-BREEZE-DARK\Working.ani"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "~\KDE-BREEZE-DARK\Working_in_bg.ani"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -OutFile "~\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/handwriting.cur" -OutFilen "~\KDE-BREEZE-DARK\handwriting.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/handwriting.cur" -OutFile "~\KDE-BREEZE-DARK\handwriting.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/help.cur" -OutFile "~\KDE-BREEZE-DARK\help.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/link.cur" -OutFile "~\KDE-BREEZE-DARK\link.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/move.cur" -OutFile "~\KDE-BREEZE-DARK\move.cur"
@@ -353,8 +353,8 @@ public class Wallpaper
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -OutFile "~\KDE-BREEZE-DARK\resize_di_2.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -OutFile "~\KDE-BREEZE-DARK\resize_hor.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "~\KDE-BREEZE-DARK\resize_ver.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -destination "~\KDE-BREEZE-DARK\text.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -destination "~\KDE-BREEZE-DARK\unavailable.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "~\KDE-BREEZE-DARK\text.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "~\KDE-BREEZE-DARK\unavailable.cur"
 
                   $RegCursors.SetValue("","KDE Breeze Dark")
                   $RegCursors.SetValue("AppStarting","~\KDE-BREEZE-DARK\Working_in_bg.ani")
