@@ -131,7 +131,7 @@ public class Wallpaper
             Write-Output "9. r (Old windows cursor, dark mode edition)"
             Write-Output "10. rl (Same as r, but extra large)"
             Write-Output "11. rm (Same ar r, but large)"
-            Write-Output "12. Custom ( !! NOT DONE YET !! )"
+            Write-Output "12. KDE Breeze Dark"
 
             $CStyle = Read-Host "Input the number of the style you wish to use, or leave blank to exit"
 
@@ -337,8 +337,44 @@ public class Wallpaper
                   $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_rm.cur")
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_rm.cur")
                 }
-                12 { # Custom
-                  Write-Output "!! NOT DONE YET !!"
+                12 { # Kde breeze dark
+                  if (Test-Path ~\KDE-BREEZE-DARK) {
+                    Write-Output "Path exsts"
+                  } else {
+                    mkdir ~\KDE-BREEZE-DARK
+                    Write-Output "Downloading from https://github.com/black7375/Breeze-Cursors-for-Windows/"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -destination "~\KDE-BREEZE-DARK\Working.ani"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -destination "~\KDE-BREEZE-DARK\Working_in_bg.ani"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -destination "~\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/handwriting.cur" -destination "~\KDE-BREEZE-DARK\handwriting.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/help.cur" -destination "~\KDE-BREEZE-DARK\help.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/link.cur" -destination "~\KDE-BREEZE-DARK\link.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/move.cur" -destination "~\KDE-BREEZE-DARK\move.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/normal_select.cur" -destination "~\KDE-BREEZE-DARK\normal_select.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/precise_select.cur" -destination "~\KDE-BREEZE-DARK\precise_select.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_1.cur" -destination "~\KDE-BREEZE-DARK\resize_di_1.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -destination "~\KDE-BREEZE-DARK\resize_di_2.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -destination "~\KDE-BREEZE-DARK\resize_hor.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -destination "~\KDE-BREEZE-DARK\resize_ver.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -destination "~\KDE-BREEZE-DARK\text.cur"
+                    Start-BitsTransfer -source "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -destination "~\KDE-BREEZE-DARK\unavailable.cur"
+                  }
+                  $RegCursors.SetValue("","KDE Breeze Dark")
+                  $RegCursors.SetValue("AppStarting","~\KDE-BREEZE-DARK\Working_in_bg.ani")
+                  $RegCursors.SetValue("Arrow","~\KDE-BREEZE-DARK\normal_select.cur")
+                  $RegCursors.SetValue("Crosshair","~\KDE-BREEZE-DARK\precise_select.cur")
+                  $RegCursors.SetValue("Hand","~\KDE-BREEZE-DARK\link.cur")
+                  $RegCursors.SetValue("Help","~\KDE-BREEZE-DARK\help.cur")
+                  $RegCursors.SetValue("IBeam","~\KDE-BREEZE-DARK\text.cur")
+                  $RegCursors.SetValue("No","~\KDE-BREEZE-DARK\unavailable.cur")
+                  $RegCursors.SetValue("NWPen","~\KDE-BREEZE-DARK\handwriting.cur")
+                  $RegCursors.SetValue("SizeAll","~\KDE-BREEZE-DARK\move.cur")
+                  $RegCursors.SetValue("SizeNESW","~\KDE-BREEZE-DARK\resize_di_2.cur")
+                  $RegCursors.SetValue("SizeNS","~\KDE-BREEZE-DARK\resize_ver.cur")
+                  $RegCursors.SetValue("SizeNWSE","~\KDE-BREEZE-DARK\resize_di_1.cur")
+                  $RegCursors.SetValue("SizeWE","~\KDE-BREEZE-DARK\resize_hor.cur")
+                  $RegCursors.SetValue("UpArrow","~\KDE-BREEZE-DARK\resize_ver.cur")
+                  $RegCursors.SetValue("Wait","~\KDE-BREEZE-DARK\Working.ani")
                 }
               }
               $RegCursors.Close()
@@ -568,7 +604,7 @@ public class Wallpaper
         Write-Output "`n1. FireFox"
         Write-Output "2. PowerToys"
         Write-Output "3. Visual Studio Code"
-#         Write-Output "4. Lapce"
+        Write-Output "4. Lapce"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -747,24 +783,24 @@ public class Wallpaper
               Write-Output "`nCancled"
             }
           }
-#           4 { # Lapce
-#             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
-#             if ($InstallLapce -eq 1) {
-#               Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n"
+          4 { # Lapce
+            $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallLapce -eq 1) {
+              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n"
 
-#               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
-#               $latestVersion = $latestLapce.tag_name.Substring(1)
-#               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
-#               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
-#               rm ".\Lapce-windows-portable.zip"
+              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
+              $latestVersion = $latestLapce.tag_name.Substring(1)
+              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
+              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
+              rm ".\Lapce-windows-portable.zip"
 
-#               $WshShell = New-Object -ComObject WScript.Shell
-#               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
-#               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
-#               $Shortcut.Save()
-#               Write-Output "`nLapce installed"
-#             }
-#           }
+              $WshShell = New-Object -ComObject WScript.Shell
+              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
+              $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
+              $Shortcut.Save()
+              Write-Output "`nLapce installed"
+            }
+          }
         }
       } until ($PGram -notmatch "\S")
     }
