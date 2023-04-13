@@ -13,6 +13,23 @@ function CREATE_BIN { # Create bin if it does not exist
   }
 }
 
+function UPDATE_USERPREFERENCESMASK {
+                $Signature = @"
+[DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
+
+const int SPI_SETCURSORS = 0x0057;
+const int SPIF_UPDATEINIFILE = 0x01;
+const int SPIF_SENDCHANGE = 0x02;
+
+public static void UpdateUserPreferencesMask() {
+    SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
+}
+"@
+                  Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
+                  [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
+              }
+
 # SCRIPT
 
 Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n"
@@ -40,8 +57,7 @@ DO {
         Write-Output "`n1. Turn dark mode on or off"
         Write-Output "2. Change the background image"
         Write-Output "3. Change mouse trails length"
-        Write-Output "4. Change mouse cursor size"
-        Write-Output "5. Change mouse cursor style"
+        Write-Output "4. Change mouse cursor style"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -103,10 +119,7 @@ public class Wallpaper
               Get-Process explorer | Stop-Process
             }
           }
-          4 { # Cursor size
-            Write-Output "!! NOT DONE YET !!"
-          }
-          5 { # Cursor style
+          4 { # Cursor style
             Write-Output "`n1. Aero (Windows Default)"
             Write-Output "2. Aero l"
             Write-Output "3. Aero xl"
@@ -145,7 +158,7 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy.ani")
                 }
                 2 { # Aero l
-                  $RegCursors.SetValue("","Windows Default")
+                  $RegCursors.SetValue("","Aero l")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working_l.ani")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow_l.cur")
                   $RegCursors.SetValue("Crosshair","")
@@ -163,7 +176,7 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy_l.ani")
                 }
                 3 { # Aero xl
-                  $RegCursors.SetValue("","Windows Default")
+                  $RegCursors.SetValue("","Aero xl")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\aero_working_xl.ani")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\aero_arrow_xl.cur")
                   $RegCursors.SetValue("Crosshair","")
@@ -181,21 +194,97 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\aero_busy_xl.ani")
                 }
                 4 { # i
-                  Write-Output "!! NOT DONE YET !!"
+                  $RegCursors.SetValue("","i")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_i.cur")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_i.cur")
+                  $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_i.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\help_i.cur")
+                  $RegCursors.SetValue("IBeam","C:\WINDOWS\cursors\beam_i.cur")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\no_i.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\pen_i.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\move_i.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\size1_i.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\size4_i.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\size2_i.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\size3_i.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_i.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_i.cur")
                 }
                 5 { # il
-                  Write-Output "!! NOT DONE YET !!"
+                  $RegCursors.SetValue("","il")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_il.cur")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_il.cur")
+                  $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_il.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\help_il.cur")
+                  $RegCursors.SetValue("IBeam","C:\WINDOWS\cursors\beam_il.cur")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\no_il.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\pen_il.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\move_il.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\size1_il.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\size4_il.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\size2_il.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\size3_il.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_il.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_il.cur")
                 }
                 6 { # im
-                  Write-Output "!! NOT DONE YET !!"
+                  $RegCursors.SetValue("","im")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_im.cur")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_im.cur")
+                  $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_im.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\help_im.cur")
+                  $RegCursors.SetValue("IBeam","C:\WINDOWS\cursors\beam_im.cur")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\no_im.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\pen_im.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\move_im.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\size1_im.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\size4_im.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\size2_im.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\size3_im.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_im.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_im.cur")
                 }
                 7 { # l
-                  Write-Output "!! NOT DONE YET !!"
+                  $RegCursors.SetValue("","l")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_.cur")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_.cur")
+                  $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\help_l.cur")
+                  $RegCursors.SetValue("IBeam","C:\WINDOWS\cursors\beam_l.cur")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\no_l.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\pen_l.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\move_l.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\size1_l.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\size4_l.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\size2_l.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\size3_l.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_l.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_l.cur")
                 }
                 8 { # m
-                  Write-Output "!! NOT DONE YET !!"
+                  $RegCursors.SetValue("","m")
+                  $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_m.cur")
+                  $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_m.cur")
+                  $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_m.cur")
+                  $RegCursors.SetValue("Hand","")
+                  $RegCursors.SetValue("Help","C:\WINDOWS\cursors\help_m.cur")
+                  $RegCursors.SetValue("IBeam","C:\WINDOWS\cursors\beam_m.cur")
+                  $RegCursors.SetValue("No","C:\WINDOWS\cursors\no_m.cur")
+                  $RegCursors.SetValue("NWPen","C:\WINDOWS\cursors\pen_m.cur")
+                  $RegCursors.SetValue("SizeAll","C:\WINDOWS\cursors\move_m.cur")
+                  $RegCursors.SetValue("SizeNESW","C:\WINDOWS\cursors\size1_m.cur")
+                  $RegCursors.SetValue("SizeNS","C:\WINDOWS\cursors\size4_m.cur")
+                  $RegCursors.SetValue("SizeNWSE","C:\WINDOWS\cursors\size2_m.cur")
+                  $RegCursors.SetValue("SizeWE","C:\WINDOWS\cursors\size3_m.cur")
+                  $RegCursors.SetValue("UpArrow","C:\WINDOWS\cursors\up_m.cur")
+                  $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_m.cur")
                 }
                 9 { # r
+                  $RegCursors.SetValue("","r")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_r.cur")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_r.cur")
                   $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_r.cur")
@@ -213,6 +302,7 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_r.cur")
                 }
                 10 { #rl
+                  $RegCursors.SetValue("","rl")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_rl.cur")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_rl.cur")
                   $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_rl.cur")
@@ -230,6 +320,7 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_rl.cur")
                 }
                 11 { #rm
+                  $RegCursors.SetValue("","rm")
                   $RegCursors.SetValue("AppStarting","C:\WINDOWS\cursors\wait_rm.cur")
                   $RegCursors.SetValue("Arrow","C:\WINDOWS\cursors\arrow_rm.cur")
                   $RegCursors.SetValue("Crosshair","C:\WINDOWS\cursors\cross_rm.cur")
@@ -252,89 +343,10 @@ public class Wallpaper
               }
               $RegCursors.Close()
               $RegConnect.Close()
-              function Update-UserPreferencesMask {
-                $Signature = @"
-[DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
-public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
-
-const int SPI_SETCURSORS = 0x0057;
-const int SPIF_UPDATEINIFILE = 0x01;
-const int SPIF_SENDCHANGE = 0x02;
-
-public static void UpdateUserPreferencesMask() {
-    SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
-}
-"@
-                  Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
-                  [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
-              }
-              Update-UserPreferencesMask
+              UPDATE_USERPREFERENCESMASK
             } else {
               Write-Output "Canceled"
             }
-           <#
-           $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
-
-
-$RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
-
-
-$RegCursors.SetValue("","Windows Black")
-$RegCursors.SetValue("CursorBaseSize",0x40)
-
-$RegCursors.SetValue("AppStarting","%SystemRoot%\cursors\wait_r.cur")
-
-$RegCursors.SetValue("Arrow","%SystemRoot%\cursors\arrow_rl.cur")
-
-$RegCursors.SetValue("Crosshair","%SystemRoot%\cursors\cross_r.cur")
-
-$RegCursors.SetValue("Hand","")
-
-$RegCursors.SetValue("Help","%SystemRoot%\cursors\help_r.cur")
-
-$RegCursors.SetValue("IBeam","%SystemRoot%\cursors\beam_r.cur")
-
-$RegCursors.SetValue("No","%SystemRoot%\cursors\no_r.cur")
-
-$RegCursors.SetValue("NWPen","%SystemRoot%\cursors\pen_r.cur")
-
-$RegCursors.SetValue("SizeAll","%SystemRoot%\cursors\move_r.cur")
-
-$RegCursors.SetValue("SizeNESW","%SystemRoot%\cursors\size1_r.cur")
-
-$RegCursors.SetValue("SizeNS","%SystemRoot%\cursors\size4_r.cur")
-
-$RegCursors.SetValue("SizeNWSE","%SystemRoot%\cursors\size2_r.cur")
-
-$RegCursors.SetValue("SizeWE","%SystemRoot%\cursors\size3_r.cur")
-
-$RegCursors.SetValue("UpArrow","%SystemRoot%\cursors\up_r.cur")
-
-$RegCursors.SetValue("Wait","%SystemRoot%\cursors\busy_r.cur")
-
-$RegCursors.Close()
-
-$RegConnect.Close()
-
-
-function Update-UserPreferencesMask {
-$Signature = @"
-[DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
-public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
-
-const int SPI_SETCURSORS = 0x0057;
-const int SPIF_UPDATEINIFILE = 0x01;
-const int SPIF_SENDCHANGE = 0x02;
-
-public static void UpdateUserPreferencesMask() {
-    SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
-}
-"@
-    Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
-    [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
-}
-Update-UserPreferencesMask
-           #>
           }
         }
       } until ($Themer -notmatch "\S")
