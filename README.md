@@ -66,13 +66,15 @@ Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "M
 
 Quick run:
 
-Open PowerShell and run this below command: 
+Open PowerShell and run this command: 
 
 ```
 iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/latest/setup.ps1 | iex
 ```
 
-quick run alpha version ( WARNING: unstable, may not work, may break things )
+Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
+
+Open PowerShell and run this command:
 
 ```
 iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/setup.ps1 | iex
@@ -85,5 +87,5 @@ Download the latest setup.ps1 file from the [releases page](https://github.com/s
 Run the below command in PowerShell, replacing the path to `setup.ps1` as needed
 
 ```
-PowerShell -ep Bypass -File .\Downloads\setup.ps1
+PowerShell -ep Bypass -File ~\Downloads\setup.ps1
 ```
