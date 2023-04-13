@@ -50,8 +50,7 @@ These are features that are not yet in the realease, or are commented out.  They
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
-- [ ] Install [OpenSSH](https://github.com/PowerShell/Win32-OpenSSH)
+- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) possibly via [GreenVBox](http://greenvbox.org/)?
 
 ---
 
