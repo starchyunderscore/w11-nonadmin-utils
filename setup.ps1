@@ -121,17 +121,17 @@ public class Wallpaper
           }
           4 { # Cursor style
             Write-Output "`n1. Aero (Windows Default)"
-            Write-Output "2. Aero l"
-            Write-Output "3. Aero xl"
-            Write-Output "4. i"
-            Write-Output "5. il"
-            Write-Output "6. im"
-            Write-Output "7. l"
-            Write-Output "8. m"
-            Write-Output "9. r"
-            Write-Output "10. rl"
-            Write-Output "11. rm"
-            Write-Output "12. Custom"
+            Write-Output "2. Aero l (Same as Aero, but larger)"
+            Write-Output "3. Aero xl (Same as Aero, but extra large)"
+            Write-Output "4. i (Old windows cursors)"
+            Write-Output "5. il (Same as i, but extra large)"
+            Write-Output "6. im (Same as i, but large)"
+            Write-Output "7. l (Same as il)"
+            Write-Output "8. m (Same as im)"
+            Write-Output "9. r (Old windows cursor, dark mode edition)"
+            Write-Output "10. rl (Same as r, but extra large)"
+            Write-Output "11. rm (Same ar r, but large)"
+            Write-Output "12. Custom ( !! NOT DONE YET !! )"
 
             $CStyle = Read-Host "Input the number of the style you wish to use, or leave blank to exit"
 
