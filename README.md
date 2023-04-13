@@ -32,6 +32,7 @@ These are features that are fully ready.
 - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
 - [x] Add and remove items from bin.
 - [x] Change mouse trail length.
+- [x] [Change cursor](https://stackoverflow.com/a/60107014)
 
 ## Beta features
 
@@ -44,7 +45,6 @@ These are features that work, but are imperfect.
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
-- [ ] Change cursor [image](https://stackoverflow.com/questions/71089070/changing-windows-10-cursor-icon-with-powershell-without-reseting) and [size](https://stackoverflow.com/questions/60104778/change-and-update-the-size-of-the-cursor-in-windows-10-via-powershell) (can only change some cursors, untested, size change not ready)
 
 # Planned features
 
@@ -69,7 +69,7 @@ Quick run:
 Open PowerShell and run this command: 
 
 ```
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/latest/setup.ps1 | iex
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.06/setup.ps1 | iex
 ```
 
 Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
@@ -82,7 +82,7 @@ iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/
 
 Run with ability to edit script:
 
-Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/tag/latest)
+Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
 
 Run the below command in PowerShell, replacing the path to `setup.ps1` as needed
 
