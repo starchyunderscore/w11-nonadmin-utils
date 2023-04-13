@@ -65,6 +65,12 @@ Open PowerShell and run this below command:
 iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/latest/setup.ps1 | iex
 ```
 
+quick run alpha version ( WARNING: unstable, may not work, may break things )
+
+```
+iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/setup.ps1 | iex
+```
+
 Run with ability to edit script:
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/tag/latest)
