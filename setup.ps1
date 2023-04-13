@@ -338,40 +338,40 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_rm.cur")
                 }
                 12 { # Kde breeze dark
-                  mkdir ~\KDE-BREEZE-DARK
+                  mkdir $HOME\KDE-BREEZE-DARK
                   Write-Output "Downloading from https://github.com/black7375/Breeze-Cursors-for-Windows/"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "~\KDE-BREEZE-DARK\Working.ani"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "~\KDE-BREEZE-DARK\Working_in_bg.ani"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -OutFile "~\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/handwriting.cur" -OutFile "~\KDE-BREEZE-DARK\handwriting.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/help.cur" -OutFile "~\KDE-BREEZE-DARK\help.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/link.cur" -OutFile "~\KDE-BREEZE-DARK\link.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/move.cur" -OutFile "~\KDE-BREEZE-DARK\move.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/normal_select.cur" -OutFile "~\KDE-BREEZE-DARK\normal_select.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/precise_select.cur" -OutFile "~\KDE-BREEZE-DARK\precise_select.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_1.cur" -OutFile "~\KDE-BREEZE-DARK\resize_di_1.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -OutFile "~\KDE-BREEZE-DARK\resize_di_2.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -OutFile "~\KDE-BREEZE-DARK\resize_hor.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "~\KDE-BREEZE-DARK\resize_ver.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "~\KDE-BREEZE-DARK\text.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "~\KDE-BREEZE-DARK\unavailable.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working.ani"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working_in_bg.ani"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/handwriting.cur" -OutFile "$HOME\KDE-BREEZE-DARK\handwriting.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/help.cur" -OutFile "$HOME\KDE-BREEZE-DARK\help.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/link.cur" -OutFile "$HOME\KDE-BREEZE-DARK\link.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/blob/master/Final/move.cur" -OutFile "$HOME\KDE-BREEZE-DARK\move.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/normal_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\normal_select.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/precise_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\precise_select.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_1.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_1.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_2.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_hor.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_ver.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "$HOME\KDE-BREEZE-DARK\text.cur"
+                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "$HOME\KDE-BREEZE-DARK\unavailable.cur"
 
                   $RegCursors.SetValue("","KDE Breeze Dark")
-                  $RegCursors.SetValue("AppStarting","~\KDE-BREEZE-DARK\Working_in_bg.ani")
-                  $RegCursors.SetValue("Arrow","~\KDE-BREEZE-DARK\normal_select.cur")
-                  $RegCursors.SetValue("Crosshair","~\KDE-BREEZE-DARK\precise_select.cur")
-                  $RegCursors.SetValue("Hand","~\KDE-BREEZE-DARK\link.cur")
-                  $RegCursors.SetValue("Help","~\KDE-BREEZE-DARK\help.cur")
-                  $RegCursors.SetValue("IBeam","~\KDE-BREEZE-DARK\text.cur")
-                  $RegCursors.SetValue("No","~\KDE-BREEZE-DARK\unavailable.cur")
-                  $RegCursors.SetValue("NWPen","~\KDE-BREEZE-DARK\handwriting.cur")
-                  $RegCursors.SetValue("SizeAll","~\KDE-BREEZE-DARK\move.cur")
-                  $RegCursors.SetValue("SizeNESW","~\KDE-BREEZE-DARK\resize_di_2.cur")
-                  $RegCursors.SetValue("SizeNS","~\KDE-BREEZE-DARK\resize_ver.cur")
-                  $RegCursors.SetValue("SizeNWSE","~\KDE-BREEZE-DARK\resize_di_1.cur")
-                  $RegCursors.SetValue("SizeWE","~\KDE-BREEZE-DARK\resize_hor.cur")
-                  $RegCursors.SetValue("UpArrow","~\KDE-BREEZE-DARK\resize_ver.cur")
-                  $RegCursors.SetValue("Wait","~\KDE-BREEZE-DARK\Working.ani")
+                  $RegCursors.SetValue("AppStarting","$HOME\KDE-BREEZE-DARK\Working_in_bg.ani")
+                  $RegCursors.SetValue("Arrow","$HOME\KDE-BREEZE-DARK\normal_select.cur")
+                  $RegCursors.SetValue("Crosshair","$HOME\KDE-BREEZE-DARK\precise_select.cur")
+                  $RegCursors.SetValue("Hand","$HOME\KDE-BREEZE-DARK\link.cur")
+                  $RegCursors.SetValue("Help","$HOME\KDE-BREEZE-DARK\help.cur")
+                  $RegCursors.SetValue("IBeam","$HOME\KDE-BREEZE-DARK\text.cur")
+                  $RegCursors.SetValue("No","$HOME\KDE-BREEZE-DARK\unavailable.cur")
+                  $RegCursors.SetValue("NWPen","$HOME\KDE-BREEZE-DARK\handwriting.cur")
+                  $RegCursors.SetValue("SizeAll","$HOME\KDE-BREEZE-DARK\move.cur")
+                  $RegCursors.SetValue("SizeNESW","$HOME\KDE-BREEZE-DARK\resize_di_2.cur")
+                  $RegCursors.SetValue("SizeNS","$HOME\KDE-BREEZE-DARK\resize_ver.cur")
+                  $RegCursors.SetValue("SizeNWSE","$HOME\KDE-BREEZE-DARK\resize_di_1.cur")
+                  $RegCursors.SetValue("SizeWE","$HOME\KDE-BREEZE-DARK\resize_hor.cur")
+                  $RegCursors.SetValue("UpArrow","$HOME\KDE-BREEZE-DARK\resize_ver.cur")
+                  $RegCursors.SetValue("Wait","$HOME\KDE-BREEZE-DARK\Working.ani")
                 }
               }
               $RegCursors.Close()
