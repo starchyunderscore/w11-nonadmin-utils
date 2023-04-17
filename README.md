@@ -68,7 +68,7 @@ Quick run:
 Open PowerShell and run this command: 
 
 ```
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.06/setup.ps1 | iex
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.07/setup.ps1 | iex
 ```
 
 Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
