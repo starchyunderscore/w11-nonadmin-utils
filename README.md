@@ -22,7 +22,7 @@ These are features that are fully ready.
   - [x] Change mouse trail length.
   - [x] [Change cursor](https://stackoverflow.com/a/60107014)
 
-- [x]Taskbar settings:
+- [x] Taskbar settings:
   - [x] Move the start menu back to the left.
   - [x] Unpin chat, widgets, and search from the taskbar.
   - [x] Unpin task view from the search bar.
