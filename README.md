@@ -16,23 +16,30 @@ This script is made for windows 11, it may work on other versions, or it may not
 
 These are features that are fully ready.
 
-- [x] Set system to dark mode.
-- [x] Move the start menu back to the left.
-- [x] Unpin chat from taskbar.
-- [x] Unpin widgets from taskbar.
-- [x] Unpin search from the taskbar.
-- [x] Unpin task view from the search bar.
-- [x] Set the mouse speed.
-- [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
-- [x] Set the keyboard layout to dvorak.
-- [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
-- [x] Move the taskbar. (Does not work on 22H2 or later, you can use [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases) if you have admin rights to install it.)
-- [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
-- [x] Change the background image.
-- [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
-- [x] Add and remove items from bin.
-- [x] Change mouse trail length.
-- [x] [Change cursor](https://stackoverflow.com/a/60107014)
+- [x] Sytem theming:
+  - [x] Set system to dark mode.
+  - [x] Change the background image.
+  - [x] Change mouse trail length.
+  - [x] [Change cursor](https://stackoverflow.com/a/60107014)
+
+- [x]Taskbar settings:
+  - [x] Move the start menu back to the left.
+  - [x] Unpin chat, widgets, and search from the taskbar.
+  - [x] Unpin task view from the search bar.
+  - [x] Move the taskbar. (Does not work on 22H2 or later, you can use [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases) if you have admin rights to install it.)
+
+- [x] Input settings:
+  - [x] Set the mouse speed.
+  - [x] Change the keyboard layout (only Dvorak and Querty for now)
+
+- [x] Install programs:
+  - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
+  - [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
+  - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
+
+- [x] Command line utilities
+  - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
+  - [x] Add and remove items from bin.
 
 ## Beta features
 
