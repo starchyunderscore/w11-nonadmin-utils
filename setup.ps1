@@ -1,6 +1,6 @@
 # FUNCTIONS
 
-function CREATE_BIN { # Create bin if it does not exist
+function CREATE_BIN {
   if (!(Test-Path "$HOME\bin")) {
     Write-Output "`nBin does not exist. Creating."
     mkdir $HOME\bin
@@ -29,6 +29,85 @@ public static void UpdateUserPreferencesMask() {
                   Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
                   [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
               }
+
+Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
+  [DllImport("user32.dll", SetLastError = true)]
+  [return: MarshalAs(UnmanagedType.Bool)]
+  static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref STICKYKEYS pvParam, uint fWinIni);
+
+  [StructLayout(LayoutKind.Sequential)]
+  struct STICKYKEYS {
+    public uint  cbSize;
+    public UInt32 dwFlags;
+  }
+  
+  [Flags]
+  public enum StickyKeyFlags : uint {
+    AUDIBLEFEEDBACK = 0x00000040,
+    AVAILABLE = 0x00000002,
+    CONFIRMHOTKEY = 0x00000008,
+    HOTKEYACTIVE = 0x00000004,
+    HOTKEYSOUND = 0x00000010,
+    INDICATOR = 0x00000020,
+    STICKYKEYSON = 0x00000001,
+    TRISTATE = 0x00000080,
+    TWOKEYSOFF = 0x00000100,
+    LALTLATCHED = 0x10000000,
+    LCTLLATCHED = 0x04000000,
+    LSHIFTLATCHED = 0x01000000,
+    RALTLATCHED = 0x20000000,
+    RCTLLATCHED = 0x08000000,
+    RSHIFTLATCHED = 0x02000000,
+    LALTLOCKED = 0x00100000,
+    LCTLLOCKED = 0x00040000,
+    LSHIFTLOCKED = 0x00010000,
+    RALTLOCKED = 0x00200000,
+    RCTLLOCKED = 0x00080000,
+    RSHIFTLOCKED = 0x00020000,
+    LWINLATCHED = 0x40000000,
+    RWINLATCHED = 0x80000000,
+    LWINLOCKED = 0x00400000,
+    RWINLOCKED = 0x00800000
+  }
+
+  public static bool IsHotKeyEnabled { 
+    get { return (GetFlags() & StickyKeyFlags.HOTKEYACTIVE) != 0u; }
+    set { EnableHotKey(value, false); }
+  }
+
+  public static StickyKeyFlags ActiveFlags { 
+    get { return GetFlags(); }
+    set { SetFlags(value, false); }
+  }
+
+  // The flags in effect on a pristine system.
+  public static StickyKeyFlags DefaultFlags {
+    get { return StickyKeyFlags.AVAILABLE | StickyKeyFlags.HOTKEYACTIVE | StickyKeyFlags.CONFIRMHOTKEY | StickyKeyFlags.HOTKEYSOUND | StickyKeyFlags.INDICATOR | StickyKeyFlags.AUDIBLEFEEDBACK | StickyKeyFlags.TRISTATE | StickyKeyFlags.TWOKEYSOFF; } // 510u
+  }
+  
+  public static void EnableHotKey(bool enable = true, bool persist = false) {
+    var skInfo = new STICKYKEYS();
+    skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
+    var flags = GetFlags();
+    SetFlags((enable ? flags | StickyKeyFlags.HOTKEYACTIVE : flags & ~StickyKeyFlags.HOTKEYACTIVE), persist);
+  }
+
+  private static StickyKeyFlags GetFlags() {
+    var skInfo = new STICKYKEYS();
+    skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
+    if (!SystemParametersInfo(0x003a /* SPI_GETSTICKYKEYS */, 0, ref skInfo, 0))
+      throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+    return (StickyKeyFlags)skInfo.dwFlags;
+  }
+
+  public static void SetFlags(StickyKeyFlags flags, bool persist = false) {
+    var skInfo = new STICKYKEYS();
+    skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
+    skInfo.dwFlags = (UInt32)flags;
+    if (!SystemParametersInfo(0x003b /* SPI_SETSTICKYKEYS */, 0, ref skInfo, persist ? 1u : 0u))
+      throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+  }
+'
 
 # SCRIPT
 
@@ -540,6 +619,7 @@ public class Wallpaper
         # Print choices
         Write-Output "`n1. Change the keyboard layout"
         Write-Output "2. Change the mouse speed"
+        Write-Output "3. Edit sticky keys"
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
@@ -592,6 +672,20 @@ public class Wallpaper
               }
             } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\S")
           }
+          3 { # Edit sticky keys
+            $SKEYS = $Host.UI.PromptForChoice("Enable the sticky keys hotkey?", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            switch ($SKEYS) {
+              0 {
+                Write-Output "`nCanceled"
+              }
+              1 {
+                [demo.StickyKeys]::EnableHotKey($false, $true)
+              }
+              2 {
+                [demo.StickyKeys]::EnableHotKey($true, $true)
+              }
+            }
+          }
         }
       } until ($Iset -notmatch "\S")
     }
@@ -607,7 +701,7 @@ public class Wallpaper
         switch ($PGram) {
           1 { # FireFox
             $InstallFirefox = $Host.UI.PromptForChoice("Which version of firefox would you like to install?", "", @("&Cancel", "&Latest", "&Nightly", "&Beta", "&Dev", "&ESR"), 0)
-            switch ($InstallFirefox -eq 1) {
+            switch ($InstallFirefox) {
               0 { # Cancel
                 Write-Output "`nCanceled"
               }
