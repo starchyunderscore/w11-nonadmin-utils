@@ -31,6 +31,7 @@ These are features that are fully ready.
 - [x] Input settings:
   - [x] Set the mouse speed.
   - [x] Change the keyboard layout (only Dvorak and Querty for now)
+  - [x] [Disable sticky keys prompt](https://stackoverflow.com/questions/71854200/disable-shift-stickykey-shortcut)
 
 - [x] Install programs:
   - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
@@ -58,7 +59,6 @@ These are features that are not yet in the realease, or are commented out.  They
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
 - [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++)
-- [ ] Disable sticky keys prompt [VIA](https://stackoverflow.com/questions/71854200/disable-shift-stickykey-shortcut)
 
 ---
 
@@ -76,7 +76,7 @@ Quick run:
 Open PowerShell and run this command: 
 
 ```
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.07/setup.ps1 | iex
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.08/setup.ps1 | iex
 ```
 
 Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
