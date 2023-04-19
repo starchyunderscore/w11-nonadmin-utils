@@ -679,10 +679,10 @@ public class Wallpaper
                 Write-Output "`nCanceled"
               }
               1 {
-                [demo.StickyKeys]::EnableHotKey($false, $true)
+                [demo.StickyKeys]::EnableHotKey($true, $true)
               }
               2 {
-                [demo.StickyKeys]::EnableHotKey($true, $true)
+                [demo.StickyKeys]::EnableHotKey($false, $true)
               }
             }
           }
