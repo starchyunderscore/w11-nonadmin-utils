@@ -696,6 +696,7 @@ public class Wallpaper
         Write-Output "2. PowerToys"
         Write-Output "3. Visual Studio Code"
         Write-Output "4. Lapce"
+        Write-Output "5. VirtualBox"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -891,6 +892,9 @@ public class Wallpaper
               $Shortcut.Save()
               Write-Output "`nLapce installed"
             }
+          }
+          5 { # VirtualBox
+            Write-Output "NOT DONE YET"
           }
         }
       } until ($PGram -notmatch "\S")
