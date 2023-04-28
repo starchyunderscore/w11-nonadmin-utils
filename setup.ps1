@@ -462,7 +462,18 @@ public class Wallpaper
             }
           }
           5 { # Transparency effects
-            
+            $Transparency = $Host.UI.PromptForChoice("Trancparency effect choice:", "", @("&Cancel", "&On", "&Off"), 0)
+            switch ($Transparency) {
+              0 {
+                Write-Host "`nCanceled"
+              }
+              1 {
+                Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name 'EnableTransparency' -Value 1
+              }
+              2 {
+                Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name 'EnableTransparency' -Value 0
+              }
+            }
           }
         }
       } until ($Themer -notmatch "\S")
