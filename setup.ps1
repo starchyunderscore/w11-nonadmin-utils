@@ -462,7 +462,7 @@ public class Wallpaper
             }
           }
           5 { # Transparency effects
-            $Transparency = $Host.UI.PromptForChoice("Trancparency effect choice:", "", @("&Cancel", "&On", "&Off"), 0)
+            $Transparency = $Host.UI.PromptForChoice("Trancparency effect choice:", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($Transparency) {
               0 {
                 Write-Host "`nCanceled"
