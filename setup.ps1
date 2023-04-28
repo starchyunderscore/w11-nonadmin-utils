@@ -137,6 +137,7 @@ DO {
         Write-Output "2. Change the background image"
         Write-Output "3. Change mouse trails length"
         Write-Output "4. Change mouse cursor style"
+        Write-Output "5. Transparency effects"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -459,6 +460,9 @@ public class Wallpaper
             } else {
               Write-Output "Canceled"
             }
+          }
+          5 { # Transparency effects
+            
           }
         }
       } until ($Themer -notmatch "\S")
