@@ -21,6 +21,7 @@ These are features that are fully ready.
   - [x] Change the background image.
   - [x] Change mouse trail length.
   - [x] [Change cursor](https://stackoverflow.com/a/60107014)
+  - [x] Enable and disable transparency effects
 
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
@@ -52,7 +53,6 @@ These are features that work, but are imperfect.
 
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
-- [ ] Enable and disable transparency effects
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
 
 # Planned features
@@ -77,7 +77,7 @@ Quick run:
 Open PowerShell and run this command: 
 
 ```
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.08/setup.ps1 | iex
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.09/setup.ps1 | iex
 ```
 
 Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
