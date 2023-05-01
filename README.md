@@ -72,7 +72,7 @@ Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
-Quick run:
+### Quick run:
 
 Open PowerShell and run this command: 
 
@@ -80,7 +80,9 @@ Open PowerShell and run this command:
 iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.09/setup.ps1 | iex
 ```
 
-Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
+---
+
+### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
 
 Open PowerShell and run this command:
 
@@ -88,7 +90,7 @@ Open PowerShell and run this command:
 iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/setup.ps1 | iex
 ```
 
-Run with ability to edit script:
+### Run locally:
 
 Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
 
