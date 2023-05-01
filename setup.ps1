@@ -40,7 +40,7 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
     public uint  cbSize;
     public UInt32 dwFlags;
   }
-  
+
   [Flags]
   public enum StickyKeyFlags : uint {
     AUDIBLEFEEDBACK = 0x00000040,
@@ -70,12 +70,12 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
     RWINLOCKED = 0x00800000
   }
 
-  public static bool IsHotKeyEnabled { 
+  public static bool IsHotKeyEnabled {
     get { return (GetFlags() & StickyKeyFlags.HOTKEYACTIVE) != 0u; }
     set { EnableHotKey(value, false); }
   }
 
-  public static StickyKeyFlags ActiveFlags { 
+  public static StickyKeyFlags ActiveFlags {
     get { return GetFlags(); }
     set { SetFlags(value, false); }
   }
@@ -84,7 +84,7 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
   public static StickyKeyFlags DefaultFlags {
     get { return StickyKeyFlags.AVAILABLE | StickyKeyFlags.HOTKEYACTIVE | StickyKeyFlags.CONFIRMHOTKEY | StickyKeyFlags.HOTKEYSOUND | StickyKeyFlags.INDICATOR | StickyKeyFlags.AUDIBLEFEEDBACK | StickyKeyFlags.TRISTATE | StickyKeyFlags.TWOKEYSOFF; } // 510u
   }
-  
+
   public static void EnableHotKey(bool enable = true, bool persist = false) {
     var skInfo = new STICKYKEYS();
     skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
@@ -465,7 +465,7 @@ public class Wallpaper
             $Transparency = $Host.UI.PromptForChoice("Trancparency effect choice:", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($Transparency) {
               0 {
-                Write-Host "`nCanceled"
+                Write-Output "`nCanceled"
               }
               1 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name 'EnableTransparency' -Value 1
