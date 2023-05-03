@@ -59,7 +59,7 @@ These are features that are not yet in the realease, or are commented out.  They
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++)
+- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++ and some way to run the exe --extract without admin)
 
 ---
 
