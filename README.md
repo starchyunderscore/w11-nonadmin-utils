@@ -54,6 +54,7 @@ These are features that work, but are imperfect.
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
+- [ ] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell) (UNTESTED)
 
 # Planned features
 
@@ -61,7 +62,6 @@ These are features that have no code yet, but are planned for the future. There 
 
 - [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++ and some way to run the exe --extract without admin)
 - [ ] Install [clavier plus](https://github.com/guilryder/clavier-plus)
-- [ ] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell)
 
 ---
 
