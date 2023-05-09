@@ -138,6 +138,7 @@ DO {
         Write-Output "3. Change mouse trails length"
         Write-Output "4. Change mouse cursor style"
         Write-Output "5. Transparency effects"
+        Write-Output "6. Date and time formats"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -474,6 +475,9 @@ public class Wallpaper
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name 'EnableTransparency' -Value 0
               }
             }
+          }
+          6 { # date and time format
+            
           }
         }
       } until ($Themer -notmatch "\S")
