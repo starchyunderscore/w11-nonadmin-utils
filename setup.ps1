@@ -477,7 +477,46 @@ public class Wallpaper
             }
           }
           6 { # date and time format
+            $culture = Get-Culture
+            $ShortDatePattern = Read-Host "`nShort date (leave blank to skip)"
+            $LongDatePattern = Read-Host "`nLong date (leave blank to skip)"
+            $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
+            $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
+            $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
             
+            if ($ShortDatePattern -match "\S") {
+              $culture.DateTimeFormat.ShortDatePattern = $ShortDatePattern
+            }
+            if ($LongDatePattern -match "\S") {
+              $culture.DateTimeFormat.LongDatePattern = $LongDatePattern
+            }
+            if ($ShortTimePattern -match "\S") {
+              $culture.DateTimeFormat.ShortTimePattern = $ShortTimePattern
+            }
+            if ($LongTimePattern -match "\S") {
+              $culture.DateTimeFormat.LongTimePattern = $LongTimePattern
+            }
+            if ($FullDateTimePattern -match "\S") {
+              $culture.DateTimeFormat.FullDateTimePattern = $FullDateTimePattern
+            }
+            
+            Set-Culture $culture
+            <#
+            
+$culture.DateTimeFormat.ShortDatePattern = 'd/MM/yyyy'
+
+
+Relevant date/time properties
+
+You can see the list of existing options by just running $culture.DateTimeFormat (or Get-Culture.DateTimeFormat). The ones you might want to modify are:
+
+FullDateTimePattern
+LongDatePattern
+LongTimePattern
+ShortDatePattern
+ShortTimePattern
+
+            #>
           }
         }
       } until ($Themer -notmatch "\S")
