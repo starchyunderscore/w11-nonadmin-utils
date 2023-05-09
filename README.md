@@ -61,6 +61,7 @@ These are features that have no code yet, but are planned for the future. There 
 
 - [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++ and some way to run the exe --extract without admin)
 - [ ] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+- [ ] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell)
 
 ---
 
