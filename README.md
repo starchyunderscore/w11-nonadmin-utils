@@ -4,7 +4,7 @@ An interactive command line tool to change settings and install programs in wind
 
 ---
 
-See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/GUI-setup.ps1) for progress on the [GUI](https://theitbros.com/powershell-gui-for-scripts/) version
+See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/current/GUI-setup.ps1) for progress on the [GUI](https://theitbros.com/powershell-gui-for-scripts/) version
 
 ---
 
@@ -91,7 +91,7 @@ iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00
 Open PowerShell and run this command:
 
 ```
-iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/setup.ps1 | iex
+iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1 | iex
 ```
 
 ### Run locally:
