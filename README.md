@@ -4,6 +4,10 @@ An interactive command line tool to change settings and install programs in wind
 
 ---
 
+See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/00.02.XX-setup.ps1) for progress on the [GUI](https://theitbros.com/powershell-gui-for-scripts/) version
+
+---
+
 ## WARNINGS:
 
 THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
