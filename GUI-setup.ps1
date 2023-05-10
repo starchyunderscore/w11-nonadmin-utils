@@ -14,7 +14,7 @@ $main_form.AutoSize = $true
 
 # ADD STUFF HERE
 
-
+invoke-expression # TEST TO MAKE SURE THE BOT IS CHECKING THIS FILE
 
 # SHOW FORM
 
