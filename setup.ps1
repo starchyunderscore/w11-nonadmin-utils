@@ -477,7 +477,7 @@ public class Wallpaper
             }
           }
           6 { # date and time format
-            Write-Host "!! CLI VERSION IS CURRENTLY BROKEN !!"
+            Write-Output "!! CLI VERSION IS CURRENTLY BROKEN !!"
             $GUI = $Host.UI.PromptForChoice("There is a native GUI available for this operation, would you like to use it?", "", @("&GUI", "&CLI"), 0)
             switch ($GUI) {
               0 { # GUI
