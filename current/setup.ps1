@@ -477,7 +477,6 @@ public class Wallpaper
             }
           }
           6 { # date and time format
-            Write-Output "!! CLI VERSION IS CURRENTLY BROKEN !!"
             $GUI = $Host.UI.PromptForChoice("There is a native GUI available for this operation, would you like to use it?", "", @("&GUI", "&CLI"), 0)
             switch ($GUI) {
               0 { # GUI
@@ -485,8 +484,10 @@ public class Wallpaper
               }
               1 { # CLI
 #                 $culture = Get-Culture
+                Write-Output "`nd, dd = day`nddd, dddd = day of the week`nM = month`ny = year`n"
                 $ShortDatePattern = Read-Host "`nShort date (leave blank to skip)"
                 $LongDatePattern = Read-Host "`nLong date (leave blank to skip)"
+                Write-Output "`nh = hour`nm = minute`ns = second (long time only)`ntt = A.M. or P.M.`n`nh/H = 12/24 hour`nhh, mm, ss = display leading zero`nh, m, s = do not display leading zero`n"
                 $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
                 $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
 #                 $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
