@@ -23,7 +23,7 @@ function TXT($text, $x, $y, $Style) { # Create text object
 
 # MAIN STUFF
 
-TXT "Not done yet!" 0 0 "Regular"
+TXT -text "!! NOT DONE YET !!" -x 0 -y 0 -style "Regular"
 
 # Show form:
 $main_form.ShowDialog()
