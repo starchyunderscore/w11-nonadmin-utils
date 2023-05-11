@@ -484,28 +484,34 @@ public class Wallpaper
                 intl.cpl
               }
               1 { # CLI
-                $culture = Get-Culture
+#                 $culture = Get-Culture
                 $ShortDatePattern = Read-Host "`nShort date (leave blank to skip)"
                 $LongDatePattern = Read-Host "`nLong date (leave blank to skip)"
                 $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
                 $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
-                $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
+#                 $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
                 if ($ShortDatePattern -match "\S") {
-                  $culture.DateTimeFormat.ShortDatePattern = $ShortDatePattern
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortDate -value "$ShortDatePattern"
+#                   $culture.DateTimeFormat.ShortDatePattern = $ShortDatePattern
                 }
                 if ($LongDatePattern -match "\S") {
-                  $culture.DateTimeFormat.LongDatePattern = $LongDatePattern
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sLongDate -value "$LongDatePattern"
+#                   $culture.DateTimeFormat.LongDatePattern = $LongDatePattern
                 }
                 if ($ShortTimePattern -match "\S") {
-                  $culture.DateTimeFormat.ShortTimePattern = $ShortTimePattern
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortTime -value "$ShortTimePattern"
+#                   $culture.DateTimeFormat.ShortTimePattern = $ShortTimePattern
                 }
                 if ($LongTimePattern -match "\S") {
-                  $culture.DateTimeFormat.LongTimePattern = $LongTimePattern
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sTimeFormat -value "$LongTimePattern"
+#                   $culture.DateTimeFormat.LongTimePattern = $LongTimePattern
                 }
-                if ($FullDateTimePattern -match "\S") {
-                  $culture.DateTimeFormat.FullDateTimePattern = $FullDateTimePattern
-                }
-                Set-Culture $culture
+#                 if ($FullDateTimePattern -match "\S") {
+#                   $culture.DateTimeFormat.FullDateTimePattern = $FullDateTimePattern
+#                 }
+#                 Set-Culture $culture
+                Write-Output "Settings applied - restarting explorer"
+                Get-Process explorer | Stop-Process
               }
             }
           }
