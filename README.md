@@ -65,6 +65,7 @@ These are features that have no code yet, but are planned for the future. There 
 
 - [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++ and some way to run the exe --extract without admin)
 - [ ] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+- [ ] Enable/Disable/Change animation effects
 
 ---
 
