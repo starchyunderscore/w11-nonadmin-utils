@@ -26,6 +26,7 @@ These are features that are fully ready.
   - [x] Change mouse trail length.
   - [x] [Change cursor](https://stackoverflow.com/a/60107014)
   - [x] Enable and disable transparency effects
+  - [ ] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell)
 
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
@@ -58,7 +59,6 @@ These are features that work, but are imperfect.
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
-- [ ] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell) (UNTESTED)
 
 # Planned features
 
@@ -83,7 +83,7 @@ Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "M
 Open PowerShell and run this command: 
 
 ```
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.09/setup.ps1 | iex
+iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.10/setup.ps1 | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
