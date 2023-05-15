@@ -26,8 +26,7 @@ These are features that are fully ready.
   - [x] Change mouse trail length.
   - [x] [Change cursor](https://stackoverflow.com/a/60107014)
   - [x] Enable and disable transparency effects
-  - [x] [Change date and time format](https://superuser.com/questions/1201188/how-do-i-change-date-time-format-via-command-prompt-powershell)
-
+  - [x] Change date and time format
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
   - [x] Unpin chat, widgets, and search from the taskbar.
