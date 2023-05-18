@@ -684,6 +684,7 @@ public class Wallpaper
             } until ($Tpins -notmatch "\S")
           }
           4 {
+            Write-Output "`n!!!`nDOES NOT WORK`n!!!`n"
             $OldNewTb = $Host.UI.PromptForChoice("Do you want the old or new taskbar", "", @("&Cancel", "&Old", "&New"), 0)
             switch ($OldNewTb) {
               0 { # Canceled
