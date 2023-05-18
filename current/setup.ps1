@@ -513,7 +513,7 @@ public class Wallpaper
                 }
               }
               2 { # Taskbar Display
-                Write-Output "This only works with the new taskbar on versions newer than 22H2. If you are on 22H2 or 21H2, first enable the old taskbar in `"Change taskbar settings > Use old taskbar`""
+                Write-Output "This only works with the new taskbar on versions newer than 22H2."
                 $longTime = $Host.UI.PromptForChoice("Show long time in taskbar?", "", @("&Cancel", "&Show", "&Hide"), 0)
                 switch ($longTime) {
                   0 { # Cancel
@@ -540,7 +540,7 @@ public class Wallpaper
         Write-Output "`n1. Move the start menu"
         Write-Output "2. Move the taskbar"
         Write-Output "3. Pin and unpin items"
-        Write-Output "4. Use old taskbar"
+        Write-Output "4. Use old start menu"
         # Prompt user for choice
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
@@ -689,17 +689,17 @@ public class Wallpaper
               0 { # Canceled
                 Write-Output "Canceled"
               }
-              1 { # Old taskbar
+              1 { # Old start menu
                 try {
-                  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 1
+                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode." -Value 1
                 } catch {
-                  New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 1
+                  New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode." -Value 1
                 }
                 Get-Process explorer | Stop-Process
               }
               2 { # New taskbar
                 try {
-                  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 0
+                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode." -Value 0
                   Get-Process explorer | Stop-Process
                 } catch {
                   Write-Output "" # No key is the same as one set to 0
