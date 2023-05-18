@@ -510,7 +510,6 @@ public class Wallpaper
                       Write-Output "Settings applied - restarting explorer"
                       Get-Process explorer | Stop-Process
                     }
-                  }
                   2 { # Show long time in taskbar
                     $longTime = $Host.UI.PromptForChoice("Show long time in taskbar?", "", @("&Cancel", "&Show", "&Hide"), 0)
                     switch ($longTime) {
