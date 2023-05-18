@@ -479,9 +479,9 @@ public class Wallpaper
           6 { # date and time format
             
             $op = $Host.UI.PromptForChoice("What part of the time would you like to modify", "", @("&Cancel", "&Formats", "&Taskbar Display"), 0)
-            switch (op) {
+            switch ($op) {
               0 { # Cancel
-                
+                Write-Output "Canceled"
               }
               1 { # Formats
                 $GUI = $Host.UI.PromptForChoice("There is a native GUI available for this operation, would you like to use it?", "", @("&GUI", "&CLI"), 0)
@@ -496,27 +496,18 @@ public class Wallpaper
                     Write-Output "`nh = hour`nm = minute`ns = second (long time only)`ntt = A.M. or P.M.`n`nh/H = 12/24 hour`nhh, mm, ss = display leading zero`nh, m, s = do not display leading zero`n"
                     $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
                     $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
-    #                 $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
                     if ($ShortDatePattern -match "\S") {
                       Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortDate -value "$ShortDatePattern"
-    #                   $culture.DateTimeFormat.ShortDatePattern = $ShortDatePattern
                     }
                     if ($LongDatePattern -match "\S") {
                       Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sLongDate -value "$LongDatePattern"
-    #                   $culture.DateTimeFormat.LongDatePattern = $LongDatePattern
                     }
                     if ($ShortTimePattern -match "\S") {
                       Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortTime -value "$ShortTimePattern"
-    #                   $culture.DateTimeFormat.ShortTimePattern = $ShortTimePattern
                     }
                     if ($LongTimePattern -match "\S") {
                       Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sTimeFormat -value "$LongTimePattern"
-    #                   $culture.DateTimeFormat.LongTimePattern = $LongTimePattern
                     }
-    #                 if ($FullDateTimePattern -match "\S") {
-    #                   $culture.DateTimeFormat.FullDateTimePattern = $FullDateTimePattern
-    #                 }
-    #                 Set-Culture $culture
                     Write-Output "Settings applied - restarting explorer"
                     Get-Process explorer | Stop-Process
                   }
