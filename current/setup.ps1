@@ -477,58 +477,45 @@ public class Wallpaper
             }
           }
           6 { # date and time format
-            DO {
-              Write-Output "`n1. Change formats"
-              Write-Output "2. Show long time in taskbar"
-              $op = Read-Host "`nSelect an option from the list above or leave blank to exit"
-              switch (op) {
-                1 { # change formats
-                  $GUI = $Host.UI.PromptForChoice("There is a native GUI (with more options) available for this operation, would you like to use it?", "", @("&GUI", "&CLI"), 0)
-                  switch ($GUI) {
-                    0 { # GUI
-                      intl.cpl
-                    }
-                    1 { # CLI
-                      Write-Output "`nd, dd = day`nddd, dddd = day of the week`nM = month`ny = year`n"
-                      $ShortDatePattern = Read-Host "`nShort date (leave blank to skip)"
-                      $LongDatePattern = Read-Host "`nLong date (leave blank to skip)"
-                      Write-Output "`nh = hour`nm = minute`ns = second (long time only)`ntt = A.M. or P.M.`n`nh/H = 12/24 hour`nhh, mm, ss = display leading zero`nh, m, s = do not display leading zero`n"
-                      $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
-                      $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
-                      if ($ShortDatePattern -match "\S") {
-                        Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortDate -value "$ShortDatePattern"
-                      }
-                      if ($LongDatePattern -match "\S") {
-                        Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sLongDate -value "$LongDatePattern"
-                      }
-                      if ($ShortTimePattern -match "\S") {
-                        Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortTime -value "$ShortTimePattern"
-                      }
-                      if ($LongTimePattern -match "\S") {
-                        Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sTimeFormat -value "$LongTimePattern"
-                      }
-                      Write-Output "Settings applied - restarting explorer"
-                      Get-Process explorer | Stop-Process
-                    }
-                  }
-                  2 { # Show long time in taskbar
-                    $longTime = $Host.UI.PromptForChoice("Show long time in taskbar?", "", @("&Cancel", "&Show", "&Hide"), 0)
-                    switch ($longTime) {
-                      0 { # Cancel
-                        Write-Output "Canceled"
-                      }
-                      1 { # Show long time
-                        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 1
-                      }
-                      2 { # Show short time
-                        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 0
-                      }
-                    }
-                  }
-                } # HELP
+            $GUI = $Host.UI.PromptForChoice("There is a native GUI available for this operation, would you like to use it?", "", @("&GUI", "&CLI"), 0)
+            switch ($GUI) {
+              0 { # GUI
+                intl.cpl
               }
-            } until ($op -notmatch "\S")
-          }     
+              1 { # CLI
+#                 $culture = Get-Culture
+                Write-Output "`nd, dd = day`nddd, dddd = day of the week`nM = month`ny = year`n"
+                $ShortDatePattern = Read-Host "`nShort date (leave blank to skip)"
+                $LongDatePattern = Read-Host "`nLong date (leave blank to skip)"
+                Write-Output "`nh = hour`nm = minute`ns = second (long time only)`ntt = A.M. or P.M.`n`nh/H = 12/24 hour`nhh, mm, ss = display leading zero`nh, m, s = do not display leading zero`n"
+                $ShortTimePattern = Read-Host "`nShort time (leave blank to skip)"
+                $LongTimePattern = Read-Host "`nLong time (leave blank to skip)"
+#                 $FullDateTimePattern = Read-Host "`nFull datetime (leave blank to skip)"
+                if ($ShortDatePattern -match "\S") {
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortDate -value "$ShortDatePattern"
+#                   $culture.DateTimeFormat.ShortDatePattern = $ShortDatePattern
+                }
+                if ($LongDatePattern -match "\S") {
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sLongDate -value "$LongDatePattern"
+#                   $culture.DateTimeFormat.LongDatePattern = $LongDatePattern
+                }
+                if ($ShortTimePattern -match "\S") {
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sShortTime -value "$ShortTimePattern"
+#                   $culture.DateTimeFormat.ShortTimePattern = $ShortTimePattern
+                }
+                if ($LongTimePattern -match "\S") {
+                  Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sTimeFormat -value "$LongTimePattern"
+#                   $culture.DateTimeFormat.LongTimePattern = $LongTimePattern
+                }
+#                 if ($FullDateTimePattern -match "\S") {
+#                   $culture.DateTimeFormat.FullDateTimePattern = $FullDateTimePattern
+#                 }
+#                 Set-Culture $culture
+                Write-Output "Settings applied - restarting explorer"
+                Get-Process explorer | Stop-Process
+              }
+            }
+          }
         }
       } until ($Themer -notmatch "\S")
     }
