@@ -513,6 +513,7 @@ public class Wallpaper
                 }
               }
               2 { # Taskbar Display
+                Write-Output "This only works with the new taskbar on versions newer than 22H2. If you are on 22H2 or 21H2, first enable the old taskbar in `"Change taskbar settings > Use old taskbar`""
                 $longTime = $Host.UI.PromptForChoice("Show long time in taskbar?", "", @("&Cancel", "&Show", "&Hide"), 0)
                 switch ($longTime) {
                   0 { # Cancel
@@ -520,9 +521,11 @@ public class Wallpaper
                   }
                   1 { # Show long time
                     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 1
+                    Get-Process explorer | Stop-Process
                   }
                   2 { # Show short time
                     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 0
+                    Get-Process explorer | Stop-Process
                   }
                 }
               }
@@ -537,6 +540,7 @@ public class Wallpaper
         Write-Output "`n1. Move the start menu"
         Write-Output "2. Move the taskbar"
         Write-Output "3. Pin and unpin items"
+        Write-Output "4. Use old taskbar"
         # Prompt user for choice
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
@@ -678,6 +682,30 @@ public class Wallpaper
                 }
               }
             } until ($Tpins -notmatch "\S")
+          }
+          4 {
+            $OldNewTb = $Host.UI.PromptForChoice("Do you want the old or new taskbar", "", @("&Cancel", "&Old", "&New"), 0)
+            switch ($OldNewTb) {
+              0 { # Canceled
+                Write-Output "Canceled"
+              }
+              1 { # Old taskbar
+                try {
+                  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 1
+                } catch {
+                  New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 1
+                }
+                Get-Process explorer | Stop-Process
+              }
+              2 { # New taskbar
+                try {
+                  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell\Update\Packages" -Name "UndockingDisabled" -Value 0
+                  Get-Process explorer | Stop-Process
+                } catch {
+                  Write-Output "" # No key is the same as one set to 0
+                }
+              }
+            }
           }
         }
       } until ($Tbar -notmatch "\S")
