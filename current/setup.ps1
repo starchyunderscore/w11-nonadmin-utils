@@ -525,6 +525,7 @@ public class Wallpaper
                       }
                     }
                   }
+                } # HELP
               }
             } until ($op -notmatch "\S")
           }     
