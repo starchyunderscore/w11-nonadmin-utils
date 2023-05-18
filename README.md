@@ -55,9 +55,11 @@ These are features that work, but are imperfect.
 
 ## Alpha features
 
-These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time.
+These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time. There is no garuntee that they will stay in the script.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
+- [ ] Use long time in taskbar (may only work on versions newer than 22H2)
+- [ ] Use old start menu (broken)
 
 # Planned features
 
