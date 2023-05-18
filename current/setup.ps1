@@ -477,7 +477,6 @@ public class Wallpaper
             }
           }
           6 { # date and time format
-            
             $op = $Host.UI.PromptForChoice("What part of the time would you like to modify", "", @("&Cancel", "&Formats", "&Taskbar Display"), 0)
             switch ($op) {
               0 { # Cancel
