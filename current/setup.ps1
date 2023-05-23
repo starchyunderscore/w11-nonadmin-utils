@@ -151,14 +151,14 @@ DO {
               1 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0
-                Write-Output "`nDark mode applied, restarting explorer."
-                Get-Process explorer | Stop-Process
+                Write-Output "`nDark mode applied, attempting to restart explorer."
+                try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
               }
               2 {
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
                 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 1
-                Write-Output "`nLight mode applied, restarting explorer."
-                Get-Process explorer | Stop-Process
+                Write-Output "`nLight mode applied, attempting to restart explorer."
+                try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
               }
             }
           }
@@ -196,8 +196,8 @@ public class Wallpaper
             if ($Mtrail -In 0..7) {
               # https://www.makeuseof.com/windows-mouse-trail-enable-disable/#enable-or-disable-mouse-pointer-trails-using-the-registry-editor
               set-itemProperty 'hkcu:\Control Panel\Mouse' -name MouseTrails -value $Mtrail
-              Write-Output "Mouse trail set to $Mtrail, restarting explorer"
-              Get-Process explorer | Stop-Process
+              Write-Output "Mouse trail set to $Mtrail, attempting to restart explorer"
+              try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
             }
           }
           4 { # Cursor style
@@ -507,8 +507,8 @@ public class Wallpaper
                     if ($LongTimePattern -match "\S") {
                       Set-ItemProperty -Path "HKCU:\Control Panel\International" -name sTimeFormat -value "$LongTimePattern"
                     }
-                    Write-Output "Settings applied - restarting explorer"
-                    Get-Process explorer | Stop-Process
+                    Write-Output "Settings applied, attempting to restart explorer"
+                    try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
                   }
                 }
               }
@@ -521,11 +521,11 @@ public class Wallpaper
                   }
                   1 { # Show long time
                     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 1
-                    Get-Process explorer | Stop-Process
+                    try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
                   }
                   2 { # Show short time
                     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name "ShowSecondsInSystemClock" -value 0
-                    Get-Process explorer | Stop-Process
+                    try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
                   }
                 }
               }
@@ -579,8 +579,8 @@ public class Wallpaper
               $Settings = (Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings).Settings
               $Settings[12] = $bit
               Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3 -Name Settings -Value $Settings
-              Write-Output "`nTaskbar moved, restarting explorer."
-              Get-Process explorer | Stop-Process
+              Write-Output "`nTaskbar moved, attempting to restart explorer."
+              try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
           }
           3 { # Pin and unpin items ( https://github.com/Ccmexec/PowerShell/blob/master/Customize%20TaskBar%20and%20Start%20Windows%2011/CustomizeTaskbar.ps1 )
             DO {
@@ -696,12 +696,12 @@ public class Wallpaper
                 } catch {
                   New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode" -Value 1
                 }
-                Get-Process explorer | Stop-Process
+                try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
               }
               2 { # New taskbar
                 try {
                   Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode" -Value 0
-                  Get-Process explorer | Stop-Process
+                  try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
                 } catch {
                   Write-Output "" # No key is the same as one set to 0
                 }
