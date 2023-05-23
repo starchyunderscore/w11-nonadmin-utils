@@ -74,11 +74,11 @@ These are features that have no code yet, but are planned for the future. There 
 
 ## To use the script
 
-If you have admin rights, open an admin PowerShell window and create a system restore point:
+If you have admin rights, open an admin PowerShell window and create a system restore point, replacing the drive name as needed:
 
 ```PowerShell
 Enable-ComputerRestore -Drive "C:\"
-Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
+Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
 ### Quick run:
@@ -86,7 +86,7 @@ Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "M
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.11/setup.ps1 | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.11/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
@@ -94,7 +94,7 @@ iwr https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00
 Open PowerShell and run this command:
 
 ```PowerShell
-iwr https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1 | iex
+iwr "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | iex
 ```
 
 ### Run locally:
