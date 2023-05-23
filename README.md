@@ -76,7 +76,7 @@ These are features that have no code yet, but are planned for the future. There 
 
 If you have admin rights, open an admin PowerShell window and create a system restore point:
 
-```
+```PowerShell
 Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "noadmin utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
