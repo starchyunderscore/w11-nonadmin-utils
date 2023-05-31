@@ -180,8 +180,7 @@ public class Wallpaper
 "@
             Add-Type -TypeDefinition $setwallpapersrc
 
-            Write-Output "`nTo get the image path of a file, right click it and select `"Copy as path`""
-            Write-Output "`nMake sure your image path is in quotes!`n"
+            Write-Output "`nTo get the image path of a file, right click it and select `"Copy as path`"`n`nMake sure your image path is in quotes!`n"
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
 
             if($IMGPath -notmatch "\S") {
@@ -540,7 +539,6 @@ public class Wallpaper
         Write-Output "`n1. Move the start menu"
         Write-Output "2. Move the taskbar"
         Write-Output "3. Pin and unpin items"
-        Write-Output "4. Use old start menu"
         # Prompt user for choice
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
@@ -682,31 +680,6 @@ public class Wallpaper
                 }
               }
             } until ($Tpins -notmatch "\S")
-          }
-          4 {
-            Write-Output "`n!!!`nDOES NOT WORK`n!!!`n"
-            $OldNewTb = $Host.UI.PromptForChoice("Do you want the old or new taskbar", "", @("&Cancel", "&Old", "&New"), 0)
-            switch ($OldNewTb) {
-              0 { # Canceled
-                Write-Output "Canceled"
-              }
-              1 { # Old start menu
-                try {
-                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode" -Value 1
-                } catch {
-                  New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode" -Value 1
-                }
-                try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
-              }
-              2 { # New taskbar
-                try {
-                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_ShowClassicMode" -Value 0
-                  try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
-                } catch {
-                  Write-Output "" # No key is the same as one set to 0
-                }
-              }
-            }
           }
         }
       } until ($Tbar -notmatch "\S")
