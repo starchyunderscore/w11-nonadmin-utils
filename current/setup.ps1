@@ -767,6 +767,7 @@ public class Wallpaper
         Write-Output "3. Visual Studio Code"
         Write-Output "4. Lapce"
         Write-Output "5. VirtualBox"
+        Write-Output "6. Clavier+"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -965,6 +966,16 @@ public class Wallpaper
           }
           5 { # VirtualBox
             Write-Output "NOT DONE YET"
+          }
+          6 { # Clavier+
+            $InstallClavier = $Host.UI.PromptForChoice("Install Clavier+?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallClavier -eq 1) {
+              $latestClavier = Invoke-WebRequest "https://api.github.com/repos/guilryder/clavier-plus/releases/latest" | ConvertFrom-Json
+              $latestVersion = $latestClavier.tag_name.Substring(0)
+              Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination ".\ClavierPlus.exe"
+              .\ClavierPlus.exe | Out-Null
+              rm .\ClavierPlus.exe
+            }
           }
         }
       } until ($PGram -notmatch "\S")
