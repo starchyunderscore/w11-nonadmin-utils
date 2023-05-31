@@ -57,17 +57,17 @@ These are features that work, but are imperfect.
 
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time. There is no garuntee that they will stay in the script.
 
-- [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
+- [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+- [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
 
 # Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++ and some way to run the exe --extract without admin)
-- [ ] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++) (need to find some way to run the exe --extract without admin, perhaps do it on another machine and zip it for distribution?)
 - [ ] Enable/Disable/Change animation effects
-- [ ] Install [kalker](https://github.com/PaddiM8/kalker)
+- [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
 
 ---
 
