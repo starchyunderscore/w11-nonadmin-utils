@@ -59,7 +59,6 @@ These are features that are not yet in the realease, or are commented out.  They
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++ to be installed, but that cannot be installed without admin. Working on a fix.)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
-- [ ] Use old start menu (broken)
 
 # Planned features
 
