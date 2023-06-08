@@ -42,6 +42,7 @@ These are features that are fully ready.
   - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
   - [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
   - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
+  - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
 
 - [x] Command line utilities
   - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
@@ -57,7 +58,6 @@ These are features that work, but are imperfect.
 
 These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time. There is no garuntee that they will stay in the script.
 
-- [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
 
@@ -85,7 +85,7 @@ Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointTy
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.11/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.12/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
