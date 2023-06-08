@@ -1,18 +1,6 @@
 # w11-nonadmin-utils
 
-An interactive command line tool to change settings and install programs in windows 11, without needing admin rights.
-
----
-
-See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/current/GUI-setup.ps1) for progress on the [GUI](https://theitbros.com/powershell-gui-for-scripts/) version
-
----
-
-## WARNINGS:
-
-THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
-
-This script is made for windows 11, it may work on other versions, or it may not
+w11-nonadmin-utils is an interactive command line tool to change settings and install programs on Windows 11, without needing acess to an administrator account or the settings app. This is useful in cases where you are a restricted user, like on a school computer, but still want to set things up in a way that is comfortable for you.
 
 ---
 
@@ -61,13 +49,21 @@ These are features that are not yet in the realease, or are commented out.  They
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
 
-# Planned features
+## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
 - [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++) (need to find some way to run the exe --extract without admin, perhaps do it on another machine and zip it for distribution?)
 - [ ] Enable/Disable/Change animation effects
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
+
+---
+
+## WARNINGS:
+
+THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
+
+This script is made for windows 11, it may work on other versions, or it may not
 
 ---
 
@@ -105,3 +101,7 @@ Run the below command in PowerShell, replacing the path to `setup.ps1` as needed
 ```PowerShell
 PowerShell -ep Bypass -File ~\Downloads\setup.ps1
 ```
+
+---
+
+See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/current/GUI-setup.ps1) for progress on the GUI version
