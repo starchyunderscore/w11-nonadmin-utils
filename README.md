@@ -23,7 +23,7 @@ These are features that are fully ready.
 
 - [x] Input settings:
   - [x] Set the mouse speed.
-  - [x] Change the keyboard layout (only Dvorak and Querty for now)
+  - [x] Change the keyboard layout (only Dvorak and Qwerty for now)
   - [x] [Disable sticky keys prompt](https://stackoverflow.com/questions/71854200/disable-shift-stickykey-shortcut)
 
 - [x] Install programs:
