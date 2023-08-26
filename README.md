@@ -38,22 +38,22 @@ These are features that are fully ready.
 
 ## Beta features
 
-These are features that work, but are imperfect.
+These are features are in the release, but do not work entirely as intended.
 
 - [x] Uninstall programs (Some programs may need admin to uninstall.) (Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
 
 ## Alpha features
 
-These are features that are not yet in the realease, or are commented out.  They can be tried by copying the code or uncommenting them. These may be removed at any time. There is no garuntee that they will stay in the script.
+These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
+- [ ] Install [Cygwin64](https://www.cygwin.com/) 
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Install [Oracle VM VirtualBox](https://www.virtualbox.org/) (needs visual c++) (need to find some way to run the exe --extract without admin, perhaps do it on another machine and zip it for distribution?)
 - [ ] Enable/Disable/Change animation effects
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
 
