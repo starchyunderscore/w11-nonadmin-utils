@@ -766,7 +766,7 @@ public class Wallpaper
         Write-Output "2. PowerToys"
         Write-Output "3. Visual Studio Code"
         Write-Output "4. Lapce"
-        Write-Output "5. VirtualBox"
+        Write-Output "5. Cygwin64"
         Write-Output "6. Clavier+"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
@@ -964,8 +964,19 @@ public class Wallpaper
               Write-Output "`nLapce installed"
             }
           }
-          5 { # VirtualBox
-            Write-Output "NOT DONE YET"
+          5 { # Cygwin64
+          Write-Output "Licensing information: https://www.cygwin.com/licensing.html"
+          $InstallCygwin64 = $Host.UI.PromptForChoice("Install Cygwin64?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallCygwin64) {
+              $remoteFile = "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=0"
+              Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip"
+              Expand-Archive ~\Cygwin64.zip | Out-Null
+              rm ~\Cygwin64.zip
+              $WshShell = New-Object -ComObject WScript.WshShell
+              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Cygwin64.lnk")
+              $Shortcut.TargetPath = "$HOME\Cygwin64\bin\mintty.exe"
+              $Shortcut.Save()
+            }
           }
           6 { # Clavier+
             $InstallClavier = $Host.UI.PromptForChoice("Install Clavier+?", "", @("&Cancel", "&Install"), 0)
