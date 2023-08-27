@@ -686,7 +686,7 @@ public class Wallpaper
             $searchEnable = $Host.UI.PromptForChoice("Web search in start menu", "", @("&Cancel", "&Disable", "&Enable"), 0)
             switch ($searchEnable) {
               0 { # cancel
-                
+                Write-Output "`nCanceled"
               }
               1 { # disable
                 try {
