@@ -49,6 +49,7 @@ These are features that are not yet in the realease. These features may not work
 - [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
 - [ ] Install [Cygwin64](https://www.cygwin.com/) 
+- [ ] Disable web search in start menu
 
 ## Planned features
 
