@@ -539,6 +539,7 @@ public class Wallpaper
         Write-Output "`n1. Move the start menu"
         Write-Output "2. Move the taskbar"
         Write-Output "3. Pin and unpin items"
+        Write-output "4. Disable web search in start menu"
         # Prompt user for choice
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
@@ -680,6 +681,28 @@ public class Wallpaper
                 }
               }
             } until ($Tpins -notmatch "\S")
+          }
+          4 { # Web search in start menu
+            $searchEnable = $Host.UI.PromptForChoice("Web search in start menu", "", @("&Cancel", "&Disable", "&Enable"), 0)
+            switch ($searchEnable) {
+              0 { # cancel
+                
+              }
+              1 { # disable
+                try {
+                  Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'BingSearchEnabled' -Value 0
+                } catch {
+                  New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord
+                }
+              }
+              2 { # enable
+                try {
+                  Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name 'BingSearchEnabled' -Value 1
+                } catch {
+                  Write-Error "" # No action required
+                }
+              }
+            }
           }
         }
       } until ($Tbar -notmatch "\S")
