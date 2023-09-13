@@ -4,11 +4,16 @@ function CREATE_BIN {
   if (!(Test-Path "$HOME\bin")) {
     Write-Output "`nBin does not exist. Creating."
     mkdir $HOME\bin
-    $env:Path += "$HOME\bin"
+    $env:Path += ";$HOME\bin;"
     if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
       New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
     }
     Write-Output ';$env:Path += "$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
+    $CurrentPolicy = Get-ExecutionPolicy -Scope CurrentUser
+    if ($CurrentPolicy -eq "Default" -or $CurrentPolicy -eq "AllSigned" -or $CurrentPolicy -eq "Restricted" -or $CurrentPolicy -eq "Undefined") {
+      Write-Output "`nExecution policy needs to change to allow bin to work properly"
+      Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    }
     Write-Output "`nBin created"
   }
 }
