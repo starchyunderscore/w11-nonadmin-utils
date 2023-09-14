@@ -50,7 +50,7 @@ These are features that are not yet in the realease. These features may not work
 - [ ] Use long time in taskbar (may only work on versions newer than 22H2)
 - [ ] Install [Cygwin64](https://www.cygwin.com/) 
 - [ ] Disable web search in start menu
-- [ ] Install [NTop](https://github.com/gsass1/NTop)
+- [ ] Install [ntop](https://github.com/gsass1/NTop)
 - [ ] Install [btop4win](https://github.com/aristocratos/btop4win)
 
 ## Planned features
