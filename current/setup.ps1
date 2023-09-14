@@ -1091,27 +1091,36 @@ public class Wallpaper
             }
           }
           2 { # Get fastfetch
-            CREATE_BIN
-            # Actually install it
-            Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/2.0.5/fastfetch-2.0.5-Win64.zip" -destination ".\fastfetch.zip"
-            Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
-            mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
-            rm ".\fastfetch.zip"
-            rm ".\fastfetch" -r
+            $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              CREATE_BIN
+              # Actually install it
+              Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/2.0.5/fastfetch-2.0.5-Win64.zip" -destination ".\fastfetch.zip"
+              Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
+              mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
+              rm ".\fastfetch.zip"
+              rm ".\fastfetch" -r
+            }
           }
           3 { # Get HTop
-            CREATE_BIN
-            Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
+            $Install = $Host.UI.PromptForChoice("Install htop?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              CREATE_BIN
+              Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
+            }
           }
           4 { # Get btop
-            CREATE_BIN
-            Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
-            Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
-            $WshShell = New-Object -ComObject WScript.WshShell
-            $Shortcut = $WshShell.CreateShortcut("$HOME\bin\btop.lnk")
-            $Shortcut.TargetPath = "$HOME\bin\btop\btop4win\btop4win.exe"
-            $Shortcut.Save()
-            rm "$HOME\bin\btop.zip"
+            $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              CREATE_BIN
+              Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
+              Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
+              $WshShell = New-Object -ComObject WScript.WshShell
+              $Shortcut = $WshShell.CreateShortcut("$HOME\bin\btop.lnk")
+              $Shortcut.TargetPath = "$HOME\bin\btop\btop4win\btop4win.exe"
+              $Shortcut.Save()
+              rm "$HOME\bin\btop.zip"
+            }
           }
         }
       } until ($CLUtils -notmatch "\S")
