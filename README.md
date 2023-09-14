@@ -51,6 +51,7 @@ These are features that are not yet in the realease. These features may not work
 - [ ] Install [Cygwin64](https://www.cygwin.com/) 
 - [ ] Disable web search in start menu
 - [ ] [NTop](https://github.com/gsass1/NTop)
+- [ ] [btop4win](https://github.com/aristocratos/btop4win)
 
 ## Planned features
 
@@ -59,7 +60,6 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] Enable/Disable/Change animation effects
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
 - [ ] All of [this stuff](https://www.tumblr.com/cinna-bunnie/726047846537773056/for-the-device-setup)
-- [ ] [btop4win](https://github.com/aristocratos/btop4win)
 
 ---
 
