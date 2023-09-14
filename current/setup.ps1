@@ -1000,7 +1000,7 @@ public class Wallpaper
               Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip"
               Expand-Archive ~\Cygwin64.zip | Out-Null
               rm ~\Cygwin64.zip
-              $WshShell = New-Object -ComObject WScript.WshShell
+              $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Cygwin64.lnk")
               $Shortcut.TargetPath = "$HOME\Cygwin64\bin\mintty.exe"
               $Shortcut.Save()
@@ -1115,7 +1115,7 @@ public class Wallpaper
               CREATE_BIN
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
-              $WshShell = New-Object -ComObject WScript.WshShell
+              $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$HOME\bin\btop.lnk")
               $Shortcut.TargetPath = "$HOME\bin\btop\btop4win\btop4win.exe"
               $Shortcut.Save()
