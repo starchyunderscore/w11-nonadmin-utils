@@ -1048,7 +1048,9 @@ public class Wallpaper
       DO {
         # List options
         Write-Output "`n1. Add items to bin"
-        Write-Output "2. Install fastfetch" # May be replaced in the future I just wanted there to be more than one item here
+        Write-Output "2. Install fastfetch"
+        Write-Output "3. Install HTop"
+        Write-Output "4. Install HTop"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1091,11 +1093,18 @@ public class Wallpaper
           2 { # Get fastfetch
             CREATE_BIN
             # Actually install it
-            Start-BitsTransfer -source "https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.3/fastfetch-1.10.3-Win64.zip" -destination ".\fastfetch.zip"
+            Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/2.0.5/fastfetch-2.0.5-Win64.zip" -destination ".\fastfetch.zip"
             Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
             mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
             rm ".\fastfetch.zip"
             rm ".\fastfetch" -r
+          }
+          3 { # Get HTop
+            CREATE_BIN
+            Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
+          }
+          4 { # Get btop
+            Write-Output "not yet"
           }
         }
       } until ($CLUtils -notmatch "\S")
