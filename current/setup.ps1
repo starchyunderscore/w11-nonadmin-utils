@@ -1058,9 +1058,7 @@ public class Wallpaper
             # THIS WHOLE THING NEEDS TO BE REWORDED
             CREATE_BIN
             # Inform user how to exit
-            Write-Output "Leaving either prompt blank will not add anything"
-            # Prompt user
-            $BinAddItem = Read-Host "`nInput path of item"
+            $BinAddItem = Read-Host "`nInput path of item (leave blank to exit)"
             if ($BinAddItem -notmatch "\S") {
               Write-Output "`nCanceled`n"
             } elseif (!(Test-Path $BinAddItem)) {
@@ -1075,16 +1073,13 @@ public class Wallpaper
                   mv $BinAddItem "$HOME\bin"
                 }
                 2 { # Link Item
-                  $BinAddName = Read-Host "`nInput command you wish to have call item" # REWORD THIS
+                  $BinAddName = Read-Host "`nInput command you wish to have call item (leave blank to exit)" # REWORD THIS
                   if ($BinAddName -notmatch "\S") {
                     Write-Output "Canceled"
-                  } elseif (Test-Path -Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path -Path "$HOME\bin\$BinAddName`.ps1" -Or Test-Path -Path "$HOME\bin\$BinAddName`.lnk") {
+                  } elseif (Test-Path -Path "$HOME\bin\$BinAddName`.exe" -Or Test-Path -Path "$HOME\bin\$BinAddName`.ps1") {
                     Write-Output "Item with that name already exists in bin"
                   } else {
-                    $WshShell = New-Object -ComObject WScript.Shell
-                    $Shortcut = $WshShell.CreateShortcut("$HOME\bin\$BinAddName.lnk")
-                    $Shortcut.TargetPath = "$BinAddItem"
-                    $Shortcut.Save()
+                    Write-Output "$BinAddItem" > "$HOME\bin\$BinAddName`.ps1"
                   }
                 }
               }
@@ -1115,10 +1110,7 @@ public class Wallpaper
               CREATE_BIN
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
-              $WshShell = New-Object -ComObject WScript.Shell
-              $Shortcut = $WshShell.CreateShortcut("$HOME\bin\btop.lnk")
-              $Shortcut.TargetPath = "$HOME\bin\btop\btop4win\btop4win.exe"
-              $Shortcut.Save()
+              Write-Output "$HOME\bin\btop\btop4win\btop4win.exe" > "$HOME\bin\btop.ps1"
               rm "$HOME\bin\btop.zip"
             }
           }
