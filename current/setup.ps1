@@ -1049,8 +1049,8 @@ public class Wallpaper
         # List options
         Write-Output "`n1. Add items to bin"
         Write-Output "2. Install fastfetch"
-        Write-Output "3. Install HTop"
-        Write-Output "4. Install HTop"
+        Write-Output "3. Install ntop"
+        Write-Output "4. Install btop"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1103,7 +1103,7 @@ public class Wallpaper
             }
           }
           3 { # Get HTop
-            $Install = $Host.UI.PromptForChoice("Install htop?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
