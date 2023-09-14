@@ -1104,7 +1104,14 @@ public class Wallpaper
             Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
           }
           4 { # Get btop
-            Write-Output "not yet"
+            CREATE_BIN
+            Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
+            Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
+            $WshShell = New-Object -ComObject WScript.WshShell
+            $Shortcut = $WshShell.CreateShortcut("$HOME\bin\btop.lnk")
+            $Shortcut.TargetPath = "$HOME\bin\btop\btop4win\btop4win.exe"
+            $Shortcut.Save()
+            rm "$HOME\bin\btop.zip"
           }
         }
       } until ($CLUtils -notmatch "\S")
