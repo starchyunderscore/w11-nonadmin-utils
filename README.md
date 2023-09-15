@@ -53,7 +53,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-Nothing here at the moment. Check back later.
+^(Nothing here at the moment. Check back later.)
 
 ## Planned features
 
