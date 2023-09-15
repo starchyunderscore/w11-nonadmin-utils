@@ -1089,8 +1089,9 @@ public class Wallpaper
             $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              # Actually install it
-              Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/2.0.5/fastfetch-2.0.5-Win64.zip" -destination ".\fastfetch.zip"
+              $getLatest = Invoke-WebRequest "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(0)
+              Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
               Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
               mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
               rm ".\fastfetch.zip"
@@ -1101,14 +1102,18 @@ public class Wallpaper
             $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/v0.3.4/ntop.exe" -destination "$HOME\bin\ntop.exe"
+              $getLatest = Invoke-WebRequest "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(0)
+              Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/$latest/ntop.exe" -destination "$HOME\bin\ntop.exe"
             }
           }
           4 { # Get btop
             $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/v1.0.4/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
+              $getLatest = Invoke-WebRequest "https://api.github.com/repos/aristocratos/btop4win/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(0)
+              Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/$latest/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
               Write-Output "$HOME\bin\btop\btop4win\btop4win.exe" > "$HOME\bin\btop.ps1"
               rm "$HOME\bin\btop.zip"
