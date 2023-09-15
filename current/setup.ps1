@@ -544,7 +544,7 @@ public class Wallpaper
         Write-Output "`n1. Move the start menu"
         Write-Output "2. Move the taskbar"
         Write-Output "3. Pin and unpin items"
-        Write-output "4. Disable web search in start menu"
+        Write-output "4. Disable/enable web search in start menu"
         # Prompt user for choice
         $Tbar = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Tbar) {
