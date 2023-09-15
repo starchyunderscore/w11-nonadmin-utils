@@ -1089,34 +1089,57 @@ public class Wallpaper
             $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
+              Write-Output "`nFetching latest version information"
               $getLatest = Invoke-WebRequest "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
+              Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
+              Write-Output "`nExtracting latest version"
               Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
+              Write-Output "`nRemoving old version"
+              rm "$HOME\bin\fastfetch.exe"
+              Write-Output "`nInstalling"
               mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
+              Write-Output "`nCleaning up"
               rm ".\fastfetch.zip"
               rm ".\fastfetch" -r
+              Write-Output "`nDone"
             }
           }
           3 { # Get HTop
             $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
+              Write-Output "`nFetching latest version information"
               $getLatest = Invoke-WebRequest "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
+              Write-Output "`nRemoving old version"
+              rm "$HOME\bin\ntop.exe"
+              Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/$latest/ntop.exe" -destination "$HOME\bin\ntop.exe"
+              Write-Output "`nInstalling"
+              Write-Output "`nCleaning up"
+              Write-Output "`nDone"
             }
           }
           4 { # Get btop
             $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
+              Write-Output "`nFetching latest version information"
               $getLatest = Invoke-WebRequest "https://api.github.com/repos/aristocratos/btop4win/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
+              Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/$latest/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
+              Write-Output "`nRemoving old version"
+              rm -r "$HOME\bin\btop"
+              Write-Output "`nExtracting latest version"
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
+              Write-Output "`nInstalling"
               Write-Output "$HOME\bin\btop\btop4win\btop4win.exe" > "$HOME\bin\btop.ps1"
+              Write-Output "`nCleaning up"
               rm "$HOME\bin\btop.zip"
+              Write-Output "`nDone"
             }
           }
         }
