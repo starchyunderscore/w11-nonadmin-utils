@@ -14,12 +14,15 @@ These are features that are fully ready.
   - [x] Change mouse trail length.
   - [x] [Change cursor](https://stackoverflow.com/a/60107014)
   - [x] Enable and disable transparency effects
-  - [x] Change date and time format
+  - [x] Edit date and time
+    - [x] Change date and time formats
+    - [x] Use long time in taskbar (may only work on versions newer than 22H2)  
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
   - [x] Unpin chat, widgets, and search from the taskbar.
   - [x] Unpin task view from the search bar.
   - [x] Move the taskbar. (Does not work on 22H2 or later, you can use [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases) if you have admin rights to install it.)
+  - [x] Disable web search in start menu
 
 - [x] Input settings:
   - [x] Set the mouse speed.
@@ -31,10 +34,14 @@ These are features that are fully ready.
   - [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
   - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
   - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+  - [x] Install [Cygwin64](https://www.cygwin.com/)
+  - [x] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
 
 - [x] Command line utilities
   - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
   - [x] Add and remove items from bin.
+  - [x] Install [ntop](https://github.com/gsass1/NTop)
+  - [x] Install [btop4win](https://github.com/aristocratos/btop4win)
 
 ## Beta features
 
@@ -46,12 +53,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
-- [ ] Use long time in taskbar (may only work on versions newer than 22H2)
-- [ ] Install [Cygwin64](https://www.cygwin.com/) 
-- [ ] Disable web search in start menu
-- [ ] Install [ntop](https://github.com/gsass1/NTop)
-- [ ] Install [btop4win](https://github.com/aristocratos/btop4win)
+Nothing here at the moment. Check back later.
 
 ## Planned features
 
@@ -85,7 +87,7 @@ Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointTy
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.12/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.13/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
