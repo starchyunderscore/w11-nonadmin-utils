@@ -34,6 +34,7 @@ These are features that are fully ready.
   - [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
   - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
   - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+  - [x] Install [Cygwin64](https://www.cygwin.com/)
 
 - [x] Command line utilities
   - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
@@ -47,7 +48,6 @@ These are features are in the release, but do not work entirely as intended.
 
 - [x] Uninstall programs (Some programs may need admin to uninstall.) (Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
 - [x] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
-- [x] Install [Cygwin64](https://www.cygwin.com/) (I think it's a problem with dropbox. I will try to move the file to another host and see if that works.)
 
 ## Alpha features
 
@@ -86,7 +86,7 @@ Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nona
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.13/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.14/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
