@@ -78,8 +78,7 @@ This script is made for windows 11, it may work on other versions, or it may not
 If you have admin rights, open an admin PowerShell window and create a system restore point, replacing the drive name as needed:
 
 ```PowerShell
-Enable-ComputerRestore -Drive "C:\"
-Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointType "MODIFY_SETTINGS"
+Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointType "MODIFY_SETTINGS"
 ```
 
 ### Quick run:
