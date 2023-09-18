@@ -1003,7 +1003,7 @@ public class Wallpaper
               rm ~\Cygwin64.zip
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Cygwin64.lnk")
-              $Shortcut.TargetPath = "$HOME\Cygwin64\bin\mintty.exe"
+              $Shortcut.TargetPath = "$HOME\Cygwin64\Cygwin64\bin\mintty.exe"
               $Shortcut.Save()
             }
           }
