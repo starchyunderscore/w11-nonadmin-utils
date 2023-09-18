@@ -997,7 +997,8 @@ public class Wallpaper
           $InstallCygwin64 = $Host.UI.PromptForChoice("Install Cygwin64?", "", @("&Cancel", "&Install"), 0)
             if ($InstallCygwin64) {
               $remoteFile = "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=1"
-              Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip"
+              Invoke-WebRequest "$remoteFile" -OutFile "~\Cygwin64.zip"
+              # Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip" # BITS does not like dropbox
               Expand-Archive ~\Cygwin64.zip | Out-Null
               rm ~\Cygwin64.zip
               $WshShell = New-Object -ComObject WScript.Shell
