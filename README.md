@@ -12,7 +12,7 @@ These are features that are fully ready.
   - [x] Set system to dark mode.
   - [x] Change the background image.
   - [x] Change mouse trail length.
-  - [x] [Change cursor](https://stackoverflow.com/a/60107014)
+  - [x] Change cursor
   - [x] Enable and disable transparency effects
   - [x] Edit date and time
     - [x] Change date and time formats
@@ -27,7 +27,7 @@ These are features that are fully ready.
 - [x] Input settings:
   - [x] Set the mouse speed.
   - [x] Change the keyboard layout (only Dvorak and Qwerty for now)
-  - [x] [Disable sticky keys prompt](https://stackoverflow.com/questions/71854200/disable-shift-stickykey-shortcut)
+  - [x] Disable sticky keys prompt
 
 - [x] Install programs:
   - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
@@ -53,14 +53,13 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Enable/Disable animation effects
+- [x] Enable/Disable animation effects
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
-- [ ] All of [this stuff](https://www.tumblr.com/cinna-bunnie/726047846537773056/for-the-device-setup)
+- [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 
 ---
 
