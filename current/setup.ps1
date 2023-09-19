@@ -139,6 +139,7 @@ DO {
         Write-Output "4. Change mouse cursor style"
         Write-Output "5. Transparency effects"
         Write-Output "6. Date and time formats"
+        Write-Output "7. Animation effects"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -527,6 +528,35 @@ public class Wallpaper
                     try {Get-Process explorer | Stop-Process} catch {Write-Output "Explorer restart failed: changes will apply after a restart"}
                   }
                 }
+              }
+            }
+          }
+          7 { # Animation effects
+            Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+[StructLayout(LayoutKind.Sequential)] public struct ANIMATIONINFO {
+    public uint cbSize;
+    public bool iMinAnimate;
+}
+public class PInvoke { 
+    [DllImport("user32.dll")] public static extern bool SystemParametersInfoW(uint uiAction, uint uiParam, ref ANIMATIONINFO pvParam, uint fWinIni);
+}
+"@
+            $animInfo = New-Object ANIMATIONINFO
+            $animInfo.cbSize = 8
+            $anim = $Host.UI.PromptForChoice("Animation effects?", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            switch ($anim) {
+              0 { # Cancel
+                Write-Output "Canceled"
+              }
+              1 { # Enable animation effects
+                $animInfo.iMinAnimate = $true
+                [PInvoke]::SystemParametersInfoW(0x49, 0, [ref]$animInfo, 3)
+              }
+              2 { # Disable animation effects
+                $animInfo.iMinAnimate = $false
+                [PInvoke]::SystemParametersInfoW(0x49, 0, [ref]$animInfo, 3)
               }
             }
           }
