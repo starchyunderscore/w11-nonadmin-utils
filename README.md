@@ -53,13 +53,12 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-<sup>Nothing here at the moment. Check back later.</sup>
+- [ ] Enable/Disable animation effects
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] Enable/Disable/Change animation effects
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker) (seems to need admin for default install)
 - [ ] All of [this stuff](https://www.tumblr.com/cinna-bunnie/726047846537773056/for-the-device-setup)
 
