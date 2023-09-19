@@ -539,7 +539,7 @@ using System.Runtime.InteropServices;
     public uint cbSize;
     public bool iMinAnimate;
 }
-public class PInvoke { 
+public class PInvoke {
     [DllImport("user32.dll")] public static extern bool SystemParametersInfoW(uint uiAction, uint uiParam, ref ANIMATIONINFO pvParam, uint fWinIni);
 }
 "@
