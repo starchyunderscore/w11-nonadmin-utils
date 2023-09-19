@@ -1,5 +1,4 @@
 # FUNCTIONS
-
 function CREATE_BIN {
   if (!(Test-Path "$HOME\bin")) {
     Write-Output "`nBin does not exist. Creating."
@@ -17,7 +16,6 @@ function CREATE_BIN {
     Write-Output "`nBin created"
   }
 }
-
 function UPDATE_USERPREFERENCESMASK {
                 $Signature = @"
 [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
@@ -113,16 +111,13 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
       throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
   }
 '
-
 # SCRIPT
-
 Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n"
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
   Write-Output "`nUser quit`n"
   Exit 0
 }
-
 DO {
   # Print choices
   Write-Output "`n1. Change system theming"
@@ -1148,6 +1143,4 @@ public class Wallpaper
     }
   }
 } until ($Option -notmatch "\S")
-
-Write-Output "`nScript Finished`n"
 Exit 0
