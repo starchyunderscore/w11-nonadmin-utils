@@ -84,7 +84,7 @@ Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nona
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.14/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.15/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
