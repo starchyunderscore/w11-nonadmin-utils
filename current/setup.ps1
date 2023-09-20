@@ -32,18 +32,15 @@ public static void UpdateUserPreferencesMask() {
                   Add-Type -MemberDefinition $Signature -Name UserPreferencesMaskSPI -Namespace User32
                   [User32.UserPreferencesMaskSPI]::UpdateUserPreferencesMask()
               }
-
 Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
   [DllImport("user32.dll", SetLastError = true)]
   [return: MarshalAs(UnmanagedType.Bool)]
   static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref STICKYKEYS pvParam, uint fWinIni);
-
   [StructLayout(LayoutKind.Sequential)]
   struct STICKYKEYS {
     public uint  cbSize;
     public UInt32 dwFlags;
   }
-
   [Flags]
   public enum StickyKeyFlags : uint {
     AUDIBLEFEEDBACK = 0x00000040,
@@ -72,29 +69,24 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
     LWINLOCKED = 0x00400000,
     RWINLOCKED = 0x00800000
   }
-
   public static bool IsHotKeyEnabled {
     get { return (GetFlags() & StickyKeyFlags.HOTKEYACTIVE) != 0u; }
     set { EnableHotKey(value, false); }
   }
-
   public static StickyKeyFlags ActiveFlags {
     get { return GetFlags(); }
     set { SetFlags(value, false); }
   }
-
   // The flags in effect on a pristine system.
   public static StickyKeyFlags DefaultFlags {
     get { return StickyKeyFlags.AVAILABLE | StickyKeyFlags.HOTKEYACTIVE | StickyKeyFlags.CONFIRMHOTKEY | StickyKeyFlags.HOTKEYSOUND | StickyKeyFlags.INDICATOR | StickyKeyFlags.AUDIBLEFEEDBACK | StickyKeyFlags.TRISTATE | StickyKeyFlags.TWOKEYSOFF; } // 510u
   }
-
   public static void EnableHotKey(bool enable = true, bool persist = false) {
     var skInfo = new STICKYKEYS();
     skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
     var flags = GetFlags();
     SetFlags((enable ? flags | StickyKeyFlags.HOTKEYACTIVE : flags & ~StickyKeyFlags.HOTKEYACTIVE), persist);
   }
-
   private static StickyKeyFlags GetFlags() {
     var skInfo = new STICKYKEYS();
     skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
@@ -102,7 +94,6 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
       throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
     return (StickyKeyFlags)skInfo.dwFlags;
   }
-
   public static void SetFlags(StickyKeyFlags flags, bool persist = false) {
     var skInfo = new STICKYKEYS();
     skInfo.cbSize = (uint)Marshal.SizeOf(skInfo);
@@ -137,9 +128,9 @@ DO {
         Write-Output "2. Change the background image"
         Write-Output "3. Change mouse trails length"
         Write-Output "4. Change mouse cursor style"
-        Write-Output "5. Transparency effects"
-        Write-Output "6. Date and time formats"
-        Write-Output "7. Animation effects"
+        Write-Output "5. Enable/disable transparency effects"
+        Write-Output "6. Edit date and time display"
+        Write-Output "7. Enable/disable animation effects"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -180,10 +171,8 @@ public class Wallpaper
 }
 "@
             Add-Type -TypeDefinition $setwallpapersrc
-
             Write-Output "`nTo get the image path of a file, right click it and select `"Copy as path`"`n`nMake sure your image path is in quotes!`n"
             $IMGPath = Read-Host "Input the full path of the image to set the wallpaper, or leave it blank to cancel"
-
             if($IMGPath -notmatch "\S") {
               Write-Output "`nCanceled.`n"
             } else {
@@ -213,9 +202,7 @@ public class Wallpaper
             Write-Output "10. rl (Same as r, but extra large)"
             Write-Output "11. rm (Same ar r, but large)"
             Write-Output "12. KDE Breeze Dark"
-
             $CStyle = Read-Host "`nInput the number of the style you wish to use, or leave blank to exit"
-
             if ($CStyle -In 1..12) {
               $RegConnect = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]"CurrentUser","$env:COMPUTERNAME")
               $RegCursors = $RegConnect.OpenSubKey("Control Panel\Cursors",$true)
@@ -419,7 +406,7 @@ public class Wallpaper
                   $RegCursors.SetValue("Wait","C:\WINDOWS\cursors\busy_rm.cur")
                 }
                 12 { # Kde breeze dark
-                  mkdir $HOME\KDE-BREEZE-DARK
+                  mkdir $HOME\KDE-BREEZE-DARK # Download
                   Write-Output "Downloading from https://github.com/black7375/Breeze-Cursors-for-Windows/"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working.ani"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working_in_bg.ani"
@@ -436,8 +423,7 @@ public class Wallpaper
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_ver.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "$HOME\KDE-BREEZE-DARK\text.cur"
                   Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "$HOME\KDE-BREEZE-DARK\unavailable.cur"
-
-                  $RegCursors.SetValue("","KDE Breeze Dark")
+                  $RegCursors.SetValue("","KDE Breeze Dark") # Apply
                   $RegCursors.SetValue("AppStarting","$HOME\KDE-BREEZE-DARK\Working_in_bg.ani")
                   $RegCursors.SetValue("Arrow","$HOME\KDE-BREEZE-DARK\normal_select.cur")
                   $RegCursors.SetValue("Crosshair","$HOME\KDE-BREEZE-DARK\precise_select.cur")
@@ -453,6 +439,7 @@ public class Wallpaper
                   $RegCursors.SetValue("SizeWE","$HOME\KDE-BREEZE-DARK\resize_hor.cur")
                   $RegCursors.SetValue("UpArrow","$HOME\KDE-BREEZE-DARK\resize_ver.cur")
                   $RegCursors.SetValue("Wait","$HOME\KDE-BREEZE-DARK\Working.ani")
+                  # rm -r $HOME\KDE-BREEZE-DARK # Disabled until I test that it's ok to remove them
                 }
               }
               $RegCursors.Close()
@@ -463,7 +450,7 @@ public class Wallpaper
             }
           }
           5 { # Transparency effects
-            $Transparency = $Host.UI.PromptForChoice("Trancparency effect choice:", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            $Transparency = $Host.UI.PromptForChoice("Transparency effects:", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($Transparency) {
               0 {
                 Write-Output "`nCanceled"
@@ -477,7 +464,7 @@ public class Wallpaper
             }
           }
           6 { # date and time format
-            $op = $Host.UI.PromptForChoice("What part of the time would you like to modify", "", @("&Cancel", "&Formats", "&Taskbar Display"), 0)
+            $op = $Host.UI.PromptForChoice("Date & time display modification:", "", @("&Cancel", "&Formats", "&Taskbar Display"), 0)
             switch ($op) {
               0 { # Cancel
                 Write-Output "Canceled"
@@ -545,7 +532,7 @@ public class PInvoke {
 "@
             $animInfo = New-Object ANIMATIONINFO
             $animInfo.cbSize = 8
-            $anim = $Host.UI.PromptForChoice("Animation effects?", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            $anim = $Host.UI.PromptForChoice("Animation effects:", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($anim) {
               0 { # Cancel
                 Write-Output "Canceled"
@@ -742,7 +729,7 @@ public class PInvoke {
         # Print choices
         Write-Output "`n1. Change the keyboard layout"
         Write-Output "2. Change the mouse speed"
-        Write-Output "3. Edit sticky keys"
+        Write-Output "3. Disable/enable sticky keys prompt"
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
@@ -796,7 +783,7 @@ public class PInvoke {
             } until ($MouseSpeed -In 1..20 -Or $MouseSpeed -notmatch "\S")
           }
           3 { # Edit sticky keys
-            $SKEYS = $Host.UI.PromptForChoice("Enable the sticky keys hotkey?", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            $SKEYS = $Host.UI.PromptForChoice("Sticky keys prompt:", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($SKEYS) {
               0 {
                 Write-Output "`nCanceled"
@@ -856,11 +843,9 @@ public class PInvoke {
             $InstallPowertoys = $Host.UI.PromptForChoice("Install Microsoft PowerToys?", "", @("&Cancel", "&Install"), 0)
             if ($InstallPowertoys -eq 1) {
               $installLocation = "$env:LocalAppData\Programs\PowerToys"
-
               $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) (New-Guid)
               New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
               Push-Location $tempDir
-
               $latestPowerToys = Invoke-WebRequest "https://api.github.com/repos/microsoft/PowerToys/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestPowerToys.tag_name.Substring(1)
               $isInstalled = Test-Path "$installLocation\PowerToys.exe"
@@ -868,7 +853,6 @@ public class PInvoke {
                 $currentVersion = (Get-Item "$installLocation\PowerToys.exe").VersionInfo.FileVersion
                 $currentVersion = $currentVersion.Substring(0, $currentVersion.LastIndexOf("."))
               }
-
               Write-Output "Latest: $latestVersion"
               if (!$isInstalled) {
                 Write-Output "Current: Not installed"
@@ -876,14 +860,12 @@ public class PInvoke {
               else {
                 Write-Output "Current: $currentVersion"
               }
-
               if ($isInstalled -and ($latestVersion -le $currentVersion)) {
                 Write-Output "Already up to date"
                 Pop-Location
                 Remove-Item $tempDir -Force -Recurse
                 Read-Host "Finished! Press enter to exit"
               } else {
-
                 $latestPowerToys.assets | ForEach-Object {
                   $asset = $_
                   if ($asset.name -match "x64.exe$") {
@@ -891,11 +873,9 @@ public class PInvoke {
                     $assetName = $asset.name
                   }
                 }
-
                 Write-Output "Downloading $assetName"
                 Start-BitsTransfer $assetUrl "$assetName" # Start-BitsTransfer instead of Invoke-WebRequest here to get a fancy progress bar (also BitsTransfer feels faster, but idk if this is true)
                 $powertoysInstaller = "$tempDir\$assetName"
-
                 $latestWix = Invoke-WebRequest "https://api.github.com/repos/wixtoolset/wix3/releases/latest" | ConvertFrom-Json
                 $latestWix.assets | ForEach-Object {
                   $asset = $_
@@ -904,29 +884,23 @@ public class PInvoke {
                     $assetName = $asset.name
                   }
                 }
-
                 Write-Output "Downloading $assetName"
                 Start-BitsTransfer $assetUrl "$assetName"
                 $wixDir = "$tempDir\wix"
                 Expand-Archive "$tempDir\$assetName" -DestinationPath $wixDir
-
                 Write-Output "Extracting installer .exe"
                 $extractedInstaller = "$tempDir\extractedInstaller"
                 & "$wixDir\dark.exe" -x $extractedInstaller $powertoysInstaller | Out-Null
-
                 $msi = Get-ChildItem $extractedInstaller\AttachedContainer\*.msi
                 $extractedMsi = "$tempDir\extractedMsi"
                 Write-Output "Extracting installer .msi"
                 Start-Process -FilePath msiexec.exe -ArgumentList @( "/a", "$msi", "/qn", "TARGETDIR=$extractedMsi" ) -Wait
-
                 Write-Output "Stopping old instance (if running)"
                 Stop-Process -Name PowerToys -Force -ErrorAction SilentlyContinue
                 Start-Sleep 5 # To make sure the old instance is stopped
-
                 Write-Output "Installing new version"
                 Remove-Item "$installLocation" -Recurse -Force -ErrorAction SilentlyContinue
                 Copy-Item "$extractedMsi\PowerToys" -Destination $installLocation -Recurse
-
                 Write-Output "Creating hardlinks for runtimes"
                 # Code copy/pasted from https://github.com/ScoopInstaller/Extras/blob/0999a7377dd102c0f287ec191eed4866eb075562/bucket/powertoys.json#L24-L40
                 foreach ($f in @('Settings', 'modules\FileLocksmith', 'modules\Hosts', 'modules\MeasureTool', 'modules\PowerRename')) {
@@ -944,20 +918,16 @@ public class PInvoke {
                     New-Item -ItemType HardLink -Path "$installLocation\$f\$($_.Name)" -Value $_.FullName -ErrorAction SilentlyContinue | Out-Null
                   }
                 }
-
                 Write-Output "Starting new instance"
                 Start-Process "$installLocation\PowerToys.exe"
-
                 if (!$isInstalled) {
                   $WshShell = New-Object -ComObject WScript.Shell
-
                   $createShortcut = $Host.UI.PromptForChoice("Create shortcut?", "Create a start menu shortcut for PowerToys?", @("&Yes", "&No"), 0)
                   if ($createShortcut -eq 0) {
                     $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\PowerToys.lnk")
                     $Shortcut.TargetPath = "$installLocation\PowerToys.exe"
                     $Shortcut.Save()
                   }
-
                   $autostart = $Host.UI.PromptForChoice("Autostart?", "Start PowerToys automatically on login?", @("&Yes", "&No"), 0)
                   if ($autostart -eq 0) {
                     $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Startup\PowerToys.lnk")
@@ -965,11 +935,9 @@ public class PInvoke {
                     $Shortcut.Save()
                   }
                 }
-
                 Write-Output "Cleaning up"
                 Pop-Location
                 Remove-Item -Path $tempDir -Recurse -Force
-
                 Write-Output "`nFinished installing powertoys!"
               }
             } else {
@@ -983,13 +951,10 @@ public class PInvoke {
               $remoteFile = 'https://go.microsoft.com/fwlink/?Linkid=850641';
               $downloadFile = $env:Temp+'\vscode.zip';
               $vscodePath = $env:LOCALAPPDATA+"\VsCode";
-
               Start-BitsTransfer -source "$remoteFile" -destination "$downloadFile"
-
               Expand-Archive $downloadFile -DestinationPath $vscodePath -Force
               [Environment]::SetEnvironmentVariable
               ("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
-
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code.lnk")
               $Shortcut.TargetPath = "$env:LOCALAPPDATA\VsCode\Code.exe"
@@ -1002,14 +967,12 @@ public class PInvoke {
           4 { # Lapce
             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
             if ($InstallLapce -eq 1) {
-              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL CORRECTLY IN THIS VERSION`n"
-
+              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL DEPENDENCIES IN THIS VERSION.`n"
               $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
               rm ".\Lapce-windows-portable.zip"
-
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
