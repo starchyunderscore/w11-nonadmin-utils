@@ -16,7 +16,8 @@ These are features that are fully ready.
   - [x] Enable and disable transparency effects
   - [x] Edit date and time
     - [x] Change date and time formats
-    - [x] Use long time in taskbar (may only work on versions newer than 22H2)  
+    - [x] Use long time in taskbar (may only work on versions newer than 22H2)
+  - [x] Enable/Disable animation effects 
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
   - [x] Unpin chat, widgets, and search from the taskbar.
@@ -53,7 +54,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [x] Enable/Disable animation effects
+<sup>Nothing here at the moment.</sup>
 
 ## Planned features
 
