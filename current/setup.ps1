@@ -864,7 +864,7 @@ public class PInvoke {
                 $Bit = 0x40
                 $B = 1
                 $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
-                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
+                If ($null -eq $UserPreferencesMask){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
                 $NewMask = $UserPreferencesMask
                 if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
                 if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
@@ -875,7 +875,7 @@ public class PInvoke {
                 $Bit = 0x40
                 $B = 1
                 $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
-                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
+                If ($null -eq $UserPreferencesMask){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
                 $NewMask = $UserPreferencesMask
                 if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
                 if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
