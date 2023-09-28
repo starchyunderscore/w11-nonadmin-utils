@@ -102,6 +102,34 @@ Add-Type -Namespace demo -Name StickyKeys -MemberDefinition '
       throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
   }
 '
+function Show-Notification {
+    [cmdletbinding()]
+    Param (
+        [string]
+        $ToastTitle,
+        [string]
+        [parameter(ValueFromPipeline)]
+        $ToastText
+    )
+
+    [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+    $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02)
+
+    $RawXml = [xml] $Template.GetXml()
+    ($RawXml.toast.visual.binding.text|where {$_.id -eq "1"}).AppendChild($RawXml.CreateTextNode($ToastTitle)) > $null
+    ($RawXml.toast.visual.binding.text|where {$_.id -eq "2"}).AppendChild($RawXml.CreateTextNode($ToastText)) > $null
+
+    $SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument
+    $SerializedXml.LoadXml($RawXml.OuterXml)
+
+    $Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml)
+    $Toast.Tag = "PowerShell"
+    $Toast.Group = "PowerShell"
+    $Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1)
+
+    $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("PowerShell")
+    $Notifier.Show($Toast);
+}
 # SCRIPT
 Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, MAKE SURE YOU HAVE MADE A RESTORE POINT`n!!!!!!!!!!`n"
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
@@ -131,6 +159,7 @@ DO {
         Write-Output "5. Enable/disable transparency effects"
         Write-Output "6. Edit date and time display"
         Write-Output "7. Enable/disable animation effects"
+        Write-Output "8. Enable/disable notifications"
         # Prompt user for choice
         $Themer = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Themer) {
@@ -546,6 +575,32 @@ public class PInvoke {
                 [PInvoke]::SystemParametersInfoW(0x49, 0, [ref]$animInfo, 3)
               }
             }
+          }
+          8 { # Notifications
+            $Notifs = $Host.UI.PromptForChoice("Notifications:", "", @("&Cancel", "&Enable", "&Disable", "&Test"), 0)
+            switch ($Notifs) {
+              0 { # Cancel
+                Write-Output "`nCanceled"
+              }
+              1 { # Enable
+                try {
+                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 1
+                } catch {
+                  New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 1
+                }
+              }
+              2 { # Disable
+                try {
+                  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 0
+                } catch {
+                  New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 0
+                }
+              }
+              3 { # Test
+                Write-Output "Lorem ipsum dolor sit amet." | Show-Notification "Test notification"
+              }
+            }
+            Write-Output "Changes will apply the next time you log in."
           }
         }
       } until ($Themer -notmatch "\S")
