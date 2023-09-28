@@ -17,7 +17,9 @@ These are features that are fully ready.
   - [x] Edit date and time
     - [x] Change date and time formats
     - [x] Use long time in taskbar (may only work on versions newer than 22H2)
-  - [x] Enable/Disable animation effects 
+  - [x] Disable animation effects
+  - [x] Disable notifications 
+
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
   - [x] Unpin chat, widgets, and search from the taskbar.
@@ -85,7 +87,7 @@ Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nona
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.15/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.16/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
