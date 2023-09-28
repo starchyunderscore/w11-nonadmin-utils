@@ -108,7 +108,6 @@ function Show-Notification {
         [string]
         $ToastTitle,
         [string]
-        [parameter(ValueFromPipeline)]
         $ToastText
     )
 
@@ -597,7 +596,7 @@ public class PInvoke {
                 }
               }
               3 { # Test
-                Write-Output "Lorem ipsum dolor sit amet." | Show-Notification "Test notification"
+                Show-Notification "Test notification" "Lorem ipsum dolor sit amet."
               }
             }
             Write-Output "Changes will apply the next time you log in."
