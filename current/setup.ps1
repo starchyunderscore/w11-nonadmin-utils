@@ -783,7 +783,8 @@ public class PInvoke {
         # Print choices
         Write-Output "`n1. Change the keyboard layout"
         Write-Output "2. Change the mouse speed"
-        Write-Output "3. Disable/enable sticky keys prompt"
+        Write-Output "3. Disable sticky keys prompt"
+        Write-Output "3. Enable find cursor"
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
@@ -847,6 +848,35 @@ public class PInvoke {
               }
               2 {
                 [demo.StickyKeys]::EnableHotKey($false, $true)
+              }
+            }
+          }
+          4 { # Find Cursor
+
+$CursorFind = $Host.UI.PromptForChoice("Find cursor", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            switch ($CursorFind) {
+              0 { # Cancel
+                Write-Output "`nCancled"
+              }
+              1 { # Enable
+                $Off = $true
+                $Bit = 0x40
+                $B = 1
+                $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
+                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
+                $NewMask = $UserPreferencesMask
+                if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
+                if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
+              }
+              2 { # Disable
+                $Off = $false
+                $Bit = 0x40
+                $B = 1
+                $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
+                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
+                $NewMask = $UserPreferencesMask
+                if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
+                if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
               }
             }
           }
