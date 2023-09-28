@@ -587,6 +587,7 @@ public class PInvoke {
                 } catch {
                   New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 1
                 }
+                Write-Output "Changes will apply the next time you log in."
               }
               2 { # Disable
                 try {
@@ -594,12 +595,12 @@ public class PInvoke {
                 } catch {
                   New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type "DWord" -Value 0
                 }
+                Write-Output "Changes will apply the next time you log in."
               }
               3 { # Test
                 Show-Notification "Test notification" "Lorem ipsum dolor sit amet."
               }
             }
-            Write-Output "Changes will apply the next time you log in."
           }
         }
       } until ($Themer -notmatch "\S")
@@ -852,23 +853,13 @@ public class PInvoke {
             }
           }
           4 { # Find Cursor
-
-$CursorFind = $Host.UI.PromptForChoice("Find cursor", "", @("&Cancel", "&Enable", "&Disable"), 0)
+            Write-Output "I reccomend installing powertoys instead, as it's cursor locate feature looks better"
+            $CursorFind = $Host.UI.PromptForChoice("Find cursor", "", @("&Cancel", "&Enable", "&Disable"), 0)
             switch ($CursorFind) {
               0 { # Cancel
                 Write-Output "`nCancled"
               }
               1 { # Enable
-                $Off = $true
-                $Bit = 0x40
-                $B = 1
-                $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
-                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
-                $NewMask = $UserPreferencesMask
-                if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
-                if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
-              }
-              2 { # Disable
                 $Off = $false
                 $Bit = 0x40
                 $B = 1
@@ -877,6 +868,18 @@ $CursorFind = $Host.UI.PromptForChoice("Find cursor", "", @("&Cancel", "&Enable"
                 $NewMask = $UserPreferencesMask
                 if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
                 if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
+                Write-Output "Changes will apply next time you log in"
+              }
+              2 { # Disable
+                $Off = $true
+                $Bit = 0x40
+                $B = 1
+                $UserPreferencesMask = (Get-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask").UserPreferencesMask
+                If ($UserPreferencesMask -eq $null){Write-Error "Cannot find HKCU:\Control Panel\Desktop: UserPreferencesMask"}
+                $NewMask = $UserPreferencesMask
+                if ($Off) {$NewMask[$B] = $NewMask[$B] -band -bnot $Bit} else {$NewMask[$B] = $NewMask[$B] -bor $Bit}
+                if ($NewMask -ne $UserPreferencesMask) {Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value $NewMask}
+                Write-Output "Changes will apply next time you log in"
               }
             }
           }
