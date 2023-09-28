@@ -31,6 +31,7 @@ These are features that are fully ready.
   - [x] Set the mouse speed.
   - [x] Change the keyboard layout (only Dvorak and Qwerty for now)
   - [x] Disable sticky keys prompt
+  - [x] Enable find cursor
 
 - [x] Install programs:
   - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
@@ -56,7 +57,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Enable find cursor
+<sup>Nothing here at the moment.</sup>
 
 ## Planned features
 
@@ -87,7 +88,7 @@ Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nona
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.16/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.17/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
