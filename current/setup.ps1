@@ -785,7 +785,7 @@ public class PInvoke {
         Write-Output "`n1. Change the keyboard layout"
         Write-Output "2. Change the mouse speed"
         Write-Output "3. Disable sticky keys prompt"
-        Write-Output "3. Enable find cursor"
+        Write-Output "4. Enable find cursor"
         # Prompt user for choice
         $Iset = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($Iset) {
