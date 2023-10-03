@@ -64,6 +64,7 @@ These are features that are not yet in the realease. These features may not work
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
+- [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 
 ---
 
