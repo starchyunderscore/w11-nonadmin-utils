@@ -1094,8 +1094,8 @@ public class PInvoke {
             }
           }
           7 { # eDEX-UI
-            $InstallClavier = $Host.UI.PromptForChoice("Install Clavier+?", "", @("&Cancel", "&Install"), 0)
-            if ($InstallClavier -eq 1) {
+            $InstallEdex = $Host.UI.PromptForChoice("Install eDEX-UI?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallEdex -eq 1) {
               Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination ".\eDEX-UI.exe"
               .\eDEX-UI.exe | out-null
               rm .\eDEX-UI.exe
