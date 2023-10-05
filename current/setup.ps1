@@ -1127,6 +1127,7 @@ public class PInvoke {
         Write-Output "2. Install fastfetch"
         Write-Output "3. Install ntop"
         Write-Output "4. Install btop"
+        Write-Output "5. Install gping"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1215,6 +1216,27 @@ public class PInvoke {
               Write-Output "$HOME\bin\btop\btop4win\btop4win.exe" > "$HOME\bin\btop.ps1"
               Write-Output "`nCleaning up"
               rm "$HOME\bin\btop.zip"
+              Write-Output "`nDone"
+            }
+          }
+          5 { # Get gping
+            $Install = $Host.UI.PromptForChoice("Install gping?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              CREATE_BIN
+              Write-Output "`nFetching latest version information"
+              $getLatest = Invoke-WebRequest "https://api.github.com/repos/orf/gping/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(0)
+              Write-Output "`nDownloading latest version"
+              Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination ".\gping.zip"
+              Write-Output "`nExtracting latest version"
+              Expand-Archive ".\gping.zip" -DestinationPath ".\gping" -Force
+              Write-Output "`nRemoving old version"
+              rm "$HOME\bin\gping.exe"
+              Write-Output "`nInstalling"
+              mv ".\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
+              Write-Output "`nCleaning up"
+              rm ".\gping.zip"
+              rm ".\gping" -r
               Write-Output "`nDone"
             }
           }
