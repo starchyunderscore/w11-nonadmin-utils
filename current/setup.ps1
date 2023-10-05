@@ -895,6 +895,7 @@ public class PInvoke {
         Write-Output "4. Lapce"
         Write-Output "5. Cygwin64"
         Write-Output "6. Clavier+"
+        Write-Output "7. eDEX-UI"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -1090,6 +1091,14 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination ".\ClavierPlus.exe"
               .\ClavierPlus.exe | Out-Null
               rm .\ClavierPlus.exe
+            }
+          }
+          7 { # eDEX-UI
+            $InstallClavier = $Host.UI.PromptForChoice("Install Clavier+?", "", @("&Cancel", "&Install"), 0)
+            if ($InstallClavier -eq 1) {
+              Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination ".\eDEX-UI.exe"
+              .\eDEX-UI.exe | out-null
+              rm .\eDEX-UI.exe
             }
           }
         }
