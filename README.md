@@ -45,6 +45,7 @@ These are features that are fully ready.
   - [x] Add and remove items from bin.
   - [x] Install [ntop](https://github.com/gsass1/NTop)
   - [x] Install [btop4win](https://github.com/aristocratos/btop4win)
+  - [x] Install [gping](https://github.com/orf/gping)
 
 ## Beta features
 
@@ -57,7 +58,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Install [gping](https://github.com/orf/gping)
+<sup>Nothing here at the moment.</sup>
 
 ## Planned features
 
@@ -89,7 +90,7 @@ Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nona
 Open PowerShell and run this command: 
 
 ```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.17/setup.ps1" | iex
+iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.18/setup.ps1" | iex
 ```
 
 ### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
