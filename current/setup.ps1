@@ -1173,8 +1173,10 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
               Write-Output "`nExtracting latest version"
               Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
-              Write-Output "`nRemoving old version"
-              rm "$HOME\bin\fastfetch.exe"
+              if (test-path "$HOME\bin\fastfetch.exe") {
+                Write-Output "`nRemoving old version"
+                rm "$HOME\bin\fastfetch.exe"
+              }
               Write-Output "`nInstalling"
               mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
               Write-Output "`nCleaning up"
@@ -1190,8 +1192,10 @@ public class PInvoke {
               Write-Output "`nFetching latest version information"
               $getLatest = Invoke-WebRequest "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
-              Write-Output "`nRemoving old version"
-              rm "$HOME\bin\ntop.exe"
+              if (test-path "$HOME\bin\ntop.exe") {
+                Write-Output "`nRemoving old version"
+                rm "$HOME\bin\ntop.exe"
+              }
               Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/$latest/ntop.exe" -destination "$HOME\bin\ntop.exe"
               Write-Output "`nInstalling"
@@ -1208,8 +1212,10 @@ public class PInvoke {
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/$latest/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
-              Write-Output "`nRemoving old version"
-              rm -r "$HOME\bin\btop"
+              if (test-path "$HOME\bin\btop") {
+                Write-Output "`nRemoving old version"
+                rm -r "$HOME\bin\btop"
+              }
               Write-Output "`nExtracting latest version"
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
               Write-Output "`nInstalling"
@@ -1230,8 +1236,10 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination ".\gping.zip"
               Write-Output "`nExtracting latest version"
               Expand-Archive ".\gping.zip" -DestinationPath ".\gping" -Force
-              Write-Output "`nRemoving old version"
-              rm "$HOME\bin\gping.exe"
+              if (test-path "$HOME\bin\gping.exe") {
+                Write-Output "`nRemoving old version"
+                rm "$HOME\bin\gping.exe"
+              }
               Write-Output "`nInstalling"
               mv ".\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
               Write-Output "`nCleaning up"
