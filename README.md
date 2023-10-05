@@ -12,37 +12,36 @@ These are features that are fully ready.
   - [x] Set system to dark mode.
   - [x] Change the background image.
   - [x] Change mouse trail length.
-  - [x] Change cursor
+  - [x] Change mouse cursor style
   - [x] Enable and disable transparency effects
-  - [x] Edit date and time
+  - [x] Edit date and time display
     - [x] Change date and time formats
     - [x] Use long time in taskbar (may only work on versions newer than 22H2)
   - [x] Disable animation effects
-  - [x] Disable notifications 
+  - [x] Disable notifications
 
 - [x] Taskbar settings:
   - [x] Move the start menu back to the left.
-  - [x] Unpin chat, widgets, and search from the taskbar.
-  - [x] Unpin task view from the search bar.
   - [x] Move the taskbar. (Does not work on 22H2 or later, you can use [ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases) if you have admin rights to install it.)
+  - [x] Unpin task view, widgets, chat, and search from the taskbar.
   - [x] Disable web search in start menu
 
 - [x] Input settings:
-  - [x] Set the mouse speed.
   - [x] Change the keyboard layout (only Dvorak and Qwerty for now)
+  - [x] Set the mouse speed.
   - [x] Disable sticky keys prompt
   - [x] Enable find cursor
 
 - [x] Install programs:
-  - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/).
-  - [x] Install [PowerToys](https://github.com/microsoft/PowerToys).
-  - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode).
-  - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
+  - [x] Install [FireFox](https://www.mozilla.org/en-US/firefox/new/)
+  - [x] Install [PowerToys](https://github.com/microsoft/PowerToys)
+  - [x] Install [Visual Studio Code](https://github.com/microsoft/vscode)
   - [x] Install [Cygwin64](https://www.cygwin.com/)
+  - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
 
 - [x] Command line utilities
-  - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch).
-  - [x] Add and remove items from bin.
+  - [x] Add and remove items from bin
+  - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch)
   - [x] Install [ntop](https://github.com/gsass1/NTop)
   - [x] Install [btop4win](https://github.com/aristocratos/btop4win)
   - [x] Install [gping](https://github.com/orf/gping)
