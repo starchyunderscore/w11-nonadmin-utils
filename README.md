@@ -58,6 +58,7 @@ These are features are in the release, but do not work entirely as intended.
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
 - [ ] Install [eDEX-UI](https://github.com/GitSquared/edex-ui)
+- [ ] Install [genact](https://github.com/svenstaro/genact)
 
 ## Planned features
 
