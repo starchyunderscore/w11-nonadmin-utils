@@ -1137,6 +1137,7 @@ public class PInvoke {
         Write-Output "3. Install ntop"
         Write-Output "4. Install btop"
         Write-Output "5. Install gping"
+        Write-Output "6. Install genact"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1254,6 +1255,23 @@ public class PInvoke {
               Write-Output "`nCleaning up"
               rm ".\gping.zip"
               rm ".\gping" -r
+              Write-Output "`nDone"
+            }
+          }
+          6 { # genact
+            $Install = $Host.UI.PromptForChoice("Install genact?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              CREATE_BIN
+              Write-Output "`nFetching latest version information"
+              $getLatest = Invoke-WebRequest "https://api.github.com/repos/svenstaro/genact/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(1)
+              if (test-path "$HOME\bin\genact.exe") {
+                Write-Output "`nRemoving old version"
+                rm "$HOME\bin\genact.exe"
+              }
+              Write-Output "`nDownloading latest version"
+              Start-BitsTransfer -source "https://github.com/svenstaro/genact/releases/download/v$latest/genact-$latest`-x86_64-pc-windows-msvc.exe" -destination "$HOME\bin\genact.exe"
+              Write-Output "`nInstalling"
               Write-Output "`nDone"
             }
           }
