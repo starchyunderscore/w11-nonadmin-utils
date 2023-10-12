@@ -1278,11 +1278,11 @@ public class PInvoke {
           }
           7 { # Text editors
             # List choices
-            Write-Output "`n1. Install vim"
-            Write-Output "2. Install neovim"
+            Write-Output "`n1. Install vim - not done"
+            Write-Output "2. Install neovim - not done"
             Write-Output "3. Install micro"
-            Write-Output "4. Install nano"
-            Write-Output "5. Install emacs"
+            Write-Output "4. Install nano - not done"
+            Write-Output "5. Install emacs - not done"
             # Prompt user for input
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
             switch ($TEdit) {
@@ -1293,7 +1293,25 @@ public class PInvoke {
                 Write-Output "Sorry, not yet"
               }
               3 { # micro
-                Write-Output "Sorry, not yet"
+                $Install = $Host.UI.PromptForChoice("Install micro?", "", @("&Cancel", "&Install"), 0)
+                if ($Install -eq 1) {
+                  CREATE_BIN
+                  Write-Output "`nFetching latest version information"
+                  $getLatest = Invoke-WebRequest "https://api.github.com/repos/szyedidia/micro/releases/latest" | ConvertFrom-Json
+                  $latest = $getLatest.tag_name.Substring(1)
+                  if (test-path "$HOME\bin\micro.exe") {
+                    Write-Output "`nRemoving old version"
+                    rm "$HOME\bin\micro.exe"
+                  }
+                  Write-Output "`nDownloading latest version"
+                  Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination ".\micro.zip"
+                  Write-Output "`nInstalling"
+                  Expand-Archive .\micro.zip | out-null
+                  mv .\micro\micro*\micro.exe ~\bin\micro.exe | out-null
+                  Write-Output "`nCleaning up"
+                  rm -r .\micro
+                  Write-Output "`nDone"
+                }
               }
               4 { # nano
                 Write-Output "Sorry, not yet"
