@@ -67,6 +67,7 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
+- [ ] All the text editors ([vim](https://github.com/vim/vim), [micro](https://github.com/zyedidia/micro), [nano](https://github.com/lhmouse/nano-win))
 
 ---
 
