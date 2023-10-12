@@ -67,9 +67,11 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
-- [ ] All the text editors ([vim](https://github.com/vim/vim), [neovim](https://github.com/neovim/neovim), [micro](https://github.com/zyedidia/micro), [nano](https://github.com/lhmouse/nano-win))
-- [ ] DOOM! Perhaps [this version?](https://github.com/wojciech-graj/doom-ascii)
+- [ ] All the text editors ([vim](https://github.com/vim/vim), [neovim](https://github.com/neovim/neovim), [micro](https://github.com/zyedidia/micro), [nano](https://github.com/lhmouse/nano-win), [emacs](https://github.com/emacs-mirror/emacs), etc.)
+- [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] [browsr](https://github.com/juftin/browsr)
+
+<sup>Look, at this point I'm just adding features because I'm bored, not because they're any good or I'll use them.</sup>
 
 ---
 
