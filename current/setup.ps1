@@ -1138,6 +1138,7 @@ public class PInvoke {
         Write-Output "4. Install btop"
         Write-Output "5. Install gping"
         Write-Output "6. Install genact"
+        Write-Output "7. Text editors"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1273,6 +1274,33 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/svenstaro/genact/releases/download/v$latest/genact-$latest`-x86_64-pc-windows-msvc.exe" -destination "$HOME\bin\genact.exe"
               Write-Output "`nInstalling"
               Write-Output "`nDone"
+            }
+          }
+          7 { # Text editors
+            # List choices
+            Write-Output "`n1. Install vim"
+            Write-Output "2. Install neovim"
+            Write-Output "3. Install micro"
+            Write-Output "4. Install nano"
+            Write-Output "5. Install emacs"
+            # Prompt user for input
+            $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
+            switch ($TEdit) {
+              1 { # vim
+                Write-Output "Sorry, not yet"
+              }
+              2 { # neovim
+                Write-Output "Sorry, not yet"
+              }
+              3 { # micro
+                Write-Output "Sorry, not yet"
+              }
+              4 { # nano
+                Write-Output "Sorry, not yet"
+              }
+              5 { # emacs
+                Write-Output "Sorry, not yet"
+              }
             }
           }
         }
