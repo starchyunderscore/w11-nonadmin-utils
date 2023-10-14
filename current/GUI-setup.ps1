@@ -1,3 +1,8 @@
+<#
+	Progress report:
+ 		There isn't much done at all. It's just a window with some text. Check back in two years or so and there might be something good.
+#>
+
 Add-Type -assembly System.Windows.Forms
 $main_form = New-Object System.Windows.Forms.Form
 
