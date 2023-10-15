@@ -82,6 +82,7 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
 - [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] [browsr](https://github.com/juftin/browsr)
+- [ ] Install never versions of [PowerShell](https://github.com/PowerShell/PowerShell)
 
 <sup>Look, at this point I'm just adding features because I'm bored, not because they're any good or I'll use them.</sup>
 
