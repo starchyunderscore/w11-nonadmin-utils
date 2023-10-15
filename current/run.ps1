@@ -22,9 +22,10 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Write-Output "Skipping"
   }
   # Get latest version information
-  Write-Output "`nFetching latest version information"
+  Write-Output "`nFetching latest version information..."
   $getLatest = Invoke-WebRequest -UseBasicParsing "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" | ConvertFrom-Json
   $latest = $getLatest.tag_name.Substring(0)
+  Write-Output "...Done`n"
   # Ask what the user wants to do
   $rundl = $Host.UI.PromptForChoice("", "", @("&Cancel", "&Run", "&Download"), 0)
   switch ($rundl) {
