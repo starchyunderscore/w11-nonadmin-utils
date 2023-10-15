@@ -436,21 +436,21 @@ public class Wallpaper
                 12 { # Kde breeze dark
                   mkdir $HOME\KDE-BREEZE-DARK # Download
                   Write-Output "Downloading from https://github.com/black7375/Breeze-Cursors-for-Windows/"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working.ani"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working_in_bg.ani"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/handwriting.cur" -OutFile "$HOME\KDE-BREEZE-DARK\handwriting.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/help.cur" -OutFile "$HOME\KDE-BREEZE-DARK\help.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/link.cur" -OutFile "$HOME\KDE-BREEZE-DARK\link.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/move.cur" -OutFile "$HOME\KDE-BREEZE-DARK\move.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/normal_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\normal_select.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/precise_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\precise_select.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_1.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_1.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_2.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_hor.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_ver.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "$HOME\KDE-BREEZE-DARK\text.cur"
-                  Invoke-Webrequest "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "$HOME\KDE-BREEZE-DARK\unavailable.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working.ani"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/Working_in_bg.ani" -OutFile "$HOME\KDE-BREEZE-DARK\Working_in_bg.ani"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/alternate_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\alternate_select.cur" # UNUSED
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/handwriting.cur" -OutFile "$HOME\KDE-BREEZE-DARK\handwriting.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/help.cur" -OutFile "$HOME\KDE-BREEZE-DARK\help.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/link.cur" -OutFile "$HOME\KDE-BREEZE-DARK\link.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/move.cur" -OutFile "$HOME\KDE-BREEZE-DARK\move.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/normal_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\normal_select.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/precise_select.cur" -OutFile "$HOME\KDE-BREEZE-DARK\precise_select.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_1.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_1.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_di_2.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_di_2.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_hor.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_hor.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/resize_ver.cur" -OutFile "$HOME\KDE-BREEZE-DARK\resize_ver.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/text.cur" -OutFile "$HOME\KDE-BREEZE-DARK\text.cur"
+                  Invoke-webRequest -UseBasicParsing "https://github.com/black7375/Breeze-Cursors-for-Windows/raw/master/Final/unavailable.cur" -OutFile "$HOME\KDE-BREEZE-DARK\unavailable.cur"
                   $RegCursors.SetValue("","KDE Breeze Dark") # Apply
                   $RegCursors.SetValue("AppStarting","$HOME\KDE-BREEZE-DARK\Working_in_bg.ani")
                   $RegCursors.SetValue("Arrow","$HOME\KDE-BREEZE-DARK\normal_select.cur")
@@ -934,7 +934,7 @@ public class PInvoke {
               $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) (New-Guid)
               New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
               Push-Location $tempDir
-              $latestPowerToys = Invoke-WebRequest "https://api.github.com/repos/microsoft/PowerToys/releases/latest" | ConvertFrom-Json
+              $latestPowerToys = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/microsoft/PowerToys/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestPowerToys.tag_name.Substring(1)
               $isInstalled = Test-Path "$installLocation\PowerToys.exe"
               if ($isInstalled) {
@@ -962,9 +962,9 @@ public class PInvoke {
                   }
                 }
                 Write-Output "Downloading $assetName"
-                Start-BitsTransfer $assetUrl "$assetName" # Start-BitsTransfer instead of Invoke-WebRequest here to get a fancy progress bar (also BitsTransfer feels faster, but idk if this is true)
+                Start-BitsTransfer $assetUrl "$assetName" # Start-BitsTransfer instead of Invoke-webRequest here to get a fancy progress bar (also BitsTransfer feels faster, but idk if this is true)
                 $powertoysInstaller = "$tempDir\$assetName"
-                $latestWix = Invoke-WebRequest "https://api.github.com/repos/wixtoolset/wix3/releases/latest" | ConvertFrom-Json
+                $latestWix = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/wixtoolset/wix3/releases/latest" | ConvertFrom-Json
                 $latestWix.assets | ForEach-Object {
                   $asset = $_
                   if ($asset.name -match "binaries.zip$") {
@@ -1056,7 +1056,7 @@ public class PInvoke {
             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
             if ($InstallLapce -eq 1) {
               Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL DEPENDENCIES IN THIS VERSION.`n"
-              $latestLapce = Invoke-WebRequest "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
+              $latestLapce = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
@@ -1073,7 +1073,7 @@ public class PInvoke {
           $InstallCygwin64 = $Host.UI.PromptForChoice("Install Cygwin64?", "", @("&Cancel", "&Install"), 0)
             if ($InstallCygwin64) {
               $remoteFile = "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=1"
-              Invoke-WebRequest "$remoteFile" -OutFile "~\Cygwin64.zip"
+              Invoke-webRequest -UseBasicParsing "$remoteFile" -OutFile "~\Cygwin64.zip"
               # Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip" # BITS does not like dropbox
               Expand-Archive ~\Cygwin64.zip | Out-Null
               rm ~\Cygwin64.zip
@@ -1086,7 +1086,7 @@ public class PInvoke {
           6 { # Clavier+
             $InstallClavier = $Host.UI.PromptForChoice("Install Clavier+?", "", @("&Cancel", "&Install"), 0)
             if ($InstallClavier -eq 1) {
-              $latestClavier = Invoke-WebRequest "https://api.github.com/repos/guilryder/clavier-plus/releases/latest" | ConvertFrom-Json
+              $latestClavier = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/guilryder/clavier-plus/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestClavier.tag_name.Substring(0)
               Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination ".\ClavierPlus.exe"
               .\ClavierPlus.exe | Out-Null
@@ -1178,7 +1178,7 @@ public class PInvoke {
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "`nFetching latest version information"
-              $getLatest = Invoke-WebRequest "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
@@ -1201,7 +1201,7 @@ public class PInvoke {
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "`nFetching latest version information"
-              $getLatest = Invoke-WebRequest "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               if (test-path "$HOME\bin\ntop.exe") {
                 Write-Output "`nRemoving old version"
@@ -1219,7 +1219,7 @@ public class PInvoke {
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "`nFetching latest version information"
-              $getLatest = Invoke-WebRequest "https://api.github.com/repos/aristocratos/btop4win/releases/latest" | ConvertFrom-Json
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/aristocratos/btop4win/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/$latest/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
@@ -1241,7 +1241,7 @@ public class PInvoke {
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "`nFetching latest version information"
-              $getLatest = Invoke-WebRequest "https://api.github.com/repos/orf/gping/releases/latest" | ConvertFrom-Json
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/orf/gping/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "`nDownloading latest version"
               Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination ".\gping.zip"
@@ -1264,7 +1264,7 @@ public class PInvoke {
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "`nFetching latest version information"
-              $getLatest = Invoke-WebRequest "https://api.github.com/repos/svenstaro/genact/releases/latest" | ConvertFrom-Json
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/svenstaro/genact/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(1)
               if (test-path "$HOME\bin\genact.exe") {
                 Write-Output "`nRemoving old version"
@@ -1297,7 +1297,7 @@ public class PInvoke {
                 if ($Install -eq 1) {
                   CREATE_BIN
                   Write-Output "`nFetching latest version information"
-                  $getLatest = Invoke-WebRequest "https://api.github.com/repos/szyedidia/micro/releases/latest" | ConvertFrom-Json
+                  $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/szyedidia/micro/releases/latest" | ConvertFrom-Json
                   $latest = $getLatest.tag_name.Substring(1)
                   if (test-path "$HOME\bin\micro.exe") {
                     Write-Output "`nRemoving old version"
