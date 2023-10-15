@@ -65,10 +65,11 @@ These are features that are not yet in the realease. These features may not work
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
+- [ ] [QEMU](https://www.qemu.org/) [via](https://www.dropbox.com/scl/fi/ziq6fl8srwmzxusqeztyl/qemu.zip?rlkey=tzkfzt8p14kpywjjhyse3k9ks&dl=0)
+- [ ] All the text editors: [vim](https://github.com/vim/vim), [neovim](https://github.com/neovim/neovim), [nano](https://github.com/lhmouse/nano-win), [emacs](https://github.com/emacs-mirror/emacs), etc.
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
-- [ ] All the text editors: [vim](https://github.com/vim/vim), [neovim](https://github.com/neovim/neovim), [nano](https://github.com/lhmouse/nano-win), [emacs](https://github.com/emacs-mirror/emacs), etc.
 - [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] [browsr](https://github.com/juftin/browsr)
 
