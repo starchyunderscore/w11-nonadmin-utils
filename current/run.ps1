@@ -1,17 +1,3 @@
-<#
-  This script is intended to be hosted on a short domain so that the setup script can be run quickly by typing, for example "iwr w11n.au | iex".
-  Of course, I don't live in Australia, and the script has no connection to it, and I can't afford that domain anyways, but it's a cool idea.
-  The only place I could theoretically host it is starchyunderscore.github.io, but that's really long to type as well.
-  Slightly shorter than what you would have to type to run the script now, sure, but still very long.
-  I'm looking at free name services, but none of them are super great.
-  I'm also trying to see if you can have more than one site on github pages, so that this could be hosted via github instead of some other service.
-  Hopefully, assuming this script works and I can find everything I need, there should be an easy way to run the setup script "soon"
-#>
-Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE README !!"
-Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE README !!"
-Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE README !!"
-Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE README !!"
-Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE README !!`n`n`n"
 # Check if the user is running an admin powershell window
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   # Create restore point if the user wants to
@@ -41,13 +27,13 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
         1 { # Latest
           Write-Output "Downloading"
           Write-Output "Running"
-           Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" | Invoke-Expression
+          Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" | Invoke-Expression
           Write-Output "Done"
         }
         2 { # Alpha
           Write-Output "Downloading"
           Write-Output "Running"
-           Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | Invoke-Expression
+          Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | Invoke-Expression
           Write-Output "Done"
         }
       }
@@ -64,7 +50,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-             Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" > $savelc
+            Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" -OutFile $savelc
             Write-Output "Done"
           }
         }
@@ -74,7 +60,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-             Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" > $savelc
+            Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" -OutFile $savelc
             Write-Output "Done"
           }
         }
@@ -85,8 +71,4 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
   # Tell the user not to use an admin powershell window
   Write-Output "You shouldn't run the script in an admin Powershell window. Anything that needs admin will self-elevate."
 }
-# Ask if user wants to exit powershell
-$leave = $Host.UI.PromptForChoice("Exit powershell window?", "", @("&Yes", "&No"), 0)
-if ($leave -eq 0) {
-  exit
-}
+exit
