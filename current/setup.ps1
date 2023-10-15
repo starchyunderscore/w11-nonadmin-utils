@@ -1240,23 +1240,25 @@ public class PInvoke {
             $Install = $Host.UI.PromptForChoice("Install gping?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Write-Output "`nFetching latest version information"
+              Write-Output "Fetching latest version information..."
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/orf/gping/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
-              Write-Output "`nDownloading latest version"
+              Write-Output "Downloading latest version..."
               Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination ".\gping.zip"
-              Write-Output "`nExtracting latest version"
+              Write-Output "Extracting..."
               Expand-Archive ".\gping.zip" -DestinationPath ".\gping" -Force
               if (test-path "$HOME\bin\gping.exe") {
-                Write-Output "`nRemoving old version"
+                Write-Output "Removing old version..."
                 rm "$HOME\bin\gping.exe"
               }
-              Write-Output "`nInstalling"
+              Write-Output "Installing..."
               mv ".\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
-              Write-Output "`nCleaning up"
+              Write-Output "Downloading dependencies..."
+              Start-BitsTransfer -source "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -destination "$HOME\bin\vcruntime140.dll"
+              Write-Output "Cleaning up..."
               rm ".\gping.zip"
               rm ".\gping" -r
-              Write-Output "`nDone"
+              Write-Output "`nDone!"
             }
           }
           6 { # genact
