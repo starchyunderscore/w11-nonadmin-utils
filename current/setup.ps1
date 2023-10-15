@@ -1055,11 +1055,14 @@ public class PInvoke {
           4 { # Lapce
             $InstallLapce = $Host.UI.PromptForChoice("Install Lapce?", "", @("&Cancel", "&Install"), 0)
             if ($InstallLapce -eq 1) {
-              Write-Output "`nWARNING, THIS PROGRAM DOES NOT INSTALL DEPENDENCIES IN THIS VERSION.`n"
+              Write-Output "`nWARNING, THIS PROGRAM MAY NOT WORK WITHOUT MICROSOFT VISUAL STUDIO C++ INSTALLED.`n"
               $latestLapce = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
               Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
               Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\vcruntime140.dll"
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/qio77woad985fhf9w9aj4/vcruntime140_1.dll?rlkey=ny0shlgfo2h2xyaikx4g8zcia&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\vcruntime140_1.dll"
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/iws22okw53ft7sjw1axok/msvcp140.dll?rlkey=4mfgeoydrmdtznsmfkaetwecy&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\msvcp140.dll"
               rm ".\Lapce-windows-portable.zip"
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
