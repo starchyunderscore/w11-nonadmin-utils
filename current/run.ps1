@@ -15,15 +15,15 @@ Write-Output "!! THIS SCRIPT IS NOT TESTED, USE ONE OF THE METHODS LISTED IN THE
 # Check if the user is running an admin powershell window
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   # Create restore point if the user wants to
-  $restore = $Host.UI.PromptForChoice("Would you like to create a restore point? (Requires admin)", "", @("Yes","No"), 0)
+  $restore = $Host.UI.PromptForChoice("Would you like to create a restore point? (Requires admin)", "", @("&Yes","&No"), 0)
   if ($restore -eq 0) {
-    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"Enable-ComputerRestore -Drive `"C:\`" ; Checkpoint-Computer -Description `"w11-nonadmin-utils script run`" -RestorePointType `"MODIFY_SETTINGS`"`""
+    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"try{Enable-ComputerRestore -Drive `"C:\`" ; Checkpoint-Computer -Description `"w11-nonadmin-utils script run`" -RestorePointType `"MODIFY_SETTINGS`" ; Write-Output `"Restore point created`"}catch{Write-Output `"Restore point creation failed`"}`""
   } else {
     Write-Output "Skipping"
   }
   # Get latest version information
   Write-Output "`nFetching latest version information"
-  $getLatest = Invoke-WebRequest "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" | ConvertFrom-Json
+  $getLatest = Invoke-WebRequest -UseBasicParsing "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" | ConvertFrom-Json
   $latest = $getLatest.tag_name.Substring(0)
   # Ask what the user wants to do
   $rundl = $Host.UI.PromptForChoice("", "", @("&Cancel", "&Run", "&Download"), 0)
@@ -40,13 +40,13 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
         1 { # Latest
           Write-Output "Downloading"
           Write-Output "Running"
-          Invoke-WebRequest "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" | Invoke-Expression
+           Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" | Invoke-Expression
           Write-Output "Done"
         }
         2 { # Alpha
           Write-Output "Downloading"
           Write-Output "Running"
-          Invoke-WebRequest "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | Invoke-Expression
+           Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | Invoke-Expression
           Write-Output "Done"
         }
       }
@@ -63,7 +63,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-            Invoke-WebRequest "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" > $savelc
+             Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" > $savelc
             Write-Output "Done"
           }
         }
@@ -73,7 +73,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-            Invoke-WebRequest "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" > $savelc
+             Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" > $savelc
             Write-Output "Done"
           }
         }
