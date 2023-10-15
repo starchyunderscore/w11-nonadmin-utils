@@ -1180,63 +1180,63 @@ public class PInvoke {
             $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Write-Output "`nFetching latest version information"
+              Write-Output "Fetching latest version information..."
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
-              Write-Output "`nDownloading latest version"
+              Write-Output "Downloading latest version..."
               Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
-              Write-Output "`nExtracting latest version"
+              Write-Output "Extracting..."
               Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
               if (test-path "$HOME\bin\fastfetch.exe") {
-                Write-Output "`nRemoving old version"
+                Write-Output "Removing old version..."
                 rm "$HOME\bin\fastfetch.exe"
               }
-              Write-Output "`nInstalling"
+              Write-Output "Installing..."
               mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
-              Write-Output "`nCleaning up"
+              Write-Output "Cleaning up..."
               rm ".\fastfetch.zip"
               rm ".\fastfetch" -r
-              Write-Output "`nDone"
+              Write-Output "`nDone!"
             }
           }
           3 { # Get HTop
             $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Write-Output "`nFetching latest version information"
+              Write-Output "Fetching latest version information..."
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/gsass1/NTop/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               if (test-path "$HOME\bin\ntop.exe") {
-                Write-Output "`nRemoving old version"
+                Write-Output "Removing old version..."
                 rm "$HOME\bin\ntop.exe"
               }
-              Write-Output "`nDownloading latest version"
+              Write-Output "Downloading latest version..."
               Start-BitsTransfer -source "https://github.com/gsass1/NTop/releases/download/$latest/ntop.exe" -destination "$HOME\bin\ntop.exe"
-              Write-Output "`nInstalling"
-              Write-Output "`nCleaning up"
-              Write-Output "`nDone"
+              Write-Output "Installing..."
+              Write-Output "Cleaning up..."
+              Write-Output "`nDone!"
             }
           }
           4 { # Get btop
             $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Write-Output "`nFetching latest version information"
+              Write-Output "Fetching latest version information..."
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/aristocratos/btop4win/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
-              Write-Output "`nDownloading latest version"
+              Write-Output "Downloading latest version..."
               Start-BitsTransfer -source "https://github.com/aristocratos/btop4win/releases/download/$latest/btop4win-x64.zip" -destination "$HOME\bin\btop.zip"
               if (test-path "$HOME\bin\btop") {
-                Write-Output "`nRemoving old version"
+                Write-Output "Removing old version..."
                 rm -r "$HOME\bin\btop"
               }
-              Write-Output "`nExtracting latest version"
+              Write-Output "Extracting..."
               Expand-Archive "$HOME\bin\btop.zip" -DestinationPath "$HOME\bin\btop" -Force
-              Write-Output "`nInstalling"
+              Write-Output "Installing..."
               Write-Output "$HOME\bin\btop\btop4win\btop4win.exe" > "$HOME\bin\btop.ps1"
-              Write-Output "`nCleaning up"
+              Write-Output "Cleaning up..."
               rm "$HOME\bin\btop.zip"
-              Write-Output "`nDone"
+              Write-Output "`nDone!"
             }
           }
           5 { # Get gping
@@ -1268,23 +1268,23 @@ public class PInvoke {
             $Install = $Host.UI.PromptForChoice("Install genact?", "", @("&Cancel", "&Install"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
-              Write-Output "`nFetching latest version information"
+              Write-Output "Fetching latest version information..."
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/svenstaro/genact/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(1)
               if (test-path "$HOME\bin\genact.exe") {
-                Write-Output "`nRemoving old version"
+                Write-Output "Removing old version..."
                 rm "$HOME\bin\genact.exe"
               }
-              Write-Output "`nDownloading latest version"
+              Write-Output "Downloading latest version..."
               Start-BitsTransfer -source "https://github.com/svenstaro/genact/releases/download/v$latest/genact-$latest`-x86_64-pc-windows-msvc.exe" -destination "$HOME\bin\genact.exe"
-              Write-Output "`nInstalling"
-              Write-Output "`nDone"
+              Write-Output "Installing..."
+              Write-Output "`nDone!"
             }
           }
           7 { # Text editors
             # List choices
             Write-Output "`n1. Install vim"
-            Write-Output "2. Install neovim - not done"
+            Write-Output "2. Install neovim"
             Write-Output "3. Install micro"
             Write-Output "4. Install nano - not done"
             Write-Output "5. Install emacs - not done"
@@ -1315,7 +1315,7 @@ public class PInvoke {
                 }
               }
               2 { # neovim
-                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install"), 0)
+                $Install = $Host.UI.PromptForChoice("Install neovim?", "", @("&Cancel", "&Install"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   if (test-path "$HOME\bin\neovim.ps1") {
@@ -1334,6 +1334,7 @@ public class PInvoke {
                   Write-Output "Cleaning up..."
                   rm -r .\nvim
                   Write-Output "`nDone!"
+                  Write-Output "`nThe command to run neovim is ``nvim```n"
                 }
               }
               3 { # micro
