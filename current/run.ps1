@@ -71,4 +71,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
   # Tell the user not to use an admin powershell window
   Write-Output "You shouldn't run the script in an admin Powershell window. Anything that needs admin will self-elevate."
 }
-exit
+# Ask if user wants to exit powershell
+$leave = $Host.UI.PromptForChoice("Exit powershell window?", "", @("&Yes", "&No"), 0)
+if ($leave -eq 0) {
+  exit
+}
