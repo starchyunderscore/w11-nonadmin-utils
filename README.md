@@ -9,7 +9,7 @@ w11-nonadmin-utils is an interactive command line tool to change settings and in
 Open a (non-admin) PowerShell window and run:
 
 ```PowerShell
-iwr -UseBasicParsing https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/run.ps1 | iex
+iwr -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/run.ps1" | iex
 ```
 
 ---
