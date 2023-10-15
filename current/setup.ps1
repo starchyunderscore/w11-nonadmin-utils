@@ -1073,10 +1073,10 @@ public class PInvoke {
           $InstallCygwin64 = $Host.UI.PromptForChoice("Install Cygwin64?", "", @("&Cancel", "&Install"), 0)
             if ($InstallCygwin64) {
               $remoteFile = "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=1"
-              Invoke-webRequest -UseBasicParsing "$remoteFile" -OutFile "~\Cygwin64.zip"
-              # Start-BitsTransfer -source "$remoteFile" -destination "~\Cygwin64.zip" # BITS does not like dropbox
-              Expand-Archive ~\Cygwin64.zip | Out-Null
-              rm ~\Cygwin64.zip
+              Invoke-webRequest -UseBasicParsing "$remoteFile" -OutFile "$HOME\Cygwin64.zip"
+              # Start-BitsTransfer -source "$remoteFile" -destination "$HOME\Cygwin64.zip" # BITS does not like dropbox
+              Expand-Archive $HOME\Cygwin64.zip | Out-Null
+              rm $HOME\Cygwin64.zip
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Cygwin64.lnk")
               $Shortcut.TargetPath = "$HOME\Cygwin64\Cygwin64\bin\mintty.exe"
@@ -1301,7 +1301,7 @@ public class PInvoke {
                   Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination ".\vim.zip"
                   Write-Output "`nInstalling"
                   Expand-Archive .\vim.zip | out-null
-                  mv .\vim\vim\vim*\ ~\bin\vim | out-null
+                  mv .\vim\vim\vim*\ $HOME\bin\vim | out-null
                   Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
                   Write-Output "`nCleaning up"
                   rm -r .\vim
@@ -1326,7 +1326,7 @@ public class PInvoke {
                   Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination ".\micro.zip"
                   Write-Output "`nInstalling"
                   Expand-Archive .\micro.zip | out-null
-                  mv .\micro\micro*\micro.exe ~\bin\micro.exe | out-null
+                  mv .\micro\micro*\micro.exe $HOME\bin\micro.exe | out-null
                   Write-Output "`nCleaning up"
                   rm -r .\micro
                   Write-Output "`nDone"
