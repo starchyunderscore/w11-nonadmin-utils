@@ -74,5 +74,5 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # Ask if user wants to exit powershell
 $leave = $Host.UI.PromptForChoice("Exit powershell window?", "", @("&Yes", "&No"), 0)
 if ($leave -eq 0) {
-  exit
+  exit 0
 }
