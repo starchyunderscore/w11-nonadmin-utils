@@ -1287,7 +1287,26 @@ public class PInvoke {
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
             switch ($TEdit) {
               1 { # vim
-                Write-Output "Sorry, not yet"
+                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install"), 0)
+                if ($Install -eq 1) {
+                  CREATE_BIN
+                  Write-Output "`nFetching latest version information"
+                  $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/vim/vim-win32-installer/releases/latest" | ConvertFrom-Json
+                  $latest = $getLatest.tag_name.Substring(1)
+                  if (test-path "$HOME\bin\vim.ps1") {
+                    Write-Output "`nRemoving old version"
+                    rm -r "$HOME\bin\vim"
+                  }
+                  Write-Output "`nDownloading latest version"
+                  Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination ".\vim.zip"
+                  Write-Output "`nInstalling"
+                  Expand-Archive .\vim.zip | out-null
+                  mv .\vim\vim\vim*\ ~\bin\vim | out-null
+                  Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
+                  Write-Output "`nCleaning up"
+                  rm -r .\vim
+                  Write-Output "`nDone"
+                }
               }
               2 { # neovim
                 Write-Output "Sorry, not yet"
