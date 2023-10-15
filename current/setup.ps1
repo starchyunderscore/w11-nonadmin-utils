@@ -1278,7 +1278,7 @@ public class PInvoke {
           }
           7 { # Text editors
             # List choices
-            Write-Output "`n1. Install vim - not done"
+            Write-Output "`n1. Install vim"
             Write-Output "2. Install neovim - not done"
             Write-Output "3. Install micro"
             Write-Output "4. Install nano - not done"
@@ -1299,8 +1299,9 @@ public class PInvoke {
                   }
                   Write-Output "`nDownloading latest version"
                   Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination ".\vim.zip"
-                  Write-Output "`nInstalling"
+                  Write-Output "`nExtracting"
                   Expand-Archive .\vim.zip | out-null
+                  Write-Output "`nInstalling"
                   mv .\vim\vim\vim*\ $HOME\bin\vim | out-null
                   Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
                   Write-Output "`nCleaning up"
@@ -1345,4 +1346,3 @@ public class PInvoke {
     }
   }
 } until ($Option -notmatch "\S")
-Exit 0
