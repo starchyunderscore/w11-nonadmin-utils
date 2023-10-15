@@ -17,7 +17,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
   # Create restore point if the user wants to
   $restore = $Host.UI.PromptForChoice("Would you like to create a restore point? (Requires admin)", "", @("&Yes","&No"), 0)
   if ($restore -eq 0) {
-    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"try{Enable-ComputerRestore -Drive `"C:\`" ; Checkpoint-Computer -Description `"w11-nonadmin-utils script run`" -RestorePointType `"MODIFY_SETTINGS`" ; Write-Output `"Restore point created`"}catch{Write-Output `"Restore point creation failed`"} Write-Output `"Exiting in 5 seconds`" ; Start-Sleep -Seconds 5`""
+    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"Enable-ComputerRestore -Drive C:\ ; Checkpoint-Computer -Description w11-nonadmin-utils_script_run -RestorePointType MODIFY_SETTINGS`""
   } else {
     Write-Output "Skipping"
   }
