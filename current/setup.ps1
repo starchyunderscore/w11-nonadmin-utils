@@ -1290,47 +1290,66 @@ public class PInvoke {
                 $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
-                  Write-Output "`nFetching latest version information"
+                  Write-Output "Fetching latest version information..."
                   $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/vim/vim-win32-installer/releases/latest" | ConvertFrom-Json
                   $latest = $getLatest.tag_name.Substring(1)
                   if (test-path "$HOME\bin\vim.ps1") {
-                    Write-Output "`nRemoving old version"
+                    Write-Output "Removing old version..."
                     rm -r "$HOME\bin\vim"
                   }
-                  Write-Output "`nDownloading latest version"
+                  Write-Output "Downloading latest version..."
                   Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination ".\vim.zip"
-                  Write-Output "`nExtracting"
+                  Write-Output "Extracting..."
                   Expand-Archive .\vim.zip | out-null
-                  Write-Output "`nInstalling"
+                  Write-Output "Installing..."
                   mv .\vim\vim\vim*\ $HOME\bin\vim | out-null
                   Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
-                  Write-Output "`nCleaning up"
+                  Write-Output "Cleaning up..."
                   rm -r .\vim
-                  Write-Output "`nDone"
+                  Write-Output "`nDone!"
                 }
               }
               2 { # neovim
-                Write-Output "Sorry, not yet"
+                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install"), 0)
+                if ($Install -eq 1) {
+                  CREATE_BIN
+                  if (test-path "$HOME\bin\neovim.ps1") {
+                    Write-Output "`nRemoving old version"
+                    rm -r "$HOME\bin\nvim"
+                  }
+                  Write-Output "Downloading latest version..."
+                  Start-BitsTransfer -source "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.zip" -destination ".\nvim.zip"
+                  Write-Output "Extracting..."
+                  Expand-Archive .\nvim.zip | out-null
+                  Write-Output "Installing..."
+                  mv .\nvim\nvim-win64\ $HOME\bin\nvim | out-null
+                  Write-Output "$HOME\bin\nvim\bin\nvim.exe" > "$HOME\bin\nvim.ps1"
+                  Write-Output "Downloading dependencies..."
+                  Start-BitsTransfer -source "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -destination "$HOME\bin\nvim\bin\vcruntime140.dll"
+                  Write-Output "Cleaning up..."
+                  rm -r .\nvim
+                  Write-Output "`nDone!"
+                }
               }
               3 { # micro
                 $Install = $Host.UI.PromptForChoice("Install micro?", "", @("&Cancel", "&Install"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
-                  Write-Output "`nFetching latest version information"
+                  Write-Output "Fetching latest version information..."
                   $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/szyedidia/micro/releases/latest" | ConvertFrom-Json
                   $latest = $getLatest.tag_name.Substring(1)
                   if (test-path "$HOME\bin\micro.exe") {
-                    Write-Output "`nRemoving old version"
+                    Write-Output "Removing old version..."
                     rm "$HOME\bin\micro.exe"
                   }
-                  Write-Output "`nDownloading latest version"
+                  Write-Output "Downloading latest version..."
                   Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination ".\micro.zip"
-                  Write-Output "`nInstalling"
+                  Write-Output "Installing..."
                   Expand-Archive .\micro.zip | out-null
                   mv .\micro\micro*\micro.exe $HOME\bin\micro.exe | out-null
-                  Write-Output "`nCleaning up"
+                  Write-Output "Cleaning up..."
                   rm -r .\micro
-                  Write-Output "`nDone"
+                  Write-Output "`nDone!"
                 }
               }
               4 { # nano
