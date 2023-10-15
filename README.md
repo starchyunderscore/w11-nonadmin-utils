@@ -4,6 +4,16 @@ w11-nonadmin-utils is an interactive command line tool to change settings and in
 
 ---
 
+## How to use:
+
+Open a (non-admin) PowerShell window and run:
+
+```PowerShell
+iwr -UseBasicParsing https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/run.ps1 | iex
+```
+
+---
+
 ## Features
 
 These are features that are fully ready.
@@ -74,50 +84,6 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] [browsr](https://github.com/juftin/browsr)
 
 <sup>Look, at this point I'm just adding features because I'm bored, not because they're any good or I'll use them.</sup>
-
----
-
-## WARNINGS:
-
-THIS SCRIPT MAKES CHANGES TO THE REGISTRY. USE AT YOUR OWN RISK.
-
-This script is made for windows 11, it may work on other versions, or it may not
-
----
-
-## To use the script
-
-If you have admin rights, open an admin PowerShell window and create a system restore point, replacing the drive name as needed:
-
-```PowerShell
-Enable-ComputerRestore -Drive "C:\" ; Checkpoint-Computer -Description "w11-nonadmin-utils script run" -RestorePointType "MODIFY_SETTINGS"
-```
-
-### Quick run:
-
-Open PowerShell and run this command: 
-
-```PowerShell
-iwr "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/00.01.18/setup.ps1" | iex
-```
-
-### Quick run, alpha version ( WARNING: unstable, may not work, may break things ):
-
-Open PowerShell and run this command:
-
-```PowerShell
-iwr "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | iex
-```
-
-### Run locally:
-
-Download the latest setup.ps1 file from the [releases page](https://github.com/starchyunderscore/w11-nonadmin-utils/releases/latest)
-
-Run the below command in PowerShell, replacing the path to `setup.ps1` as needed
-
-```PowerShell
-PowerShell -ep Bypass -File ~\Downloads\setup.ps1
-```
 
 ---
 
