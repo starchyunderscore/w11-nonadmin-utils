@@ -1254,7 +1254,7 @@ public class PInvoke {
               Write-Output "Installing..."
               mv ".\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
               Write-Output "Downloading dependencies..."
-              Start-BitsTransfer -source "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -destination "$HOME\bin\vcruntime140.dll"
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\vcruntime140.dll"
               Write-Output "Cleaning up..."
               rm ".\gping.zip"
               rm ".\gping" -r
@@ -1327,7 +1327,7 @@ public class PInvoke {
                   mv .\nvim\nvim-win64\ $HOME\bin\nvim | out-null
                   Write-Output "$HOME\bin\nvim\bin\nvim.exe" > "$HOME\bin\nvim.ps1"
                   Write-Output "Downloading dependencies..."
-                  Start-BitsTransfer -source "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -destination "$HOME\bin\nvim\bin\vcruntime140.dll"
+                  Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\nvim\bin\vcruntime140.dll"
                   Write-Output "Cleaning up..."
                   rm -r .\nvim
                   Write-Output "`nDone!"
