@@ -50,14 +50,14 @@ These are features that are fully ready.
   - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
   - [x] Install [eDEX-UI](https://github.com/GitSquared/edex-ui)
 
-- [x] Command line utilities
+- [x] Command line utilities:
   - [x] Add and remove items from bin
   - [x] Install [fastfetch](https://github.com/LinusDierheimer/fastfetch)
   - [x] Install [ntop](https://github.com/gsass1/NTop)
   - [x] Install [btop4win](https://github.com/aristocratos/btop4win)
   - [x] Install [gping](https://github.com/orf/gping)
   - [x] Install [genact](https://github.com/svenstaro/genact)
-  - [x] Text editors
+  - [x] Text editors:
     - [x] Install [vim](https://github.com/vim/vim)
     - [x] Install [neovim](https://github.com/neovim/neovim)
     - [x] Install [micro](https://github.com/zyedidia/micro)
