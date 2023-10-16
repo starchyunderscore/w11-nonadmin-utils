@@ -80,7 +80,7 @@ These are features that are not yet in the realease. These features may not work
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] [QEMU](https://www.qemu.org/) ([via](https://www.dropbox.com/scl/fi/ziq6fl8srwmzxusqeztyl/qemu.zip?rlkey=tzkfzt8p14kpywjjhyse3k9ks&dl=0)) - Need a different GUI, this one doesn't work
+- [ ] [QEMU](https://www.qemu.org/) ([via](https://www.dropbox.com/scl/fi/ziq6fl8srwmzxusqeztyl/qemu.zip?rlkey=tzkfzt8p14kpywjjhyse3k9ks&dl=0)) - Need a different GUI [https://www.how2shout.com/how-to/how-to-set-up-virtual-machines-with-qemu-gui-on-windows-10.html](try), [https://www.dropbox.com/scl/fi/3e4uctixm1oilvcztik0o/qtemu_portable_x86_64.zip?rlkey=m2229tbetj2335arduqiv51ke&dl=0](via)
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
