@@ -1287,7 +1287,6 @@ public class PInvoke {
             Write-Output "2. Install neovim"
             Write-Output "3. Install micro"
             Write-Output "4. Install nano"
-            Write-Output "5. Install emacs - not done"
             # Prompt user for input
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
             switch ($TEdit) {
@@ -1382,9 +1381,6 @@ public class PInvoke {
                   rm .\nano.zip
                   Write-Output "`nDone!"
                 }
-              }
-              5 { # emacs
-                Write-Output "Sorry, not yet"
               }
             }
           }
