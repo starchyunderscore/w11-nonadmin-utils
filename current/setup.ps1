@@ -1311,6 +1311,7 @@ public class PInvoke {
                   Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
                   Write-Output "Cleaning up..."
                   rm -r .\vim
+                  rm .\vim.zip
                   Write-Output "`nDone!"
                 }
               }
@@ -1333,6 +1334,7 @@ public class PInvoke {
                   Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\nvim\bin\vcruntime140.dll"
                   Write-Output "Cleaning up..."
                   rm -r .\nvim
+                  rm .\nvim.zip
                   Write-Output "`nDone!"
                   Write-Output "`nThe command to run neovim is ``nvim```n"
                 }
@@ -1350,16 +1352,36 @@ public class PInvoke {
                   }
                   Write-Output "Downloading latest version..."
                   Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination ".\micro.zip"
-                  Write-Output "Installing..."
+                  Write-Output "Extracting..."
                   Expand-Archive .\micro.zip | out-null
+                  Write-Output "Installing..."
                   mv .\micro\micro*\micro.exe $HOME\bin\micro.exe | out-null
                   Write-Output "Cleaning up..."
                   rm -r .\micro
+                  rm .\micro.zip
                   Write-Output "`nDone!"
                 }
               }
               4 { # nano
-                Write-Output "Sorry, not yet"
+                $Install = $Host.UI.PromptForChoice("Install nano?", "", @("&Cancel", "&Install"), 0)
+                if ($Install -eq 1) {
+                  CREATE_BIN
+                  if (test-path "$HOME\bin\nano.ps1") {
+                    Write-Output "Removing old version..."
+                    rm -r "$HOME\bin\nano"
+                  }
+                  Write-Output "Downloading latest version..."
+                  Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/9wzwel73vosegmkbg5soa/nano.zip?rlkey=8dwqs4nklqrcb0npq1obm37sx&dl=1" -OutFile .\nano.zip
+                  Write-Output "Extracting..."
+                  Expand-Archive .\micro.zip | out-null
+                  Write-Output "Installing..."
+                  mv .\nano\nano\ $HOME\bin\nano\ | out-null
+                  Write-Output "$HOME\bin\nano\bin\nano.exe" > "$HOME\bin\nano.ps1"
+                  Write-Output "Cleaning up..."
+                  rm -r .\nano
+                  rm .\nano.zip
+                  Write-Output "`nDone!"
+                }
               }
               5 { # emacs
                 Write-Output "Sorry, not yet"
