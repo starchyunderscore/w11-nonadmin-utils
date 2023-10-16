@@ -1286,7 +1286,7 @@ public class PInvoke {
             Write-Output "`n1. Install vim"
             Write-Output "2. Install neovim"
             Write-Output "3. Install micro"
-            Write-Output "4. Install nano - not done"
+            Write-Output "4. Install nano"
             Write-Output "5. Install emacs - not done"
             # Prompt user for input
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
@@ -1373,7 +1373,7 @@ public class PInvoke {
                   Write-Output "Downloading latest version..."
                   Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/9wzwel73vosegmkbg5soa/nano.zip?rlkey=8dwqs4nklqrcb0npq1obm37sx&dl=1" -OutFile .\nano.zip
                   Write-Output "Extracting..."
-                  Expand-Archive .\micro.zip | out-null
+                  Expand-Archive .\nano.zip | out-null
                   Write-Output "Installing..."
                   mv .\nano\nano\ $HOME\bin\nano\ | out-null
                   Write-Output "$HOME\bin\nano\bin\nano.exe" > "$HOME\bin\nano.ps1"
