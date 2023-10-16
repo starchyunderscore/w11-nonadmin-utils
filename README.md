@@ -69,14 +69,14 @@ These are features that are not yet in the realease. These features may not work
 
 - [ ] Install [eDEX-UI](https://github.com/GitSquared/edex-ui)
 - [ ] Install [genact](https://github.com/svenstaro/genact)
-- [ ] Some text editors: [vim](https://github.com/vim/vim), [micro](https://github.com/zyedidia/micro)
+- [ ] Some text editors: [neovim](https://github.com/neovim/neovim), [vim](https://github.com/vim/vim), [micro](https://github.com/zyedidia/micro)
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
 - [ ] [QEMU](https://www.qemu.org/) ([via](https://www.dropbox.com/scl/fi/ziq6fl8srwmzxusqeztyl/qemu.zip?rlkey=tzkfzt8p14kpywjjhyse3k9ks&dl=0))
-- [ ] All the text editors: [neovim](https://github.com/neovim/neovim), [nano](https://github.com/lhmouse/nano-win), [emacs](https://github.com/emacs-mirror/emacs), etc.
+- [ ] All the text editors: [nano](https://github.com/lhmouse/nano-win), [emacs](https://github.com/emacs-mirror/emacs), etc.
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
