@@ -9,7 +9,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
   }
   # Get latest version information
   Write-Output "`nFetching latest version information..."
-  $getLatest = Invoke-WebRequest -UseBasicParsing "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" | ConvertFrom-Json
+  $getLatest = Invoke-WebRequest -UseBasicParsing "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" -Headers @{"Cache-Control"="no-cache"} | ConvertFrom-Json
   $latest = $getLatest.tag_name.Substring(0)
   Write-Output "...Done`n"
   # Ask what the user wants to do
@@ -27,13 +27,13 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
         1 { # Latest
           Write-Output "Downloading"
           Write-Output "Running"
-          Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" | Invoke-Expression
+          Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" -Headers @{"Cache-Control"="no-cache"} | Invoke-Expression
           Write-Output "Done"
         }
         2 { # Alpha
           Write-Output "Downloading"
           Write-Output "Running"
-          Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" | Invoke-Expression
+          Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" -Headers @{"Cache-Control"="no-cache"} | Invoke-Expression
           Write-Output "Done"
         }
       }
@@ -50,7 +50,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-            Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" -OutFile $savelc
+            Invoke-webRequest -UseBasicParsing "https://github.com/starchyunderscore/w11-nonadmin-utils/releases/download/$latest/setup.ps1" -Headers @{"Cache-Control"="no-cache"} -OutFile $savelc
             Write-Output "Done"
           }
         }
@@ -60,7 +60,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
             Write-Output "Canceled"
           } else {
             Write-Output "Downloading"
-            Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" -OutFile $savelc
+            Invoke-webRequest -UseBasicParsing "https://raw.githubusercontent.com/starchyunderscore/w11-nonadmin-utils/main/current/setup.ps1" -Headers @{"Cache-Control"="no-cache"} -OutFile $savelc
             Write-Output "Done"
           }
         }
