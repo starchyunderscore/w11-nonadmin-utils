@@ -83,7 +83,7 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] [QEMU](https://www.qemu.org/) ([via](https://www.dropbox.com/scl/fi/ziq6fl8srwmzxusqeztyl/qemu.zip?rlkey=tzkfzt8p14kpywjjhyse3k9ks&dl=0)) - Need a different GUI [try](https://www.how2shout.com/how-to/how-to-set-up-virtual-machines-with-qemu-gui-on-windows-10.html), [via](https://www.dropbox.com/scl/fi/3e4uctixm1oilvcztik0o/qtemu_portable_x86_64.zip?rlkey=m2229tbetj2335arduqiv51ke&dl=0), [try](https://wiki.qemu.org/Links), [this](https://sourceforge.net/projects/aqemu/)
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
-- [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/)
+- [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/) (I don't have a new enough version to test)
 - [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] [browsr](https://github.com/juftin/browsr)
 - [ ] Install never versions of [PowerShell](https://github.com/PowerShell/PowerShell)
