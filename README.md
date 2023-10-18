@@ -74,17 +74,16 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-<sup>Nothing here at the moment</sup>
+- [ ] Install [QEMU](https://www.qemu.org/)
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] [QEMU](https://www.qemu.org/) ([via](https://www.dropbox.com/scl/fi/qkiat4mvejn15puy4v0fi/qemu.zip?rlkey=qqbihi011pakx2kokbs57z1us&dl=0))
+- [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/) (I don't have a new enough version to test)
-- [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] [browsr](https://github.com/juftin/browsr)
 - [ ] Install never versions of [PowerShell](https://github.com/PowerShell/PowerShell)
 
