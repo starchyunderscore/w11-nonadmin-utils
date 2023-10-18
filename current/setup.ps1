@@ -929,7 +929,7 @@ public class PInvoke {
             }
             if ($InstallFirefox -In 1..5) { # For less repeated code
               Write-Output "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n"
-              $HOME\w11-nau-temp\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
+              & $HOME\w11-nau-temp\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
               rm $HOME\w11-nau-temp\FireFoxInstall.exe
             }
           }
@@ -1098,7 +1098,7 @@ public class PInvoke {
               $latestClavier = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/guilryder/clavier-plus/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestClavier.tag_name.Substring(0)
               Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination "$HOME\w11-nau-temp\ClavierPlus.exe"
-              $HOME\w11-nau-temp\ClavierPlus.exe | Out-Null
+              & $HOME\w11-nau-temp\ClavierPlus.exe | Out-Null
               rm $HOME\w11-nau-temp\ClavierPlus.exe
             }
           }
@@ -1106,7 +1106,7 @@ public class PInvoke {
             $InstallEdex = $Host.UI.PromptForChoice("Install eDEX-UI?", "", @("&Cancel", "&Install"), 0)
             if ($InstallEdex -eq 1) {
               Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination "$HOME\w11-nau-temp\eDEX-UI.exe"
-              $HOME\w11-nau-temp\eDEX-UI.exe | out-null
+              & $HOME\w11-nau-temp\eDEX-UI.exe | out-null
               rm $HOME\w11-nau-temp\eDEX-UI.exe
             }
           }
