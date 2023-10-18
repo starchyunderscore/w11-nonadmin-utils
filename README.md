@@ -49,6 +49,7 @@ These are features that are fully ready.
   - [x] Install [Cygwin64](https://www.cygwin.com/)
   - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
   - [x] Install [eDEX-UI](https://github.com/GitSquared/edex-ui)
+  - [x] Install [GZDoom](https://github.com/ZDoom/gzdoom) with Doom 1.9 WAD [via](https://archive.org/details/2020_03_22_DOOM)
 
 - [x] Command line utilities:
   - [x] Add and remove items from bin
@@ -62,6 +63,7 @@ These are features that are fully ready.
     - [x] Install [neovim](https://github.com/neovim/neovim)
     - [x] Install [micro](https://github.com/zyedidia/micro)
     - [x] Install [nano](https://github.com/lhmouse/nano-win)
+  - [x] Install [QEMU](https://www.qemu.org/) with [Slitaz](https://www.slitaz.org)
 
 ## Beta features
 
@@ -74,8 +76,7 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Install [QEMU](https://www.qemu.org/) with [Slitaz](https://www.slitaz.org).
-- [ ] Install [GZDoom](https://github.com/ZDoom/gzdoom) with Doom 1.9 WAD [via](https://archive.org/details/2020_03_22_DOOM).
+<sup>Nothing here at the moment</sup>
 
 ## Planned features
 
