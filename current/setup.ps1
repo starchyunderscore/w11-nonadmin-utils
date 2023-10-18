@@ -1403,7 +1403,8 @@ public class PInvoke {
               Expand-Archive $HOME\w11-nau-temp\qemu.zip $HOME\w11-nau-temp\qemu\
               Write-Output "Installing..."
               mv $HOME\w11-nau-temp\qemu\qemu\ $HOME\qemu
-              mv $HOME\qemu\launch.ps1 $HOME\qemu\slitaz.ps1
+              rm $HOME\qemu\launch.ps1 # I didn't want to create a new zip because it's really annoying to.
+              Write-Output "Write-Output 'Launching slitaz with 2G ram'; Write-Output 'Root password is root'; $HOME\qemu\qemu-system-x86_64.exe -m 2G -cdrom $HOME\qemu\slitaz-rolling.iso" > $HOME\qemu\slitaz.ps1
               Write-Output "Updating Path..."
               $env:Path += ";$HOME\qemu;"
               if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
@@ -1414,6 +1415,7 @@ public class PInvoke {
               rm $HOME\w11-nau-temp\qemu.zip
               rm -r $HOME\w11-nau-temp\qemu\
               Write-Output "Done!"
+              Write-Output "Use command `"slitaz`" to easily launch slitaz linux in qemu"
             }
           }
         }
