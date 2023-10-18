@@ -1410,7 +1410,7 @@ public class PInvoke {
               if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
                 New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
               }
-              Write-Output ';$env:Path += ";$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
+              Write-Output ';$env:Path += ";$HOME\qemu;";' >> $PROFILE.CurrentUserCurrentHost
               Write-Output "Cleaning up..."
               rm $HOME\w11-nau-temp\qemu.zip
               rm -r $HOME\w11-nau-temp\qemu\
