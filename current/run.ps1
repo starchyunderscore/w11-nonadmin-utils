@@ -1,3 +1,5 @@
+$PrevProgress = $ProgressPreference
+$ProgressPreference = 'SilentlyContinue'
 # Check if the user is running an admin powershell window
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   # Create restore point if the user wants to
@@ -76,3 +78,4 @@ $leave = $Host.UI.PromptForChoice("Exit powershell window?", "", @("&Yes", "&No"
 if ($leave -eq 0) {
   exit 0
 }
+$ProgressPreference = $PrevProgress
