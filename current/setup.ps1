@@ -7,7 +7,7 @@ function CREATE_BIN {
     if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
       New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
     }
-    Write-Output ';$env:Path += "$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
+    Write-Output ';$env:Path += ";$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
     $CurrentPolicy = Get-ExecutionPolicy -Scope CurrentUser
     if ($CurrentPolicy -eq "Default" -or $CurrentPolicy -eq "AllSigned" -or $CurrentPolicy -eq "Restricted" -or $CurrentPolicy -eq "Undefined") {
       Write-Output "`nExecution policy needs to change to allow bin to work properly"
@@ -136,6 +136,12 @@ if ($ContinueScript -eq 1) {
   Write-Output "`nUser quit`n"
   Exit 0
 }
+# Small setup
+if (Test-Path $HOME\w11-nau-temp) {
+  rm -r $HOME\w11-nau-temp
+}
+mkdir $HOME\w11-nau-temp
+$ProgressPreference = 'SilentlyContinue'
 DO {
   # Print choices
   Write-Output "`n1. Change system theming"
@@ -1142,6 +1148,7 @@ public class PInvoke {
         Write-Output "5. Install gping"
         Write-Output "6. Install genact"
         Write-Output "7. Text editors"
+        Write-Output "8. Qemu"
         # Prompt user for input
         $CLUtils = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($CLUtils) {
@@ -1384,8 +1391,35 @@ public class PInvoke {
               }
             }
           }
+          8 { # QEMU
+            $Install = $Host.UI.PromptForChoice("Install QEMU?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              if (test-path "$HOME\qemu") {
+                  Write-Output "Removing old version..."
+                  rm -r "$HOME\qemu"
+              }
+              Write-Output "Downloading..."
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/qkiat4mvejn15puy4v0fi/qemu.zip?rlkey=qqbihi011pakx2kokbs57z1us&dl=1" -OutFile $HOME\w11-nau-temp\qemu.zip
+              Write-Output "Extracting..."
+              Expand-Archive $HOME\w11-nau-temp\qemu.zip
+              Write-Output "Installing..."
+              mv $HOME\w11-nau-temp\qemu\qemu\ $HOME\qemu
+              mv $HOME\qemu\launch.ps1 $HOME\qemu\slitaz.ps1
+              Write-Output "Updating Path..."
+              $env:Path += ";$HOME\qemu;"
+              if (!(Test-Path -Path $PROFILE.CurrentUserCurrentHost)) {
+                New-Item -ItemType File -Path $PROFILE.CurrentUserCurrentHost -Force
+              }
+              Write-Output ';$env:Path += ";$HOME\bin;";' >> $PROFILE.CurrentUserCurrentHost
+              Write-Output "Cleaning up..."
+              rm $HOME\w11-nau-temp\qemu.zip
+              rm -r $HOME\w11-nau-temp\qemu\
+              Write-Output "Done!"
+            }
+          }
         }
       } until ($CLUtils -notmatch "\S")
     }
   }
 } until ($Option -notmatch "\S")
+rm -r $HOME\w11-nau-temp
