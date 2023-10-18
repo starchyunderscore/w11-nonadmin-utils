@@ -134,7 +134,6 @@ Write-Output "`n!!!!!!!!!!`nWARNING: THIS SCRIPT MAKE CHANGES TO THE REGISTRY, M
 $ContinueScript = $Host.UI.PromptForChoice("Are you sure you want to continue?", "", @("&Yes", "&No"), 1)
 if ($ContinueScript -eq 1) {
   Write-Output "`nUser quit`n"
-  Exit 0
 }
 # Small setup
 if (Test-Path $HOME\w11-nau-temp) {
