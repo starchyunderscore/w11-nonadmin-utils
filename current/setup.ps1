@@ -1400,7 +1400,7 @@ public class PInvoke {
               Write-Output "Downloading..."
               Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/qkiat4mvejn15puy4v0fi/qemu.zip?rlkey=qqbihi011pakx2kokbs57z1us&dl=1" -OutFile $HOME\w11-nau-temp\qemu.zip
               Write-Output "Extracting..."
-              Expand-Archive $HOME\w11-nau-temp\qemu.zip
+              Expand-Archive $HOME\w11-nau-temp\qemu.zip $HOME\w11-nau-temp\qemu\
               Write-Output "Installing..."
               mv $HOME\w11-nau-temp\qemu\qemu\ $HOME\qemu
               mv $HOME\qemu\launch.ps1 $HOME\qemu\slitaz.ps1
