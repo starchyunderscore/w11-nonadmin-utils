@@ -901,6 +901,7 @@ public class PInvoke {
         Write-Output "5. Cygwin64"
         Write-Output "6. Clavier+"
         Write-Output "7. eDEX-UI"
+        Write-Output "8. GZDoom"
         # Prompt user for input
         $PGram = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
         switch ($PGram) {
@@ -1107,6 +1108,40 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination ".\eDEX-UI.exe"
               .\eDEX-UI.exe | out-null
               rm .\eDEX-UI.exe
+            }
+          }
+          8 { # GZDoom
+            $Install = $Host.UI.PromptForChoice("Install GZDoom?", "", @("&Cancel", "&Install"), 0)
+            if ($Install -eq 1) {
+              Write-Output "Fetching latest version information..."
+              $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/ZDoom/gzdoom/releases/latest" | ConvertFrom-Json
+              $latest = $getLatest.tag_name.Substring(1)
+              $latestSplit = $getLatest.tag_name.ToString().Split(".")
+              $latestMajor = $latestSplit[0].Substring(1)
+              $latestMinor = $latestSplit[1]
+              $latestMini = $latestSplit[2]
+              if (test-path "$HOME\GZDoom") {
+                Write-Output "Removing old version..."
+                rm -r "$HOME\bin\GZDoom"
+              }
+              Write-Output "Downloading latest version..." # Worlds most annoying version name scheme
+              Start-BitsTransfer -source "https://github.com/ZDoom/gzdoom/releases/download/g$latest/gzdoom-$latestMajor`-$latestMinor`-$latestMini`-Windows-64bit.zip" -destination "$HOME\w11-nau-temp\GZDoom.zip"
+              Start-BitsTransfer -source "https://archive.org/download/2020_03_22_DOOM/DOOM%20WADs/Doom%20%28v1.9%29.zip" -destination "$HOME\w11-nau-temp\doom.zip"
+              Write-Output "Extracting..."
+              Expand-Archive "$HOME\w11-nau-temp\GZDoom.zip" "$HOME\w11-nau-temp\GZDoom" | out-null
+              Expand-Archive "$HOME\w11-nau-temp\doom.zip" "$HOME\w11-nau-temp\doom" | out-null
+              Write-Output "Installing..."
+              mv "$HOME\w11-nau-temp\GZDoom" "$HOME\GZDoom" | out-null
+              mv "$HOME\w11-nau-temp\doom\DOOM.WAD" "$HOME\GZDoom\DOOM.WAD" | out-null
+              Write-Output "Creating shortcut..."
+              $WshShell = New-Object -ComObject WScript.Shell
+              $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\GZDoom.lnk")
+              $Shortcut.TargetPath = "$HOME\GZDoom\gzdoom.exe"
+              $Shortcut.Save()
+              Write-Output "Cleaning up..."
+              rm "$HOME\w11-nau-temp\GZDoom.zip"
+              Write-Output "`nDone!"
+              Write-Output "`nDownload more Doom WADs from https://archive.org/details/2020_03_22_DOOM`n"
             }
           }
         }
