@@ -74,13 +74,13 @@ These are features are in the release, but do not work entirely as intended.
 
 These are features that are not yet in the realease. These features may not work as intended. They may be removed at any time.
 
-- [ ] Install [QEMU](https://www.qemu.org/)
+- [ ] Install [QEMU](https://www.qemu.org/) with [Slitaz](https://www.slitaz.org).
+- [ ] Install [GZDoom](https://github.com/ZDoom/gzdoom) with Doom 1.9 WAD [via](https://archive.org/details/2020_03_22_DOOM).
 
 ## Planned features
 
 These are features that have no code yet, but are planned for the future. There is no garuntee that these features will be added.
 
-- [ ] DOOM! Perhaps [doom-ascii?](https://github.com/wojciech-graj/doom-ascii)
 - [ ] Install [kalker](https://github.com/PaddiM8/kalker)
 - [ ] Install [Cura](https://github.com/Ultimaker/Cura/)
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/) (I don't have a new enough version to test)
