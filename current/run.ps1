@@ -13,7 +13,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
   Write-Output "`nFetching latest version information..."
   $getLatest = Invoke-WebRequest -UseBasicParsing "https://api.github.com/repos/starchyunderscore/w11-nonadmin-utils/releases/latest" -Headers @{"Cache-Control"="no-cache"} | ConvertFrom-Json
   $latest = $getLatest.tag_name.Substring(0)
-  Write-Output "...Done`n"
+  Write-Output "...$latest`n"
   # Ask what the user wants to do
   $rundl = $Host.UI.PromptForChoice("", "", @("&Cancel", "&Run", "&Download"), 0)
   switch ($rundl) {
