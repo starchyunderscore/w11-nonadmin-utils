@@ -912,25 +912,25 @@ public class PInvoke {
                 Write-Output "`nCanceled"
               }
               1 { # Latest
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" -destination "$HOME\w11-nau-temp\FireFoxInstall.exe"
               }
               2 { # Nightly
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=win64&lang=en-US" -destination "$HOME\w11-nau-temp\FireFoxInstall.exe"
               }
               3 { # Beta
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=en-US" -destination "$HOME\w11-nau-temp\FireFoxInstall.exe"
               }
               4 { # Dev
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US" -destination "$HOME\w11-nau-temp\FireFoxInstall.exe"
               }
               5 { # ESR
-                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US" -destination ".\FireFoxInstall.exe"
+                Start-BitsTransfer -source "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US" -destination "$HOME\w11-nau-temp\FireFoxInstall.exe"
               }
             }
             if ($InstallFirefox -In 1..5) { # For less repeated code
               Write-Output "`nYou can say `"no`" when it prompts to let the application make changes to your device, and it will still install.`n"
-              .\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
-              rm .\FireFoxInstall.exe
+              $HOME\w11-nau-temp\FireFoxInstall.exe | Out-Null # so that it waits for the installer to complete before going on to the next command
+              rm $HOME\w11-nau-temp\FireFoxInstall.exe
             }
           }
           2 { # PowerToys ( https://gist.github.com/laurinneff/b020737779072763628bc30814e67c1a )
@@ -1064,12 +1064,12 @@ public class PInvoke {
               Write-Output "`nWARNING, THIS PROGRAM MAY NOT WORK WITHOUT MICROSOFT VISUAL STUDIO C++ INSTALLED.`n"
               $latestLapce = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/lapce/lapce/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestLapce.tag_name.Substring(1)
-              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination ".\Lapce-windows-portable.zip"
-              Expand-Archive ".\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
+              Start-BitsTransfer -source "https://github.com/lapce/lapce/releases/download/v$latestVersion/Lapce-windows-portable.zip" -destination "$HOME\w11-nau-temp\Lapce-windows-portable.zip"
+              Expand-Archive "$HOME\w11-nau-temp\Lapce-windows-portable.zip" -DestinationPath "$env:LOCALAPPDATA\Lapce" -Force | Out-Null # So it waits to move on to the next one
               Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\vcruntime140.dll"
               Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/qio77woad985fhf9w9aj4/vcruntime140_1.dll?rlkey=ny0shlgfo2h2xyaikx4g8zcia&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\vcruntime140_1.dll"
               Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/iws22okw53ft7sjw1axok/msvcp140.dll?rlkey=4mfgeoydrmdtznsmfkaetwecy&dl=1" -OutFile "$env:LOCALAPPDATA\Lapce\msvcp140.dll"
-              rm ".\Lapce-windows-portable.zip"
+              rm "$HOME\w11-nau-temp\Lapce-windows-portable.zip"
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Lapce.lnk")
               $Shortcut.TargetPath = "$env:LOCALAPPDATA\Lapce\lapce.exe"
@@ -1097,17 +1097,17 @@ public class PInvoke {
             if ($InstallClavier -eq 1) {
               $latestClavier = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/guilryder/clavier-plus/releases/latest" | ConvertFrom-Json
               $latestVersion = $latestClavier.tag_name.Substring(0)
-              Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination ".\ClavierPlus.exe"
-              .\ClavierPlus.exe | Out-Null
-              rm .\ClavierPlus.exe
+              Start-BitsTransfer -source "https://github.com/guilryder/clavier-plus/releases/download/$latestVersion/ClavierSetup.exe" -destination "$HOME\w11-nau-temp\ClavierPlus.exe"
+              $HOME\w11-nau-temp\ClavierPlus.exe | Out-Null
+              rm $HOME\w11-nau-temp\ClavierPlus.exe
             }
           }
           7 { # eDEX-UI
             $InstallEdex = $Host.UI.PromptForChoice("Install eDEX-UI?", "", @("&Cancel", "&Install"), 0)
             if ($InstallEdex -eq 1) {
-              Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination ".\eDEX-UI.exe"
-              .\eDEX-UI.exe | out-null
-              rm .\eDEX-UI.exe
+              Start-BitsTransfer -source "https://github.com/GitSquared/edex-ui/releases/download/v2.2.8/eDEX-UI-Windows-x64.exe" -destination "$HOME\w11-nau-temp\eDEX-UI.exe"
+              $HOME\w11-nau-temp\eDEX-UI.exe | out-null
+              rm $HOME\w11-nau-temp\eDEX-UI.exe
             }
           }
           8 { # GZDoom
@@ -1225,18 +1225,18 @@ public class PInvoke {
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "Downloading latest version..."
-              Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination ".\fastfetch.zip"
+              Start-BitsTransfer -source "https://github.com/fastfetch-cli/fastfetch/releases/download/$latest/fastfetch-$latest`-Win64.zip" -destination "$HOME\w11-nau-temp\fastfetch.zip"
               Write-Output "Extracting..."
-              Expand-Archive ".\fastfetch.zip" -DestinationPath ".\fastfetch" -Force
+              Expand-Archive "$HOME\w11-nau-temp\fastfetch.zip" -DestinationPath "$HOME\w11-nau-temp\fastfetch" -Force
               if (test-path "$HOME\bin\fastfetch.exe") {
                 Write-Output "Removing old version..."
                 rm "$HOME\bin\fastfetch.exe"
               }
               Write-Output "Installing..."
-              mv ".\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
+              mv "$HOME\w11-nau-temp\fastfetch\fastfetch.exe" "$HOME\bin" | Out-Null # Just in case
               Write-Output "Cleaning up..."
-              rm ".\fastfetch.zip"
-              rm ".\fastfetch" -r
+              rm "$HOME\w11-nau-temp\fastfetch.zip"
+              rm "$HOME\w11-nau-temp\fastfetch" -r
               Write-Output "`nDone!"
             }
           }
@@ -1288,20 +1288,20 @@ public class PInvoke {
               $getLatest = Invoke-webRequest -UseBasicParsing "https://api.github.com/repos/orf/gping/releases/latest" | ConvertFrom-Json
               $latest = $getLatest.tag_name.Substring(0)
               Write-Output "Downloading latest version..."
-              Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination ".\gping.zip"
+              Start-BitsTransfer -source "https://github.com/orf/gping/releases/download/$latest/gping-Windows-x86_64.zip" -destination "$HOME\w11-nau-temp\gping.zip"
               Write-Output "Extracting..."
-              Expand-Archive ".\gping.zip" -DestinationPath ".\gping" -Force
+              Expand-Archive "$HOME\w11-nau-temp\gping.zip" -DestinationPath "$HOME\w11-nau-temp\gping" -Force
               if (test-path "$HOME\bin\gping.exe") {
                 Write-Output "Removing old version..."
                 rm "$HOME\bin\gping.exe"
               }
               Write-Output "Installing..."
-              mv ".\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
+              mv "$HOME\w11-nau-temp\gping\gping.exe" "$HOME\bin" | Out-Null # Just in case
               Write-Output "Downloading dependencies..."
               Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\vcruntime140.dll"
               Write-Output "Cleaning up..."
-              rm ".\gping.zip"
-              rm ".\gping" -r
+              rm "$HOME\w11-nau-temp\gping.zip"
+              rm "$HOME\w11-nau-temp\gping" -r
               Write-Output "`nDone!"
             }
           }
@@ -1343,15 +1343,15 @@ public class PInvoke {
                     rm -r "$HOME\bin\vim"
                   }
                   Write-Output "Downloading latest version..."
-                  Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination ".\vim.zip"
+                  Start-BitsTransfer -source "https://github.com/vim/vim-win32-installer/releases/download/v$latest/gvim_$latest`_x64.zip" -destination "$HOME\w11-nau-temp\vim.zip"
                   Write-Output "Extracting..."
-                  Expand-Archive .\vim.zip | out-null
+                  Expand-Archive $HOME\w11-nau-temp\vim.zip $HOME\w11-nau-temp\vim | out-null
                   Write-Output "Installing..."
-                  mv .\vim\vim\vim*\ $HOME\bin\vim | out-null
+                  mv $HOME\w11-nau-temp\vim\vim\vim*\ $HOME\bin\vim | out-null
                   Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
                   Write-Output "Cleaning up..."
-                  rm -r .\vim
-                  rm .\vim.zip
+                  rm -r $HOME\w11-nau-temp\vim
+                  rm $HOME\w11-nau-temp\vim.zip
                   Write-Output "`nDone!"
                 }
               }
@@ -1364,17 +1364,17 @@ public class PInvoke {
                     rm -r "$HOME\bin\nvim"
                   }
                   Write-Output "Downloading latest version..."
-                  Start-BitsTransfer -source "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.zip" -destination ".\nvim.zip"
+                  Start-BitsTransfer -source "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.zip" -destination "$HOME\w11-nau-temp\nvim.zip"
                   Write-Output "Extracting..."
-                  Expand-Archive .\nvim.zip | out-null
+                  Expand-Archive $HOME\w11-nau-temp\nvim.zip $HOME\w11-nau-temp\nvim | out-null
                   Write-Output "Installing..."
-                  mv .\nvim\nvim-win64\ $HOME\bin\nvim | out-null
+                  mv $HOME\w11-nau-temp\nvim\nvim-win64\ $HOME\bin\nvim | out-null
                   Write-Output "$HOME\bin\nvim\bin\nvim.exe" > "$HOME\bin\nvim.ps1"
                   Write-Output "Downloading dependencies..."
                   Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\nvim\bin\vcruntime140.dll"
                   Write-Output "Cleaning up..."
-                  rm -r .\nvim
-                  rm .\nvim.zip
+                  rm -r $HOME\w11-nau-temp\nvim
+                  rm $HOME\w11-nau-temp\nvim.zip
                   Write-Output "`nDone!"
                   Write-Output "`nThe command to run neovim is ``nvim```n"
                 }
@@ -1391,14 +1391,14 @@ public class PInvoke {
                     rm "$HOME\bin\micro.exe"
                   }
                   Write-Output "Downloading latest version..."
-                  Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination ".\micro.zip"
+                  Start-BitsTransfer -source "https://github.com/zyedidia/micro/releases/download/v$latest/micro-$latest`-win64.zip" -destination "$HOME\w11-nau-temp\micro.zip"
                   Write-Output "Extracting..."
-                  Expand-Archive .\micro.zip | out-null
+                  Expand-Archive $HOME\w11-nau-temp\micro.zip $HOME\w11-nau-temp\micro | out-null
                   Write-Output "Installing..."
-                  mv .\micro\micro*\micro.exe $HOME\bin\micro.exe | out-null
+                  mv $HOME\w11-nau-temp\micro\micro*\micro.exe $HOME\bin\micro.exe | out-null
                   Write-Output "Cleaning up..."
-                  rm -r .\micro
-                  rm .\micro.zip
+                  rm -r $HOME\w11-nau-temp\micro
+                  rm $HOME\w11-nau-temp\micro.zip
                   Write-Output "`nDone!"
                 }
               }
@@ -1411,15 +1411,15 @@ public class PInvoke {
                     rm -r "$HOME\bin\nano"
                   }
                   Write-Output "Downloading latest version..."
-                  Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/9wzwel73vosegmkbg5soa/nano.zip?rlkey=8dwqs4nklqrcb0npq1obm37sx&dl=1" -OutFile .\nano.zip
+                  Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/9wzwel73vosegmkbg5soa/nano.zip?rlkey=8dwqs4nklqrcb0npq1obm37sx&dl=1" -OutFile $HOME\w11-nau-temp\nano.zip
                   Write-Output "Extracting..."
-                  Expand-Archive .\nano.zip | out-null
+                  Expand-Archive $HOME\w11-nau-temp\nano.zip $HOME\w11-nau-temp\nano | out-null
                   Write-Output "Installing..."
-                  mv .\nano\nano\ $HOME\bin\nano\ | out-null
+                  mv $HOME\w11-nau-temp\nano\nano\ $HOME\bin\nano\ | out-null
                   Write-Output "$HOME\bin\nano\bin\nano.exe" > "$HOME\bin\nano.ps1"
                   Write-Output "Cleaning up..."
-                  rm -r .\nano
-                  rm .\nano.zip
+                  rm -r $HOME\w11-nau-temp\nano
+                  rm $HOME\w11-nau-temp\nano.zip
                   Write-Output "`nDone!"
                 }
               }
