@@ -1081,11 +1081,9 @@ public class PInvoke {
           Write-Output "Licensing information: https://www.cygwin.com/licensing.html"
           $InstallCygwin64 = $Host.UI.PromptForChoice("Install Cygwin64?", "", @("&Cancel", "&Install"), 0)
             if ($InstallCygwin64) {
-              $remoteFile = "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=1"
-              Invoke-webRequest -UseBasicParsing "$remoteFile" -OutFile "$HOME\Cygwin64.zip"
-              # Start-BitsTransfer -source "$remoteFile" -destination "$HOME\Cygwin64.zip" # BITS does not like dropbox
-              Expand-Archive $HOME\Cygwin64.zip | Out-Null
-              rm $HOME\Cygwin64.zip
+              Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/6x3exiucwd1rzkrzv5dts/cygwin64.zip?rlkey=5l2p9f48ukez8zdr5gf0jfmxf&dl=1" -OutFile "$HOME\w11-nau-temp\Cygwin64.zip"
+              Expand-Archive $HOME\w11-nau-temp\Cygwin64.zip $HOME\Cygwin64.zip | Out-Null
+              rm $HOME\w11-nau-temp\Cygwin64.zip
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Cygwin64.lnk")
               $Shortcut.TargetPath = "$HOME\Cygwin64\Cygwin64\bin\mintty.exe"
@@ -1120,10 +1118,6 @@ public class PInvoke {
               $latestMajor = $latestSplit[0].Substring(1)
               $latestMinor = $latestSplit[1]
               $latestMini = $latestSplit[2]
-              if (test-path "$HOME\GZDoom") {
-                Write-Output "Removing old version..."
-                rm -r "$HOME\bin\GZDoom"
-              }
               Write-Output "Downloading latest version..." # Worlds most annoying version name scheme
               Start-BitsTransfer -source "https://github.com/ZDoom/gzdoom/releases/download/g$latest/gzdoom-$latestMajor`-$latestMinor`-$latestMini`-Windows-64bit.zip" -destination "$HOME\w11-nau-temp\GZDoom.zip"
               Start-BitsTransfer -source "https://archive.org/download/2020_03_22_DOOM/DOOM%20WADs/Doom%20%28v1.9%29.zip" -destination "$HOME\w11-nau-temp\doom.zip"
@@ -1133,9 +1127,9 @@ public class PInvoke {
               Expand-Archive "$HOME\w11-nau-temp\doom.zip" "$HOME\w11-nau-temp\doom" | out-null
               Expand-Archive "$HOME\w11-nau-temp\doom2.zip" "$HOME\w11-nau-temp\doom2" | out-null
               Write-Output "Installing..."
-              mv "$HOME\w11-nau-temp\GZDoom" "$HOME\GZDoom" | out-null
-              mv "$HOME\w11-nau-temp\doom\DOOM.WAD" "$HOME\GZDoom\DOOM.WAD" | out-null
-              mv "$HOME\w11-nau-temp\doom2\DOOM2.WAD" "$HOME\GZDoom\DOOM2.WAD" | out-null
+              mv "$HOME\w11-nau-temp\GZDoom" "$HOME\GZDoom" -force | out-null
+              mv "$HOME\w11-nau-temp\doom\DOOM.WAD" "$HOME\GZDoom\DOOM.WAD" -force | out-null
+              mv "$HOME\w11-nau-temp\doom2\DOOM2.WAD" "$HOME\GZDoom\DOOM2.WAD" -force | out-null
               Write-Output "Creating shortcut..."
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\GZDoom.lnk")
