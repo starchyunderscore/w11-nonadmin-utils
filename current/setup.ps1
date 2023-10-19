@@ -1127,12 +1127,15 @@ public class PInvoke {
               Write-Output "Downloading latest version..." # Worlds most annoying version name scheme
               Start-BitsTransfer -source "https://github.com/ZDoom/gzdoom/releases/download/g$latest/gzdoom-$latestMajor`-$latestMinor`-$latestMini`-Windows-64bit.zip" -destination "$HOME\w11-nau-temp\GZDoom.zip"
               Start-BitsTransfer -source "https://archive.org/download/2020_03_22_DOOM/DOOM%20WADs/Doom%20%28v1.9%29.zip" -destination "$HOME\w11-nau-temp\doom.zip"
+              Start-BitsTransfer -source "https://archive.org/download/2020_03_22_DOOM/DOOM%20WADs/Doom%20II%20-%20Hell%20on%20Earth%20%28v1.9%29.zip" -destination "$HOME\w11-nau-temp\doom2.zip"
               Write-Output "Extracting..."
               Expand-Archive "$HOME\w11-nau-temp\GZDoom.zip" "$HOME\w11-nau-temp\GZDoom" | out-null
               Expand-Archive "$HOME\w11-nau-temp\doom.zip" "$HOME\w11-nau-temp\doom" | out-null
+              Expand-Archive "$HOME\w11-nau-temp\doom2.zip" "$HOME\w11-nau-temp\doom2" | out-null
               Write-Output "Installing..."
               mv "$HOME\w11-nau-temp\GZDoom" "$HOME\GZDoom" | out-null
               mv "$HOME\w11-nau-temp\doom\DOOM.WAD" "$HOME\GZDoom\DOOM.WAD" | out-null
+              mv "$HOME\w11-nau-temp\doom2\DOOM2.WAD" "$HOME\GZDoom\DOOM2.WAD" | out-null
               Write-Output "Creating shortcut..."
               $WshShell = New-Object -ComObject WScript.Shell
               $Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\GZDoom.lnk")
