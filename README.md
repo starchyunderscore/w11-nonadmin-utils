@@ -67,10 +67,10 @@ These are features that are fully ready.
 
 ## Beta features
 
-These are features are in the release, but do not work entirely as intended.
+These are features are in the release, but do not work entirely as intended or are not properly tested.
 
-- [x] Uninstall programs (Some programs may need admin to uninstall, Will not uninstall the built in apps. Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to do that)
-- [x] Install [lapce](https://github.com/lapce/lapce) (Needs visual c++)
+- [ ] Uninstall programs (Will not uninstall most apps, some of them require admin to uninstall, some of them are system apps, Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to uninstall those (requires admin))
+- [ ] Install [lapce](https://github.com/lapce/lapce) (Won't work in my VM, though thats likely a [program issue](https://github.com/lapce/lapce/issues/2143), The only other computer I can test on already has visual studio c++ installed, so I can't test if including the DLLs works properly for machines that don't)
 
 ## Alpha features
 
@@ -92,4 +92,4 @@ These are features that have no code yet, but are planned for the future. There 
 
 ---
 
-See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/current/GUI-setup.ps1) for progress on the GUI version
+See [here](https://github.com/starchyunderscore/w11-nonadmin-utils/blob/main/current/GUI-setup.ps1) for progress on the GUI version (Hint: there's barely any, and unlikely to be more anytime soon)
