@@ -1173,11 +1173,11 @@ public class PInvoke {
       DO {
         # List options
         Write-Output "`n1. Add items to bin"
-        Write-Output "2. Install fastfetch"
-        Write-Output "3. Install ntop"
-        Write-Output "4. Install btop"
-        Write-Output "5. Install gping"
-        Write-Output "6. Install genact"
+        Write-Output "2. fastfetch"
+        Write-Output "3. ntop"
+        Write-Output "4. btop"
+        Write-Output "5. gping"
+        Write-Output "6. genact"
         Write-Output "7. Text editors"
         Write-Output "8. Qemu"
         # Prompt user for input
@@ -1215,7 +1215,7 @@ public class PInvoke {
             }
           }
           2 { # Get fastfetch
-            $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+            $Install = $Host.UI.PromptForChoice("fastfetch:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1241,8 +1241,8 @@ public class PInvoke {
               Write-Output "Done!"
             }
           }
-          3 { # Get HTop
-            $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+          3 { # Get NTop
+            $Install = $Host.UI.PromptForChoice("ntop:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1264,7 +1264,7 @@ public class PInvoke {
             }
           }
           4 { # Get btop
-            $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+            $Install = $Host.UI.PromptForChoice("btop:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1291,7 +1291,7 @@ public class PInvoke {
             }
           }
           5 { # Get gping
-            $Install = $Host.UI.PromptForChoice("Install gping?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+            $Install = $Host.UI.PromptForChoice("gping:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1320,7 +1320,7 @@ public class PInvoke {
             }
           }
           6 { # genact
-            $Install = $Host.UI.PromptForChoice("Install genact?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+            $Install = $Host.UI.PromptForChoice("genact:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1342,15 +1342,15 @@ public class PInvoke {
           }
           7 { # Text editors
             # List choices
-            Write-Output "`n1. Install vim"
-            Write-Output "2. Install neovim"
-            Write-Output "3. Install micro"
-            Write-Output "4. Install nano"
+            Write-Output "`n1. vim"
+            Write-Output "2. neovim"
+            Write-Output "3. micro"
+            Write-Output "4. nano"
             # Prompt user for input
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
             switch ($TEdit) {
               1 { # vim
-                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+                $Install = $Host.UI.PromptForChoice("vim:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   Write-Output "Fetching latest version information..."
@@ -1379,7 +1379,7 @@ public class PInvoke {
                 }
               }
               2 { # neovim
-                $Install = $Host.UI.PromptForChoice("Install neovim?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+                $Install = $Host.UI.PromptForChoice("neovim:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   if (test-path "$HOME\bin\neovim.ps1") {
@@ -1408,7 +1408,7 @@ public class PInvoke {
                 }
               }
               3 { # micro
-                $Install = $Host.UI.PromptForChoice("Install micro?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+                $Install = $Host.UI.PromptForChoice("micro:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   Write-Output "Fetching latest version information..."
@@ -1435,7 +1435,7 @@ public class PInvoke {
                 }
               }
               4 { # nano
-                $Install = $Host.UI.PromptForChoice("Install nano?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+                $Install = $Host.UI.PromptForChoice("nano:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   if (test-path "$HOME\bin\nano.ps1") {
@@ -1463,7 +1463,7 @@ public class PInvoke {
             }
           }
           8 { # QEMU
-            $Install = $Host.UI.PromptForChoice("Install QEMU?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
+            $Install = $Host.UI.PromptForChoice("QEMU:", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               if (test-path "$HOME\qemu") {
                   Write-Output "Removing old version..."
