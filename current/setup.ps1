@@ -1215,7 +1215,7 @@ public class PInvoke {
             }
           }
           2 { # Get fastfetch
-            $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install fastfetch?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1235,10 +1235,14 @@ public class PInvoke {
               rm "$HOME\w11-nau-temp\fastfetch.zip"
               rm "$HOME\w11-nau-temp\fastfetch" -r
               Write-Output "`nDone!"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm $HOME\bin\fastfetch.exe
+              Write-Output "Done!"
             }
           }
           3 { # Get HTop
-            $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install ntop?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1253,10 +1257,14 @@ public class PInvoke {
               Write-Output "Installing..."
               Write-Output "Cleaning up..."
               Write-Output "`nDone!"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm $HOME\bin\ntop.exe
+              Write-Output "Done!"
             }
           }
           4 { # Get btop
-            $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install btop?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1275,10 +1283,15 @@ public class PInvoke {
               Write-Output "Cleaning up..."
               rm "$HOME\bin\btop.zip"
               Write-Output "`nDone!"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm -r $HOME\bin\btop
+              rm $HOME\bin\btop.ps1
+              Write-Output "Done!"
             }
           }
           5 { # Get gping
-            $Install = $Host.UI.PromptForChoice("Install gping?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install gping?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1300,10 +1313,14 @@ public class PInvoke {
               rm "$HOME\w11-nau-temp\gping.zip"
               rm "$HOME\w11-nau-temp\gping" -r
               Write-Output "`nDone!"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm $HOME\bin\gping.exe
+              Write-Output "Done!"
             }
           }
           6 { # genact
-            $Install = $Host.UI.PromptForChoice("Install genact?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install genact?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               CREATE_BIN
               Write-Output "Fetching latest version information..."
@@ -1317,6 +1334,10 @@ public class PInvoke {
               Start-BitsTransfer -source "https://github.com/svenstaro/genact/releases/download/v$latest/genact-$latest`-x86_64-pc-windows-msvc.exe" -destination "$HOME\bin\genact.exe"
               Write-Output "Installing..."
               Write-Output "`nDone!"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm $HOME\bin\genact.exe
+              Write-Output "Done!"
             }
           }
           7 { # Text editors
@@ -1329,7 +1350,7 @@ public class PInvoke {
             $TEdit = Read-Host "`nInput the number of an option from the list above, or leave blank to exit"
             switch ($TEdit) {
               1 { # vim
-                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install"), 0)
+                $Install = $Host.UI.PromptForChoice("Install vim?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   Write-Output "Fetching latest version information..."
@@ -1350,10 +1371,15 @@ public class PInvoke {
                   rm -r $HOME\w11-nau-temp\vim
                   rm $HOME\w11-nau-temp\vim.zip
                   Write-Output "`nDone!"
+                } elseif ($Install -eq 2) {
+                  Write-Output "Uninstalling..."
+                  rm -r $HOME\bin\vim
+                  rm $HOME\bin\vim.ps1
+                  Write-Output "Done!"
                 }
               }
               2 { # neovim
-                $Install = $Host.UI.PromptForChoice("Install neovim?", "", @("&Cancel", "&Install"), 0)
+                $Install = $Host.UI.PromptForChoice("Install neovim?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   if (test-path "$HOME\bin\neovim.ps1") {
@@ -1374,10 +1400,15 @@ public class PInvoke {
                   rm $HOME\w11-nau-temp\nvim.zip
                   Write-Output "`nDone!"
                   Write-Output "`nThe command to run neovim is ``nvim```n"
+                } elseif ($Install -eq 2) {
+                  Write-Output "Uninstalling..."
+                  rm -r $HOME\bin\nvim
+                  rm $HOME\bin\nvim.ps1
+                  Write-Output "Done!"
                 }
               }
               3 { # micro
-                $Install = $Host.UI.PromptForChoice("Install micro?", "", @("&Cancel", "&Install"), 0)
+                $Install = $Host.UI.PromptForChoice("Install micro?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   Write-Output "Fetching latest version information..."
@@ -1397,10 +1428,14 @@ public class PInvoke {
                   rm -r $HOME\w11-nau-temp\micro
                   rm $HOME\w11-nau-temp\micro.zip
                   Write-Output "`nDone!"
+                } elseif ($Install -eq 2) {
+                  Write-Output "Uninstalling..."
+                  rm $HOME\bin\micro.exe
+                  Write-Output "Done!"
                 }
               }
               4 { # nano
-                $Install = $Host.UI.PromptForChoice("Install nano?", "", @("&Cancel", "&Install"), 0)
+                $Install = $Host.UI.PromptForChoice("Install nano?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
                 if ($Install -eq 1) {
                   CREATE_BIN
                   if (test-path "$HOME\bin\nano.ps1") {
@@ -1418,12 +1453,17 @@ public class PInvoke {
                   rm -r $HOME\w11-nau-temp\nano
                   rm $HOME\w11-nau-temp\nano.zip
                   Write-Output "`nDone!"
+                } elseif ($Install -eq 2) {
+                  Write-Output "Uninstalling..."
+                  rm -r $HOME\bin\nano
+                  rm $HOME\bin\nano.ps1.ps1
+                  Write-Output "Done!"
                 }
               }
             }
           }
           8 { # QEMU
-            $Install = $Host.UI.PromptForChoice("Install QEMU?", "", @("&Cancel", "&Install"), 0)
+            $Install = $Host.UI.PromptForChoice("Install QEMU?", "", @("&Cancel", "&Install", "&Uninstall"), 0)
             if ($Install -eq 1) {
               if (test-path "$HOME\qemu") {
                   Write-Output "Removing old version..."
@@ -1448,6 +1488,10 @@ public class PInvoke {
               rm -r $HOME\w11-nau-temp\qemu\
               Write-Output "Done!"
               Write-Output "Use command `"slitaz`" to easily launch slitaz linux in qemu"
+            } elseif ($Install -eq 2) {
+              Write-Output "Uninstalling..."
+              rm -r $HOME\qemu
+              Write-Output "Done!"
             }
           }
         }
