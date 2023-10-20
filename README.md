@@ -49,7 +49,7 @@ These are features that are fully ready.
   - [x] Install [Cygwin64](https://www.cygwin.com/)
   - [x] Install [clavier plus](https://github.com/guilryder/clavier-plus)
   - [x] Install [eDEX-UI](https://github.com/GitSquared/edex-ui)
-  - [x] Install [GZDoom](https://github.com/ZDoom/gzdoom) with Doom v1.9 (& Doom 2 v1.9 WAD, alpha version of script only) [via](https://archive.org/details/2020_03_22_DOOM)
+  - [x] Install [GZDoom](https://github.com/ZDoom/gzdoom) with Doom v1.9 & Doom II v1.9 WAD [via](https://archive.org/details/2020_03_22_DOOM)
 
 - [x] Command line utilities:
   - [x] Add and remove items from bin
