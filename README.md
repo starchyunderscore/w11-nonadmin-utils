@@ -87,8 +87,6 @@ These are features that have no code yet, but are planned for the future. There 
 - [ ] [Disable windows copilot](https://allthings.how/how-to-disable-copilot-on-windows-11/) (I don't have a new enough version to test)
 - [ ] [browsr](https://github.com/juftin/browsr)
 - [ ] Install never versions of [PowerShell](https://github.com/PowerShell/PowerShell)
-- [ ] Minecraft ([via](https://www.minecraft.net/en-us/download/alternative))
-- [ ] Some other videogames perhaps
 
 <sup>Look, at this point I'm just adding features because I'm bored, not because they're any good or I'll use them.</sup>
 
