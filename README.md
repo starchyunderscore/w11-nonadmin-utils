@@ -74,7 +74,7 @@ These are features are in the release, but do not work entirely as intended or a
     - [ ] Install [neovim](https://github.com/neovim/neovim)
     - [ ] Install [micro](https://github.com/zyedidia/micro)
     - [ ] Install [nano](https://github.com/lhmouse/nano-win)
- - Some do not select correct file when called, this is caused by how the script sets them up, not an upstream issue.
+  - Some do not select correct file when called, this is caused by how the script sets them up, not an upstream issue.
 
 ## Alpha features
 
