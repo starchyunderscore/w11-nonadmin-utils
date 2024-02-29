@@ -69,12 +69,11 @@ These are features are in the release, but do not work entirely as intended or a
   - Will not uninstall most apps, some of them require admin to uninstall, some of them are system apps, Use something like [Windows10Debloater](https://github.com/Sycnex/Windows10Debloater) to uninstall those (requires admin).
 - [ ] Install [lapce](https://github.com/lapce/lapce)
   - Won't work in my VM, though thats likely a [program issue](https://github.com/lapce/lapce/issues/2143), The only other computer I can test on already has visual studio c++ installed, so I can't test if including the DLLs works properly for machines that don't.
-- [ ] Text editors:
+- [ ] Text editors:  /// In current version, most editiors do not select correct file. In alpha version, these are untested
     - [ ] Install [vim](https://github.com/vim/vim)
     - [ ] Install [neovim](https://github.com/neovim/neovim)
     - [ ] Install [micro](https://github.com/zyedidia/micro)
     - [ ] Install [nano](https://github.com/lhmouse/nano-win)
-  - Some do not select correct file when called, this is caused by how the script sets them up, not an upstream issue.
 
 ## Alpha features
 
