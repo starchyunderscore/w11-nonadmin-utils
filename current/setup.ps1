@@ -1366,7 +1366,7 @@ public class PInvoke {
                   Expand-Archive $HOME\w11-nau-temp\vim.zip $HOME\w11-nau-temp\vim | out-null
                   Write-Output "Installing..."
                   mv $HOME\w11-nau-temp\vim\vim\vim*\ $HOME\bin\vim | out-null
-                  Write-Output "$HOME\bin\vim\vim.exe" > "$HOME\bin\vim.ps1"
+                  Write-Output "param([Parameter(Position=0)][string[]]`$File); $HOME\bin\vim\vim.exe `$File" > "$HOME\bin\vim.ps1"
                   Write-Output "Cleaning up..."
                   rm -r $HOME\w11-nau-temp\vim
                   rm $HOME\w11-nau-temp\vim.zip
@@ -1392,7 +1392,7 @@ public class PInvoke {
                   Expand-Archive $HOME\w11-nau-temp\nvim.zip $HOME\w11-nau-temp\nvim | out-null
                   Write-Output "Installing..."
                   mv $HOME\w11-nau-temp\nvim\nvim-win64\ $HOME\bin\nvim | out-null
-                  Write-Output "$HOME\bin\nvim\bin\nvim.exe" > "$HOME\bin\nvim.ps1"
+                  Write-Output "param([Parameter(Position=0)][string[]]`$File); $HOME\bin\nvim\bin\nvim.exe `$File" > "$HOME\bin\nvim.ps1"
                   Write-Output "Downloading dependencies..."
                   Invoke-webRequest -UseBasicParsing "https://www.dropbox.com/scl/fi/3jce5pmrv0yxuu23zvbbc/vcruntime140.dll?rlkey=iktobjfly7orys8we6hjf5l6x&dl=1" -OutFile "$HOME\bin\nvim\bin\vcruntime140.dll"
                   Write-Output "Cleaning up..."
@@ -1448,7 +1448,7 @@ public class PInvoke {
                   Expand-Archive $HOME\w11-nau-temp\nano.zip $HOME\w11-nau-temp\nano | out-null
                   Write-Output "Installing..."
                   mv $HOME\w11-nau-temp\nano\nano\ $HOME\bin\nano\ | out-null
-                  Write-Output "$HOME\bin\nano\bin\nano.exe" > "$HOME\bin\nano.ps1"
+                  Write-Output "param([Parameter(Position=0)][string[]]`$File); $HOME\bin\nano\bin\nano.exe `$File" > "$HOME\bin\nano.ps1"
                   Write-Output "Cleaning up..."
                   rm -r $HOME\w11-nau-temp\nano
                   rm $HOME\w11-nau-temp\nano.zip
